@@ -1,12 +1,550 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affan Azhar | Portfolio Hub</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Affan Azhar — Freelance Frontend & UI/UX Designer</title>
+<meta name="description" content="Portfolio of Affan Azhar — freelance frontend developer, UI/UX designer, and AI content creator based in Pakistan." />
+<meta property="og:title" content="Affan Azhar — Freelance Designer & Developer" />
+<meta property="og:description" content="Clean, practical design and frontend work for international clients." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ================================================================
+     DESIGN TOKENS — edit accent by changing --primary
+     ================================================================ */
+  :root {
+    --bg: #0B0D12;
+    --bg-elev: #12151C;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --fg: #F1F3F8;
+    --muted: #8A94A6;
+    --primary: #38BDF8;         /* electric blue accent */
+    --primary-2: #22D3EE;
+    --primary-fg: #06121E;
+    --radius: 14px;
+    --maxw: 1120px;
+    --font: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  h1,h2,h3 { margin: 0; letter-spacing: -0.02em; font-weight: 600; }
+  p { margin: 0; }
+  img, svg { display: block; max-width: 100%; }
+  button { font: inherit; cursor: pointer; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.nav.scrolled {
+    background: rgba(11,13,18,0.65);
+    backdrop-filter: saturate(160%) blur(14px);
+    border-bottom-color: var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; max-width: var(--maxw); margin: 0 auto;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-name { font-size: 14px; color: var(--muted); }
+  .monogram {
+    display: grid; place-items: center;
+    width: 36px; height: 36px; border-radius: 999px;
+    background: conic-gradient(from 210deg, var(--primary), var(--primary-2), #A78BFA, var(--primary));
+    color: var(--primary-fg); font-weight: 700; font-size: 12px;
+    box-shadow: 0 6px 24px -8px rgba(56,189,248,0.5);
+  }
+  nav.links { display: flex; align-items: center; gap: 30px; }
+  nav.links a { font-size: 14px; color: var(--muted); transition: color .2s; }
+  nav.links a:hover { color: var(--fg); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 500;
+    transition: transform .2s, opacity .2s, background .2s, border-color .2s;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--primary); color: var(--primary-fg); }
+  .btn-primary:hover { opacity: .9; }
+  .btn-ghost {
+    background: var(--card); border-color: var(--border); color: var(--fg);
+    backdrop-filter: blur(10px);
+  }
+  .btn-ghost:hover { border-color: rgba(56,189,248,0.5); }
+  .menu-btn {
+    display: none; background: transparent; border: 0; color: var(--fg); padding: 8px;
+  }
+  .mobile-menu {
+    display: none; border-top: 1px solid var(--border);
+    background: rgba(11,13,18,0.9); backdrop-filter: blur(14px);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block; padding: 14px 24px; color: var(--muted); border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu a:hover { color: var(--fg); }
+
+  /* ---------- Section basics ---------- */
+  section { padding: 96px 0; }
+  .label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+  }
+  .label::before {
+    content: ""; display: block; width: 24px; height: 1px; background: var(--primary);
+  }
+  h2.section-title { font-size: clamp(28px, 4vw, 40px); margin-top: 12px; }
+
+  /* Glass card */
+  .glass {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding: 140px 0 160px; }
+  .blobs { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+  .blob {
+    position: absolute; border-radius: 999px; filter: blur(70px); opacity: .55;
+    animation: blob 18s ease-in-out infinite;
+  }
+  .blob.b1 { width: 420px; height: 420px; top: -80px; left: -80px; background: rgba(56,189,248,0.35); }
+  .blob.b2 { width: 360px; height: 360px; top: 180px; right: -100px; background: rgba(167,139,250,0.28); animation-delay: -6s; }
+  .blob.b3 { width: 320px; height: 320px; bottom: -60px; left: 35%; background: rgba(34,211,238,0.25); animation-delay: -12s; }
+  @keyframes blob {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(30px,-40px) scale(1.1); }
+    66% { transform: translate(-25px,25px) scale(.95); }
+  }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px; font-size: 12px; color: var(--muted);
+  }
+  .status .dot {
+    width: 6px; height: 6px; border-radius: 999px; background: var(--primary);
+    box-shadow: 0 0 0 0 rgba(56,189,248,0.6); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(56,189,248,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(56,189,248,0); }
+    100% { box-shadow: 0 0 0 0 rgba(56,189,248,0); }
+  }
+  .hero h1 {
+    margin-top: 22px; font-size: clamp(44px, 8vw, 84px);
+    line-height: 1.02; font-weight: 600;
+  }
+  .role {
+    margin-top: 18px; color: var(--primary); font-weight: 500;
+    font-size: clamp(16px, 2vw, 20px); min-height: 30px;
+    transition: opacity .3s;
+  }
+  .bio {
+    margin-top: 22px; color: var(--muted); max-width: 620px;
+    font-size: clamp(15px, 1.5vw, 17px);
+  }
+  .cta-row { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start;
+  }
+  .about-card { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
+  .about-card .monogram { width: 64px; height: 64px; font-size: 18px; }
+  .about-card p { font-size: 14px; }
+  .about-card .sub { color: var(--muted); }
+  .about-text { display: grid; gap: 18px; color: var(--muted); }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;
+  }
+  .skill-group { padding: 24px; }
+  .skill-group h3 {
+    font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--primary); font-weight: 500;
+  }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--border); background: rgba(255,255,255,0.03);
+    font-size: 13px; transition: all .2s;
+  }
+  .badge:hover { transform: translateY(-2px); border-color: rgba(56,189,248,0.5); background: rgba(255,255,255,0.06); }
+  .badge svg { color: var(--primary); }
+
+  /* ---------- Projects ---------- */
+  .projects-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  .projects-head .note { color: var(--muted); font-size: 14px; max-width: 320px; }
+  .projects-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;
+  }
+  .project {
+    overflow: hidden; transition: transform .3s, border-color .3s;
+  }
+  .project:hover { transform: translateY(-4px); border-color: rgba(56,189,248,0.4); }
+  .thumb { position: relative; height: 192px; overflow: hidden; }
+  .thumb::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: .4;
+  }
+  .thumb::before {
+    content: ""; position: absolute; right: -32px; bottom: -32px;
+    width: 128px; height: 128px; border-radius: 999px;
+    background: rgba(255,255,255,0.1); filter: blur(30px);
+  }
+  .g1 { background: linear-gradient(135deg, rgba(56,189,248,.5), rgba(34,211,238,.25), rgba(37,99,235,.5)); }
+  .g2 { background: linear-gradient(135deg, rgba(232,121,249,.5), rgba(244,114,182,.25), rgba(147,51,234,.5)); }
+  .g3 { background: linear-gradient(135deg, rgba(52,211,153,.5), rgba(45,212,191,.25), rgba(8,145,178,.5)); }
+  .g4 { background: linear-gradient(135deg, rgba(251,191,36,.5), rgba(251,146,60,.25), rgba(244,63,94,.5)); }
+  .project-body { padding: 24px; }
+  .project h3 { font-size: 18px; }
+  .project p { margin-top: 8px; color: var(--muted); font-size: 14px; }
+  .chips { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    padding: 4px 10px; border-radius: 999px; font-size: 11px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted);
+  }
+  .view-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px; color: var(--primary); font-size: 14px; font-weight: 500;
+    transition: gap .2s;
+  }
+  .project:hover .view-link { gap: 10px; }
+
+  /* ---------- Contact ---------- */
+  .contact-card {
+    position: relative; overflow: hidden;
+    padding: 64px 32px; text-align: center; border-radius: 24px;
+  }
+  .contact-card::before {
+    content: ""; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 260px; height: 260px; border-radius: 999px;
+    background: rgba(56,189,248,0.22); filter: blur(80px);
+  }
+  .contact-card h2 { font-size: clamp(30px, 5vw, 48px); margin-top: 12px; }
+  .contact-card .lede { margin: 16px auto 0; max-width: 520px; color: var(--muted); }
+  .email-btn { margin-top: 32px; }
+  .socials { margin-top: 40px; display: flex; justify-content: center; gap: 12px; }
+  .social {
+    display: grid; place-items: center;
+    width: 44px; height: 44px; border-radius: 999px;
+    border: 1px solid var(--border); background: rgba(255,255,255,0.03);
+    color: var(--muted); transition: color .2s, border-color .2s;
+  }
+  .social:hover { color: var(--primary); border-color: rgba(56,189,248,0.5); }
+  .gh-inline {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 24px; color: var(--muted); font-size: 14px;
+  }
+  .gh-inline:hover { color: var(--fg); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--border); padding: 30px 0;
+    color: var(--muted); font-size: 14px;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 820px) {
+    section { padding: 72px 0; }
+    nav.links, .nav-inner .btn-primary { display: none; }
+    .menu-btn { display: inline-flex; }
+    .about-grid, .skills-grid, .projects-grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero { padding: 100px 0 120px; }
+  }
+</style>
 </head>
 <body>
-    <h1>Welcome to Affan Azhar's Central Hub</h1>
-    <p>This is my professional space where my future projects and sub-sites will live.</p>
+
+<!-- ============================================================
+     EASY-TO-EDIT CONTENT LIVES IN THE <script> AT THE BOTTOM.
+     Swap EMAIL, SOCIALS, PROJECTS, SKILLS, ROLES there.
+     ============================================================ -->
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">
+      <span class="monogram">AA</span>
+      <span class="brand-name">affan.azhar</span>
+    </a>
+    <nav class="links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-primary">Hire me</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<main id="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blobs" aria-hidden="true">
+      <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    </div>
+    <div class="wrap reveal">
+      <span class="status glass"><span class="dot"></span> Available for freelance work</span>
+      <h1>Affan Azhar</h1>
+      <p class="role" id="role">Freelance Frontend &amp; UI/UX Designer</p>
+      <p class="bio">
+        Freelance creative professional based in Pakistan with around three years of experience across UI/UX and web design,
+        brand identity, and AI-driven content. I partner with international clients to ship clean, considered work.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View Projects
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap reveal">
+      <div class="about-grid">
+        <div>
+          <span class="label">About</span>
+          <div class="about-card">
+            <span class="monogram">AA</span>
+            <div>
+              <p>Affan Azhar</p>
+              <p class="sub">Pakistan · Available worldwide</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>I've spent the last three years freelancing across design and frontend — helping clients ship clean interfaces, cohesive brands, and content that actually reads well. My focus is practical execution: fewer moving parts, sharper details.</p>
+          <p>Alongside client work I'm a first-year Computer Science student, building on certifications from Google, Microsoft, HP, DigiSkills, Coursera, and a U.S. Embassy program. I bring that mix — design instinct, engineering discipline, and an ongoing curiosity about AI tooling — into every project.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap reveal">
+      <span class="label">Skills</span>
+      <h2 class="section-title">Tools and disciplines</h2>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap reveal">
+      <div class="projects-head">
+        <div>
+          <span class="label">Work</span>
+          <h2 class="section-title">Selected Work</h2>
+        </div>
+        <p class="note">A small set of recent projects across design and frontend.</p>
+      </div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap reveal">
+      <div class="contact-card glass">
+        <span class="label" style="justify-content:center;">Contact</span>
+        <h2>Let's Work Together</h2>
+        <p class="lede">Have a project in mind or just want to say hi? The fastest way to reach me is email.</p>
+        <a class="btn btn-primary email-btn" id="emailBtn" href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span id="emailText">hello@affanazhar.dev</span>
+        </a>
+        <div class="socials" id="socials"></div>
+        <a class="gh-inline" id="ghInline" href="https://github.com/affan-azhar" target="_blank" rel="noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.3.8 1 .8 2v3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          github.com/affan-azhar
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>© 2026 Affan Azhar</p>
+    <p>Built with care · Design &amp; code by AA</p>
+  </div>
+</footer>
+
+<script>
+/* ==============================================================
+   EDIT THESE TO UPDATE CONTENT
+   ============================================================== */
+
+// TODO: replace with your real contact email
+const EMAIL = "hello@affanazhar.dev";
+
+// TODO: replace/extend social links (href "#" = placeholder)
+const SOCIALS = [
+  { label: "GitHub",    href: "https://github.com/affan-azhar",
+    svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.3.8 1 .8 2v3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>' },
+  { label: "LinkedIn",  href: "#",
+    svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V9h3v10zM6.5 7.7A1.7 1.7 0 118.2 6a1.7 1.7 0 01-1.7 1.7zM19 19h-3v-5.3c0-1.3-.5-2-1.6-2s-1.9.9-1.9 2V19h-3V9h3v1.3A3.3 3.3 0 0115.5 8.7c2 0 3.5 1.2 3.5 4V19z"/></svg>' },
+  { label: "Instagram", href: "#",
+    svg: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' },
+];
+
+// TODO: swap each project's title, description, tags, and href for real content
+const PROJECTS = [
+  { title: "Project One — Client Website",
+    desc: "Marketing site redesign for a SaaS client — refreshed brand system, responsive build, and conversion-focused hero.",
+    tags: ["React","Tailwind","UI/UX"], href: "/project-one", gradient: "g1" },
+  { title: "Project Two — Brand Identity",
+    desc: "Logo, type system, and visual language for an early-stage studio. Delivered guidelines and launch assets.",
+    tags: ["Figma","Branding","Logo"], href: "/project-two", gradient: "g2" },
+  { title: "Project Three — Web App",
+    desc: "Dashboard interface for a productivity tool — component library, dark mode, and accessible interactions.",
+    tags: ["React","TypeScript","Design System"], href: "/project-three", gradient: "g3" },
+  { title: "Project Four — Portfolio Template",
+    desc: "Minimal portfolio template for creatives — themeable, fast, and easy to customize per client brief.",
+    tags: ["HTML","CSS","Template"], href: "/project-four", gradient: "g4" },
+];
+
+// Rotating role tags in the hero
+const ROLES = [
+  "Freelance Frontend & UI/UX Designer",
+  "AI Content Creator",
+  "Brand & Web Designer",
+];
+
+// Skills — icons are inline SVG strings for zero dependencies
+const ICON = {
+  figma: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 24a4 4 0 004-4v-4H8a4 4 0 000 8zm-4-12a4 4 0 014-4h4v8H8a4 4 0 01-4-4zM12 0h-4a4 4 0 000 8h4V0zm4 0h-4v8h4a4 4 0 000-8zm0 8a4 4 0 100 8 4 4 0 000-8z"/></svg>',
+  layers:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+  palette:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.8.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-4.9-4.5-9-10-9z"/></svg>',
+  spark: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 10l-5.1 2.2L12 18l-2.9-5.8L4 10l6.1-1.2z"/></svg>',
+  code:  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  braces:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H7a2 2 0 00-2 2v5a2 2 0 01-2 2 2 2 0 012 2v5a2 2 0 002 2h1"/><path d="M16 21h1a2 2 0 002-2v-5a2 2 0 012-2 2 2 0 01-2-2V5a2 2 0 00-2-2h-1"/></svg>',
+  wind:  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 4.6A2 2 0 1111 8H2M12.6 19.4A2 2 0 1014 16H2M17.5 8a2.5 2.5 0 113 4H2"/></svg>',
+  bot:   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M12 2v6"/><circle cx="8.5" cy="14" r="1"/><circle cx="15.5" cy="14" r="1"/></svg>',
+  wand:  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h0M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5"/></svg>',
+  video: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>',
+  mega:  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8v18L3 13v-2z"/><path d="M11 20a3 3 0 01-6 0v-6"/></svg>',
+  git:   '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg>',
+};
+
+const SKILLS = [
+  { group: "Design",       items: [["Figma","figma"],["UI/UX Design","layers"],["Brand Identity","palette"],["Logo Design","spark"]] },
+  { group: "Frontend",     items: [["HTML5","code"],["CSS3","code"],["JavaScript","braces"],["React","braces"],["Tailwind CSS","wind"]] },
+  { group: "AI & Content", items: [["AI Content Creation","bot"],["Prompt Engineering","wand"],["Video / Content Tools","video"]] },
+  { group: "Other",        items: [["Digital Marketing","mega"],["Git & GitHub","git"]] },
+];
+
+/* ============================================================== */
+
+// Render skills
+document.getElementById('skillsGrid').innerHTML = SKILLS.map(g => `
+  <div class="glass skill-group">
+    <h3>${g.group}</h3>
+    <div class="badges">
+      ${g.items.map(([name, ic]) => `<span class="badge">${ICON[ic]}<span>${name}</span></span>`).join('')}
+    </div>
+  </div>
+`).join('');
+
+// Render projects
+document.getElementById('projectsGrid').innerHTML = PROJECTS.map(p => `
+  <a class="project glass" href="${p.href}">
+    <div class="thumb ${p.gradient}" aria-hidden="true"></div>
+    <div class="project-body">
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <div class="chips">${p.tags.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+      <span class="view-link">View Project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </div>
+  </a>
+`).join('');
+
+// Email
+document.getElementById('emailBtn').href = 'mailto:' + EMAIL;
+document.getElementById('emailText').textContent = EMAIL;
+
+// Socials
+document.getElementById('socials').innerHTML = SOCIALS.map(s =>
+  `<a class="social" href="${s.href}" target="_blank" rel="noreferrer" aria-label="${s.label}">${s.svg}</a>`
+).join('');
+
+// Sticky nav shadow on scroll
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// Mobile menu
+const mBtn = document.getElementById('menuBtn');
+const mMenu = document.getElementById('mobileMenu');
+mBtn.addEventListener('click', () => mMenu.classList.toggle('open'));
+mMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mMenu.classList.remove('open')));
+
+// Rotating role tag
+let ri = 0;
+const roleEl = document.getElementById('role');
+setInterval(() => {
+  ri = (ri + 1) % ROLES.length;
+  roleEl.style.opacity = 0;
+  setTimeout(() => { roleEl.textContent = ROLES[ri]; roleEl.style.opacity = 1; }, 200);
+}, 2800);
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
