@@ -23,7 +23,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
 
   <!-- GSAP + ScrollTrigger CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -62,42 +62,42 @@
       --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-      --fs-display: clamp(4.5rem, 13vw, 12rem);
-      --fs-hero-sub: clamp(2.8rem, 7vw, 6.5rem);
+      --fs-display: clamp(4.2rem, 13vw, 12rem);
+      --fs-hero-sub: clamp(2.6rem, 7vw, 6.5rem);
       --fs-h2: clamp(2.2rem, 5vw, 4.5rem);
       --fs-h3: clamp(1.3rem, 2.5vw, 2rem);
       --lh-display: 0.88;
       --ls-display: -0.02em;
 
-      --section-gap: clamp(4rem, 8vw, 8rem);
-      --container-pad: clamp(1.2rem, 5vw, 3.5rem);
-      --max-w: 1400px;
+      --section-gap: clamp(4.5rem, 8vw, 8.5rem);
+      --container-pad: clamp(1.5rem, 5vw, 4rem);
+      --max-w: 1380px;
     }
 
     [data-theme="light"] {
       --bg: #F5F2EB;
       --fg: #0D0D0D;
-      --fg-muted: #777777;
+      --fg-muted: #666666;
       --surface: #EDEAD9;
-      --surface-2: #E5E1CF;
+      --surface-2: #E3DFCE;
       --border-color: rgba(13, 13, 13, 0.12);
-      --particle-color: rgba(13, 13, 13, 0.18);
-      --particle-line: rgba(13, 13, 13, 0.07);
+      --particle-color: rgba(13, 13, 13, 0.22);
+      --particle-line: rgba(13, 13, 13, 0.08);
       --card-bg: #EDEAD9;
-      --card-border: rgba(13, 13, 13, 0.10);
+      --card-border: rgba(13, 13, 13, 0.12);
     }
 
     [data-theme="dark"] {
       --bg: #0D0D0D;
       --fg: #F5F2EB;
-      --fg-muted: #888888;
-      --surface: #1A1A1A;
+      --fg-muted: #999999;
+      --surface: #171717;
       --surface-2: #222222;
-      --border-color: rgba(245, 242, 235, 0.10);
-      --particle-color: rgba(198, 241, 53, 0.25);
-      --particle-line: rgba(198, 241, 53, 0.06);
+      --border-color: rgba(245, 242, 235, 0.12);
+      --particle-color: rgba(198, 241, 53, 0.28);
+      --particle-line: rgba(198, 241, 53, 0.08);
       --card-bg: #141414;
-      --card-border: rgba(245, 242, 235, 0.08);
+      --card-border: rgba(245, 242, 235, 0.10);
     }
 
     *, *::before, *::after {
@@ -117,7 +117,7 @@
       font-family: 'DM Sans', sans-serif;
       background-color: var(--bg);
       color: var(--fg);
-      transition: background-color 0.4s var(--ease-smooth), color 0.4s var(--ease-smooth);
+      transition: background-color 0.35s var(--ease-smooth), color 0.35s var(--ease-smooth);
       overflow-x: hidden;
       cursor: none;
     }
@@ -156,9 +156,9 @@
 
     .micro-label {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--fg-muted);
     }
@@ -190,7 +190,7 @@
     .nav-link-custom {
       position: relative;
       font-size: 0.8rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--fg);
@@ -203,9 +203,9 @@
       bottom: -4px;
       left: 0;
       width: 0;
-      height: 1.5px;
+      height: 2px;
       background: var(--accent);
-      transition: width 0.3s var(--ease-spring);
+      transition: width 0.25s var(--ease-out);
     }
 
     .nav-link-custom:hover::after { width: 100%; }
@@ -214,13 +214,14 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 0.85rem 2rem;
-      transition: transform 0.25s var(--ease-spring), background 0.22s, color 0.22s, border-color 0.22s, box-shadow 0.22s;
+      padding: 0.85rem 1.8rem;
+      transition: transform 0.2s var(--ease-spring), background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
       cursor: none;
+      will-change: transform;
     }
 
     @media (pointer: coarse) {
@@ -230,12 +231,17 @@
     .btn-primary-custom {
       background: var(--accent);
       color: #0D0D0D;
+      border: 1.5px solid var(--accent);
     }
 
     .btn-primary-custom:hover {
-      transform: translateY(-3px) scale(1.02);
+      transform: translateY(-2px) scale(1.02);
       background: #D4FF3D;
-      box-shadow: 0 12px 32px rgba(198, 241, 53, 0.35);
+      box-shadow: 0 10px 24px rgba(198, 241, 53, 0.3);
+    }
+
+    .btn-primary-custom:active {
+      transform: translateY(0) scale(0.98);
     }
 
     .btn-outline-custom {
@@ -245,40 +251,45 @@
     }
 
     .btn-outline-custom:hover {
-      transform: translateY(-3px) scale(1.02);
+      transform: translateY(-2px) scale(1.02);
       border-color: var(--accent);
       color: var(--accent);
-      box-shadow: 0 8px 24px rgba(198, 241, 53, 0.12);
+      box-shadow: 0 6px 20px rgba(198, 241, 53, 0.12);
+    }
+
+    .btn-outline-custom:active {
+      transform: translateY(0) scale(0.98);
     }
 
     .project-card-custom {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-smooth), border-color 0.3s;
+      transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-smooth), border-color 0.25s;
+      will-change: transform;
     }
 
     .project-card-custom:hover {
-      transform: translateY(-6px) rotate(0.4deg) scale(1.01);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--accent);
+      transform: translateY(-5px) rotate(0.3deg);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--accent);
       border-color: var(--accent);
     }
 
     [data-theme="light"] .project-card-custom:hover {
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--accent);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--accent);
     }
 
     .skill-pill-custom {
       display: inline-block;
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 0.4rem 0.9rem;
+      padding: 0.45rem 0.95rem;
       border: 1px solid var(--border-color);
-      color: var(--fg-muted);
+      color: var(--fg);
       position: relative;
       overflow: hidden;
-      transition: color 0.25s, border-color 0.25s;
+      transition: color 0.2s, border-color 0.2s;
     }
 
     .skill-pill-custom::before {
@@ -287,7 +298,7 @@
       inset: 0;
       background: var(--accent);
       transform: translateX(-101%);
-      transition: transform 0.3s var(--ease-spring);
+      transition: transform 0.25s var(--ease-out);
       z-index: 0;
     }
 
@@ -305,22 +316,23 @@
 
     .cert-badge-custom {
       flex-shrink: 0;
-      padding: 1rem 1.25rem;
+      padding: 1.25rem 1.4rem;
       border: 1px solid var(--border-color);
       background: var(--surface);
-      min-width: 180px;
-      max-width: 200px;
+      min-width: 200px;
+      max-width: 220px;
       transition: border-color 0.25s, transform 0.25s var(--ease-spring);
+      will-change: transform;
     }
 
     .cert-badge-custom:hover {
       border-color: var(--accent);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
     }
 
     .stat-number-custom {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-size: clamp(3rem, 6.5vw, 5rem);
       line-height: 1;
       color: var(--accent);
       letter-spacing: -0.02em;
@@ -328,11 +340,11 @@
 
     .stat-label-custom {
       font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--fg-muted);
-      margin-top: 0.4rem;
+      margin-top: 0.35rem;
     }
 
     .theme-toggle-custom {
@@ -345,7 +357,7 @@
       background: transparent;
       color: var(--fg);
       cursor: none;
-      transition: border-color 0.25s, color 0.25s, transform 0.25s var(--ease-spring), background 0.25s;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s var(--ease-spring);
     }
 
     @media (pointer: coarse) {
@@ -355,25 +367,26 @@
     .theme-toggle-custom:hover {
       border-color: var(--accent);
       color: var(--accent);
-      transform: rotate(15deg) scale(1.1);
+      transform: rotate(15deg) scale(1.08);
     }
 
     .contact-btn-custom {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      font-size: 0.9rem;
+      gap: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 1.1rem 2.4rem;
+      padding: 1rem 2rem;
       border: 1.5px solid var(--border-color);
       background: transparent;
       color: var(--fg);
-      transition: all 0.3s var(--ease-spring);
+      transition: all 0.25s var(--ease-spring);
       cursor: none;
       position: relative;
       overflow: hidden;
+      will-change: transform;
     }
 
     @media (pointer: coarse) {
@@ -387,7 +400,7 @@
       background: var(--accent);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s var(--ease-spring);
+      transition: transform 0.25s var(--ease-out);
       z-index: 0;
     }
 
@@ -396,8 +409,8 @@
     .contact-btn-custom:hover {
       color: #0D0D0D;
       border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(198, 241, 53, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(198, 241, 53, 0.2);
     }
 
     .contact-btn-custom > * {
@@ -409,7 +422,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.35rem;
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -419,7 +432,7 @@
 
     @keyframes scrollBounce {
       0%, 100% { transform: translateY(0); opacity: 0.6; }
-      50% { transform: translateY(6px); opacity: 1; }
+      50% { transform: translateY(5px); opacity: 1; }
     }
 
     .split-word {
@@ -433,36 +446,77 @@
       will-change: transform, opacity;
     }
 
-    /* Gooey cursor elements styles */
-    .cursor-dot-custom {
+    /* -------------------------------------------------------------
+       OPTIMIZED HIGH-PERFORMANCE CURSOR STYLES
+       SVG Goo Filter constrained strictly to 120x120px bounding box
+       ------------------------------------------------------------- */
+    #cursor-goo-wrapper {
       position: fixed;
-      border-radius: 50%;
+      top: 0;
+      left: 0;
+      width: 120px;
+      height: 120px;
+      margin-left: -60px;
+      margin-top: -60px;
       pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      will-change: left, top, width, height;
+      z-index: 9997;
+      contain: strict;
+      filter: url(#cursor-goo);
+      will-change: transform;
+      transform: translate3d(-200px, -200px, 0);
+    }
+
+    .goo-dot {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      border-radius: 50%;
       background-color: var(--accent);
-      transition: width 0.25s var(--ease-spring), height 0.25s var(--ease-spring);
+      pointer-events: none;
+      transform: translate3d(-50%, -50%, 0);
+      will-change: transform, width, height;
+      transition: width 0.2s var(--ease-spring), height 0.2s var(--ease-spring);
+    }
+
+    #c-aim {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      margin-top: -3px;
+      border-radius: 50%;
+      background-color: #0D0D0D;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      will-change: transform;
+      transform: translate3d(-200px, -200px, 0);
+      transition: transform 0.15s var(--ease-spring);
     }
 
     .cursor-splash-custom {
       position: fixed;
+      top: 0;
+      left: 0;
       border-radius: 50%;
       background-color: var(--accent);
-      transform: translate(-50%, -50%) scale(0);
       pointer-events: none;
       z-index: 9996;
       opacity: 0;
+      transform: translate3d(-50%, -50%, 0);
+      will-change: transform, opacity, width, height;
     }
 
     .cursor-splash-custom.splash-active {
-      animation: splashBurst 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: splashBurst 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes splashBurst {
-      0% { width: 0; height: 0; opacity: 0.7; }
-      60% { width: 80px; height: 80px; opacity: 0.4; }
-      100% { width: 110px; height: 110px; opacity: 0; }
+      0% { width: 0px; height: 0px; opacity: 0.8; }
+      60% { width: 70px; height: 70px; opacity: 0.35; }
+      100% { width: 95px; height: 95px; opacity: 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -501,28 +555,30 @@
   <!-- Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Custom Gooey Cursor Elements -->
+  <!-- Custom Gooey Cursor Elements (Tight 120x120px Local Bounding Box) -->
   <div id="custom-cursor-container">
     <svg style="position: fixed; top: 0; left: 0; width: 0; height: 0; pointer-events: none; z-index: 9999;" aria-hidden="true">
       <defs>
         <filter id="cursor-goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" result="goo" />
           <feComposite in="SourceGraphic" in2="goo" operator="atop" />
         </filter>
       </defs>
     </svg>
-    <div style="position: fixed; inset: 0; pointer-events: none; z-index: 9997; filter: url(#cursor-goo);">
-      <div id="c-dot-0" class="cursor-dot-custom"></div>
-      <div id="c-dot-1" class="cursor-dot-custom"></div>
-      <div id="c-dot-2" class="cursor-dot-custom"></div>
+    <!-- Filtered Goo Container (Local 120x120px only) -->
+    <div id="cursor-goo-wrapper">
+      <div id="c-dot-0" class="goo-dot" style="width: 24px; height: 24px;"></div>
+      <div id="c-dot-1" class="goo-dot" style="width: 18px; height: 18px;"></div>
+      <div id="c-dot-2" class="goo-dot" style="width: 14px; height: 14px;"></div>
     </div>
-    <div id="c-aim" style="position: fixed; width: 5px; height: 5px; border-radius: 50%; background-color: #0D0D0D; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; mix-blend-mode: difference; will-change: left, top;"></div>
+    <!-- Instant Zero-Lag Aim Dot -->
+    <div id="c-aim"></div>
     <div id="c-splash" class="cursor-splash-custom"></div>
   </div>
 
   <!-- FIXED NAVBAR -->
-  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-350 border-b border-transparent py-6 px-[var(--container-pad)] flex items-center justify-between" id="navbar">
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent py-5 px-[var(--container-pad)] flex items-center justify-between" id="navbar">
     <a href="#" class="font-display text-2xl tracking-wider text-[var(--fg)] flex items-center gap-1 cursor-none" id="nav-logo">
       <span>AFFAN</span><span class="text-accent">.</span>
     </a>
@@ -534,8 +590,8 @@
       <li><button onclick="scrollToSection('contact')" class="nav-link-custom cursor-none">Contact</button></li>
     </ul>
 
-    <div class="flex items-center gap-6">
-      <button onclick="scrollToSection('contact')" class="btn-custom btn-primary-custom hidden md:inline-flex rounded-none cursor-none py-2 px-6 text-sm">Hire Me</button>
+    <div class="flex items-center gap-5">
+      <button onclick="scrollToSection('contact')" class="btn-custom btn-primary-custom hidden md:inline-flex rounded-none cursor-none py-2 px-5 text-xs">Hire Me</button>
       <button onclick="toggleTheme()" class="theme-toggle-custom rounded-none cursor-none" aria-label="Toggle theme">
         <svg id="theme-icon-sun" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         <svg id="theme-icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -547,35 +603,42 @@
   <div id="home-view">
     <main id="main-content">
       
-      <!-- HERO -->
-      <section id="home" class="min-h-screen flex flex-col justify-end pb-12 relative overflow-hidden">
+      <!-- HERO (With ample top breathing room for navbar and micro-labels) -->
+      <section id="home" class="min-h-screen flex flex-col justify-between pt-28 md:pt-36 pb-12 relative overflow-hidden">
         <div class="absolute inset-0 z-0 pointer-events-none">
           <canvas id="particle-canvas" class="w-full h-full block"></canvas>
         </div>
 
-        <div class="container-custom relative z-10 w-full">
-          <!-- Top Meta Row -->
-          <div class="flex justify-between items-start mb-40 md:mb-56 w-full text-xs">
-            <span class="micro-label">Based in Pakistan</span>
-            <span class="micro-label text-right">Available for Freelance <span class="text-accent inline-block ml-1">●</span></span>
+        <div class="container-custom relative z-10 w-full flex-1 flex flex-col justify-between">
+          
+          <!-- Top Meta Row with Clear Padding & Breathing Room -->
+          <div class="flex justify-between items-center w-full mb-8 md:mb-12 border-b border-[var(--border-color)] pb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+              <span class="micro-label">Based in Pakistan</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="micro-label text-right">Available for Freelance</span>
+              <span class="text-accent text-xs">●</span>
+            </div>
           </div>
 
-          <!-- Headline Stack -->
-          <div class="mb-4">
+          <!-- Middle / Lower: Headline Stack -->
+          <div class="my-auto py-6">
             <h1 class="sr-only">Affan Azhar</h1>
-            <div class="display-xl text-[var(--fg)] tracking-tight leading-[0.88] block text-reveal-trigger" id="hero-line-1">
+            <div class="display-xl text-[var(--fg)] tracking-tight leading-[0.88] block" id="hero-line-1">
               AFFAN
             </div>
-            <div class="display-xl tracking-tight leading-[0.88] block text-outline text-reveal-trigger mt-[-0.05em]" id="hero-line-2">
+            <div class="display-xl tracking-tight leading-[0.88] block text-outline mt-[-0.04em]" id="hero-line-2">
               AZHAR
             </div>
           </div>
 
           <!-- Bottom description + buttons -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full pt-4">
             <div>
               <p class="micro-label text-accent mb-2">Web Designer</p>
-              <p class="text-sm md:text-[1.05rem] font-light text-[var(--fg-muted)] max-w-[500px] leading-relaxed">
+              <p class="text-sm md:text-[1.02rem] font-light text-[var(--fg-muted)] max-w-[500px] leading-relaxed">
                 Specialising in AI-Enhanced Content and Responsive Digital Interfaces. Crafting digital experiences that work as hard as they look — for clients worldwide.
               </p>
             </div>
@@ -615,13 +678,13 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
             <!-- Left Column -->
             <div>
-              <h2 class="display-md text-[var(--fg)] leading-none text-reveal-trigger" id="about-headline">
+              <h2 class="display-md text-[var(--fg)] leading-none" id="about-headline">
                 Designing the digital frontier, one pixel at a time.
               </h2>
               <div class="w-[60px] h-[2px] bg-accent my-8"></div>
 
               <!-- Stats counters -->
-              <div class="flex gap-12 md:gap-16 flex-wrap">
+              <div class="flex gap-10 md:gap-14 flex-wrap">
                 <div class="stat-container" data-target="3">
                   <div class="stat-number-custom"><span class="stat-count">0</span>+</div>
                   <div class="stat-label-custom">Years Freelancing</div>
@@ -667,9 +730,9 @@
             <div class="hairline flex-1"></div>
           </div>
 
-          <h2 class="display-md text-[var(--fg)] mb-16 text-reveal-trigger" id="skills-headline">Skills & Tools</h2>
+          <h2 class="display-md text-[var(--fg)] mb-14" id="skills-headline">Skills & Tools</h2>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             <!-- Category 1 -->
             <div>
               <div class="mb-5 pb-3 border-b border-accent flex items-center gap-2">
@@ -745,7 +808,7 @@
 
           <!-- Horizontal track -->
           <div class="overflow-x-auto overflow-y-hidden snap-x snap-mandatory no-scrollbar pb-4" role="list">
-            <div class="flex gap-px w-max">
+            <div class="flex gap-px w-max bg-[var(--border-color)] border border-[var(--border-color)]">
               <!-- Cert 1 -->
               <div class="cert-badge-custom snap-start" role="listitem">
                 <div class="font-display text-3xl text-accent mb-3 opacity-60">01</div>
@@ -754,7 +817,7 @@
                 </p>
                 <div class="flex justify-between items-center text-[0.65rem] tracking-wider uppercase text-[var(--fg-muted)]">
                   <span>Google / Coursera</span>
-                  <span class="text-accent">2024</span>
+                  <span class="text-accent font-semibold">2024</span>
                 </div>
               </div>
               <!-- Cert 2 -->
@@ -765,7 +828,7 @@
                 </p>
                 <div class="flex justify-between items-center text-[0.65rem] tracking-wider uppercase text-[var(--fg-muted)]">
                   <span>LinkedIn Learning</span>
-                  <span class="text-accent">2024</span>
+                  <span class="text-accent font-semibold">2024</span>
                 </div>
               </div>
               <!-- Cert 3 -->
@@ -776,7 +839,7 @@
                 </p>
                 <div class="flex justify-between items-center text-[0.65rem] tracking-wider uppercase text-[var(--fg-muted)]">
                   <span>Google AI</span>
-                  <span class="text-accent">2024</span>
+                  <span class="text-accent font-semibold">2024</span>
                 </div>
               </div>
               <!-- Cert 4 -->
@@ -787,7 +850,7 @@
                 </p>
                 <div class="flex justify-between items-center text-[0.65rem] tracking-wider uppercase text-[var(--fg-muted)]">
                   <span>Microsoft Azure</span>
-                  <span class="text-accent">2023</span>
+                  <span class="text-accent font-semibold">2023</span>
                 </div>
               </div>
               <!-- Cert 5 -->
@@ -798,15 +861,15 @@
                 </p>
                 <div class="flex justify-between items-center text-[0.65rem] tracking-wider uppercase text-[var(--fg-muted)]">
                   <span>Google / Coursera</span>
-                  <span class="text-accent">2023</span>
+                  <span class="text-accent font-semibold">2023</span>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Hint -->
-          <div class="flex items-center gap-2 mt-6 opacity-40" aria-hidden="true">
-            <span class="micro-label">Scroll to see more</span>
+          <div class="flex items-center gap-2 mt-6 opacity-50" aria-hidden="true">
+            <span class="micro-label">Scroll horizontally for more</span>
             <svg width="20" height="10" viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 5h18M13 1l6 4-6 4"/></svg>
           </div>
         </div>
@@ -821,13 +884,13 @@
           </div>
 
           <div class="flex justify-between items-end mb-12 gap-8 flex-wrap">
-            <h2 class="display-md text-[var(--fg)] text-reveal-trigger" id="projects-headline">Recent Projects</h2>
+            <h2 class="display-md text-[var(--fg)]" id="projects-headline">Recent Projects</h2>
             <p class="text-xs text-[var(--fg-muted)] max-w-[280px] leading-relaxed">
               A selection of work that keeps me up at night — in the best way.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-0.5 bg-[var(--border-color)] border border-[var(--border-color)]">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-0.5 bg-[var(--border-color)] border border-[var(--border-color)]" id="projects-grid-container">
             <!-- Project Card 1 -->
             <article class="project-card-custom p-6 md:p-10 cursor-none flex flex-col justify-between">
               <div>
@@ -844,9 +907,9 @@
                   </svg>
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Figma</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Webflow</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">AI Content</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Figma</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Webflow</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">AI Content</span>
                 </div>
                 <p class="micro-label mb-2">SaaS Web Design</p>
                 <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Luminary OS</h3>
@@ -874,9 +937,9 @@
                   </svg>
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">WordPress</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">UI/UX</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Responsive</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">WordPress</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">UI/UX</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Responsive</span>
                 </div>
                 <p class="micro-label mb-2">Brand + Web Identity</p>
                 <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Meridian Studio</h3>
@@ -904,9 +967,9 @@
                   </svg>
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Prompt Eng.</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Dashboard</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Leonardo AI</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Prompt Eng.</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Dashboard</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Leonardo AI</span>
                 </div>
                 <p class="micro-label mb-2">AI-Enhanced Content</p>
                 <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Chroma Flow</h3>
@@ -934,9 +997,9 @@
                   </svg>
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Figma</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">Design System</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-80">UI Kit</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Figma</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Design System</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">UI Kit</span>
                 </div>
                 <p class="micro-label mb-2">UI Kit + Design System</p>
                 <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Void Interface</h3>
@@ -958,7 +1021,7 @@
         <div class="w-full bg-[var(--surface)] border-t border-b border-[var(--border-color)]">
           <div class="container-custom py-16 md:py-24 text-center">
             <span class="micro-label block mb-6">Get in Touch</span>
-            <h2 class="display-md text-[var(--fg)] max-w-[700px] mx-auto mb-6 text-reveal-trigger" id="contact-headline">
+            <h2 class="display-md text-[var(--fg)] max-w-[700px] mx-auto mb-6" id="contact-headline">
               Let's Build Something Remarkable
             </h2>
             <p class="text-sm md:text-base text-[var(--fg-muted)] leading-relaxed max-w-[480px] mx-auto mb-12">
@@ -1078,7 +1141,7 @@
     </div>
   </div>
 
-  <!-- INTERACTIVE LOGIC (VANILLA JS) -->
+  <!-- INTERACTIVE LOGIC (HIGH PERFORMANCE VANILLA JS) -->
   <script>
     // -------------------------------------------------------------
     // DATA STORE FOR PROJECT ROUTES
@@ -1131,7 +1194,6 @@
       const projectView = document.getElementById('project-view');
 
       if (hash && projectData[hash]) {
-        // Render project view
         const project = projectData[hash];
         document.getElementById('project-title').innerText = project.title;
         document.getElementById('project-category').innerText = project.category;
@@ -1140,7 +1202,6 @@
         document.getElementById('project-role').innerText = project.role;
         document.getElementById('project-outcome').innerText = project.outcome;
 
-        // Render tool badges
         const toolsContainer = document.getElementById('project-tools');
         toolsContainer.innerHTML = '';
         project.tools.forEach(tool => {
@@ -1154,7 +1215,6 @@
         projectView.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'instant' });
       } else {
-        // Render home view
         homeView.classList.remove('hidden');
         projectView.classList.add('hidden');
       }
@@ -1171,10 +1231,8 @@
       window.location.hash = '';
     }
 
-    // Set Footer Copyright Year dynamically
     document.getElementById('footer-year').innerText = `© ${new Date().getFullYear()}`;
 
-    // Smooth scroll utility for navbar buttons
     function scrollToSection(id) {
       navigateHome();
       setTimeout(() => {
@@ -1195,7 +1253,6 @@
       updateThemeIcons(newTheme);
     }
 
-    // Update Sun/Moon SVGs
     function updateThemeIcons(theme) {
       const sunIcon = document.getElementById('theme-icon-sun');
       const moonIcon = document.getElementById('theme-icon-moon');
@@ -1208,7 +1265,6 @@
       }
     }
 
-    // Apply persisted theme on load
     const savedTheme = localStorage.getItem('affan-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcons(savedTheme);
@@ -1220,96 +1276,108 @@
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
     // Elevate Navbar Background on Scroll
+    let lastScrollY = 0;
     window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      if (Math.abs(currentScrollY - lastScrollY) < 5) return;
+      lastScrollY = currentScrollY;
+
       const nav = document.getElementById('navbar');
-      if (window.scrollY > 40) {
+      if (currentScrollY > 30) {
         nav.style.background = 'var(--bg)';
         nav.style.borderBottomColor = 'var(--border-color)';
-        nav.style.paddingTop = '1rem';
-        nav.style.paddingBottom = '1rem';
+        nav.style.paddingTop = '0.9rem';
+        nav.style.paddingBottom = '0.9rem';
         nav.style.backdropFilter = 'blur(12px)';
       } else {
         nav.style.background = 'transparent';
         nav.style.borderBottomColor = 'transparent';
-        nav.style.paddingTop = '1.5rem';
-        nav.style.paddingBottom = '1.5rem';
+        nav.style.paddingTop = '1.25rem';
+        nav.style.paddingBottom = '1.25rem';
         nav.style.backdropFilter = 'none';
       }
     }, { passive: true });
 
     // -------------------------------------------------------------
-    // CUSTOM LIQUID GOOEY CURSOR
+    // HIGH-PERFORMANCE ZERO-LAG CURSOR (WITH FAST LERP GOO TRAIL)
     // -------------------------------------------------------------
     if (isTouchDevice) {
       document.getElementById('custom-cursor-container').style.display = 'none';
     } else {
+      const aim = document.getElementById('c-aim');
+      const gooWrapper = document.getElementById('cursor-goo-wrapper');
+      const splash = document.getElementById('c-splash');
+      const dotEls = [
+        document.getElementById('c-dot-0'),
+        document.getElementById('c-dot-1'),
+        document.getElementById('c-dot-2')
+      ];
+
       const mouse = { x: -200, y: -200 };
       const dots = [
-        { x: -200, y: -200, el: document.getElementById('c-dot-0'), baseSize: 22, size: 22 },
-        { x: -200, y: -200, el: document.getElementById('c-dot-1'), baseSize: 18, size: 18 },
-        { x: -200, y: -200, el: document.getElementById('c-dot-2'), baseSize: 14, size: 14 }
+        { x: -200, y: -200, baseSize: 24, size: 24 },
+        { x: -200, y: -200, baseSize: 18, size: 18 },
+        { x: -200, y: -200, baseSize: 14, size: 14 }
       ];
-      const aim = document.getElementById('c-aim');
-      const splash = document.getElementById('c-splash');
-      let hovering = false;
 
+      // Instant mouse tracking without state overhead
       window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
+        // Direct zero-lag aim dot update via transform3d
+        aim.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       }, { passive: true });
 
       // Click splash burst
       window.addEventListener('click', (e) => {
-        splash.style.left = `${e.clientX}px`;
-        splash.style.top = `${e.clientY}px`;
-        splash.style.width = '0px';
-        splash.style.height = '0px';
-        splash.style.opacity = '0.85';
-        splash.style.transform = 'translate(-50%, -50%) scale(1)';
+        splash.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
         splash.classList.remove('splash-active');
-        void splash.offsetWidth; // trigger reflow
+        void splash.offsetWidth;
         splash.classList.add('splash-active');
       });
 
-      // Hover element detection
+      // Hover element detection for reactive cursor expansion
       document.addEventListener('mouseover', (e) => {
         if (e.target.closest('a, button, [data-cursor="hover"], label, input, .project-card-custom')) {
-          hovering = true;
-          dots.forEach((dot, i) => {
-            dot.size = dot.baseSize + 8;
-          });
+          aim.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0) scale(1.8)`;
+          dotEls[0].style.width = '34px';
+          dotEls[0].style.height = '34px';
+          dotEls[1].style.width = '24px';
+          dotEls[1].style.height = '24px';
         }
       });
 
       document.addEventListener('mouseout', (e) => {
         if (e.target.closest('a, button, [data-cursor="hover"], label, input, .project-card-custom')) {
           if (!e.relatedTarget || !e.relatedTarget.closest('a, button, [data-cursor="hover"], label, input, .project-card-custom')) {
-            hovering = false;
-            dots.forEach(dot => {
-              dot.size = dot.baseSize;
-            });
+            aim.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0) scale(1)`;
+            dotEls[0].style.width = '24px';
+            dotEls[0].style.height = '24px';
+            dotEls[1].style.width = '18px';
+            dotEls[1].style.height = '18px';
           }
         }
       });
 
-      // Lerp follow loop
-      const lerpFactors = [0.18, 0.11, 0.07];
+      // Fast, snappy lerp factors (0.55 = fast response, 0.38 = secondary, 0.24 = trailing goo)
+      const lerpFactors = [0.55, 0.38, 0.24];
       function updateCursor() {
         dots.forEach((dot, i) => {
           dot.x += (mouse.x - dot.x) * lerpFactors[i];
           dot.y += (mouse.y - dot.y) * lerpFactors[i];
-          if (dot.el) {
-            dot.el.style.left = `${dot.x}px`;
-            dot.el.style.top = `${dot.y}px`;
-            dot.el.style.width = `${dot.size}px`;
-            dot.el.style.height = `${dot.size}px`;
-          }
         });
 
-        if (aim) {
-          aim.style.left = `${mouse.x}px`;
-          aim.style.top = `${mouse.y}px`;
-        }
+        // Translate the local 120x120px filtered container based on lead dot
+        const leadX = dots[0].x;
+        const leadY = dots[0].y;
+        gooWrapper.style.transform = `translate3d(${leadX}px, ${leadY}px, 0)`;
+
+        // Offset inner dots relative to center of the 120x120 container (center is at (0,0) offset)
+        dotEls.forEach((el, i) => {
+          const offsetX = dots[i].x - leadX;
+          const offsetY = dots[i].y - leadY;
+          el.style.transform = `translate3d(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px), 0)`;
+        });
 
         requestAnimationFrame(updateCursor);
       }
@@ -1317,27 +1385,30 @@
     }
 
     // -------------------------------------------------------------
-    // CANVAS PARTICLE FIELD
+    // OPTIMIZED CANVAS PARTICLE FIELD (PAUSES WHEN OFFSCREEN)
     // -------------------------------------------------------------
     const canvas = document.getElementById('particle-canvas');
     if (prefersReducedMotion || !canvas) {
       if (canvas) canvas.style.display = 'none';
     } else {
       const ctx = canvas.getContext('2d');
-      const NODE_COUNT = isTouchDevice ? 30 : 85;
-      const CONNECT_DIST = 115;
-      const REPEL_RADIUS = 150;
-      const REPEL_STRENGTH = 0.5;
-      const DRIFT_SPEED = 0.18;
+      // Reduced node count: 32 for desktop, 14 for mobile for 60fps lightweight execution
+      const NODE_COUNT = isTouchDevice ? 14 : 32;
+      const CONNECT_DIST = 105;
+      const REPEL_RADIUS = 130;
+      const REPEL_STRENGTH = 0.45;
+      const DRIFT_SPEED = 0.15;
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
-      let width, height;
+      let width = 0, height = 0;
       let nodes = [];
       let canvasMouse = { x: -1000, y: -1000 };
-      let animId;
-      let running = true;
+      let animId = null;
+      let isHeroVisible = true;
+      let isTabActive = true;
 
       function resize() {
+        if (!canvas.parentElement) return;
         width = canvas.parentElement.offsetWidth;
         height = canvas.parentElement.offsetHeight;
         canvas.width = width * DPR;
@@ -1353,7 +1424,7 @@
             y: Math.random() * height,
             vx: (Math.random() - 0.5) * DRIFT_SPEED,
             vy: (Math.random() - 0.5) * DRIFT_SPEED,
-            radius: 1.2 + Math.random() * 1.5
+            radius: 1.2 + Math.random() * 1.4
           });
         }
       }
@@ -1363,18 +1434,21 @@
         if (theme === 'light') {
           return {
             particle: 'rgba(13, 13, 13, 0.22)',
-            line: 'rgba(13, 13, 13, 0.07)'
+            lineBase: '13, 13, 13'
           };
         } else {
           return {
-            particle: 'rgba(198, 241, 53, 0.30)',
-            line: 'rgba(198, 241, 53, 0.08)'
+            particle: 'rgba(198, 241, 53, 0.28)',
+            lineBase: '198, 241, 53'
           };
         }
       }
 
       function tick() {
-        if (!running) return;
+        if (!isHeroVisible || !isTabActive) {
+          animId = null;
+          return;
+        }
         ctx.clearRect(0, 0, width, height);
 
         const colors = getColors();
@@ -1394,8 +1468,8 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < REPEL_RADIUS && dist > 0) {
             const force = (REPEL_RADIUS - dist) / REPEL_RADIUS;
-            node.x += (dx / dist) * force * REPEL_STRENGTH * 4;
-            node.y += (dy / dist) * force * REPEL_STRENGTH * 4;
+            node.x += (dx / dist) * force * REPEL_STRENGTH * 3.5;
+            node.y += (dy / dist) * force * REPEL_STRENGTH * 3.5;
           }
 
           ctx.beginPath();
@@ -1412,12 +1486,12 @@
             const dy = a.y - b.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < CONNECT_DIST) {
-              const alpha = 1 - dist / CONNECT_DIST;
+              const alpha = (1 - dist / CONNECT_DIST) * 0.08;
               ctx.beginPath();
               ctx.moveTo(a.x, a.y);
               ctx.lineTo(b.x, b.y);
-              ctx.strokeStyle = colors.line.replace('0.08', (alpha * 0.08).toFixed(3)).replace('0.07', (alpha * 0.07).toFixed(3));
-              ctx.lineWidth = 0.8;
+              ctx.strokeStyle = `rgba(${colors.lineBase}, ${alpha.toFixed(3)})`;
+              ctx.lineWidth = 0.75;
               ctx.stroke();
             }
           }
@@ -1426,7 +1500,14 @@
         animId = requestAnimationFrame(tick);
       }
 
+      function startAnimation() {
+        if (!animId && isHeroVisible && isTabActive) {
+          animId = requestAnimationFrame(tick);
+        }
+      }
+
       window.addEventListener('mousemove', (e) => {
+        if (!isHeroVisible) return;
         const rect = canvas.getBoundingClientRect();
         canvasMouse.x = e.clientX - rect.left;
         canvasMouse.y = e.clientY - rect.top;
@@ -1436,21 +1517,31 @@
         resize();
         initNodes();
       });
-      ro.observe(canvas);
+      ro.observe(canvas.parentElement || document.body);
+
+      // IntersectionObserver pauses canvas animation when Hero is scrolled out of viewport
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isHeroVisible = entry.isIntersecting;
+          if (isHeroVisible) {
+            startAnimation();
+          }
+        });
+      }, { threshold: 0.05 });
+
+      const heroSection = document.getElementById('home');
+      if (heroSection) heroObserver.observe(heroSection);
 
       document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          running = false;
-          cancelAnimationFrame(animId);
-        } else {
-          running = true;
-          tick();
+        isTabActive = !document.hidden;
+        if (isTabActive) {
+          startAnimation();
         }
       });
 
       resize();
       initNodes();
-      tick();
+      startAnimation();
     }
 
     // -------------------------------------------------------------
@@ -1461,9 +1552,7 @@
 
       gsap.registerPlugin(ScrollTrigger);
 
-      // Hero stagger entrance animations
-      const heroTl = gsap.timeline({ delay: 0.2 });
-
+      // Split text utility logic for character entry
       function splitChars(elementId) {
         const el = document.getElementById(elementId);
         if (!el) return [];
@@ -1475,22 +1564,24 @@
       const chars1 = splitChars('hero-line-1');
       const chars2 = splitChars('hero-line-2');
 
-      heroTl.from('.micro-label', { y: 15, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out' })
+      const heroTl = gsap.timeline({ delay: 0.15 });
+
+      heroTl.from('.micro-label', { y: 12, opacity: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out' })
             .from([...chars1, ...chars2], {
-              y: 80,
+              y: 70,
               opacity: 0,
-              skewY: 6,
-              duration: 0.75,
-              stagger: 0.03,
+              skewY: 4,
+              duration: 0.65,
+              stagger: 0.025,
               ease: 'power4.out'
-            }, '-=0.3')
-            .from('#hero-line-1 + div p, #hero-line-1 + div button', {
-              y: 20,
+            }, '-=0.25')
+            .from('#hero p, #hero button', {
+              y: 18,
               opacity: 0,
-              duration: 0.5,
-              stagger: 0.1,
+              duration: 0.45,
+              stagger: 0.08,
               ease: 'power2.out'
-            }, '-=0.4');
+            }, '-=0.35');
 
       // Scroll reveal split text for headings
       const revealElements = ['about-headline', 'skills-headline', 'projects-headline', 'contact-headline'];
@@ -1508,8 +1599,8 @@
         gsap.to(inners, {
           y: '0%',
           opacity: 1,
-          duration: 0.75,
-          stagger: 0.07,
+          duration: 0.65,
+          stagger: 0.06,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: el,
@@ -1529,7 +1620,7 @@
         const proxy = { val: 0 };
         gsap.to(proxy, {
           val: target,
-          duration: 1.8,
+          duration: 1.6,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: container,
@@ -1544,13 +1635,13 @@
 
       // Cards staggered entry
       gsap.from('.project-card-custom', {
-        y: 60,
+        y: 45,
         opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
+        duration: 0.6,
+        stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: '#projects .grid',
+          trigger: '#projects-grid-container',
           start: 'top 80%',
           once: true
         }
