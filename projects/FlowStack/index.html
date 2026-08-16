@@ -1,0 +1,1817 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flowstack — Where your team's work finally clicks</title>
+    <meta
+      name="description"
+      content="Flowstack is project and team management for startups and small teams: boards, timelines, chat, automations and analytics in one fast workspace."
+    />
+    <meta name="author" content="Flowstack" />
+    <meta property="og:title" content="Flowstack — Where your team's work finally clicks" />
+    <meta property="og:description" content="Boards, timelines, chat and automations in one fast workspace built for small teams." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+    <style>
+      :root {
+        --radius: 1rem;
+        --lime: oklch(0.88 0.23 128);
+        --violet: oklch(0.55 0.2 290);
+        --bg: oklch(0.15 0.065 285);
+        --fg: oklch(0.97 0.01 285);
+        --surface: oklch(0.21 0.06 285);
+        --surface-2: oklch(0.26 0.06 286);
+        --muted-fg: oklch(0.74 0.03 286);
+        --primary: var(--lime);
+        --primary-fg: oklch(0.18 0.07 285);
+        --border: oklch(1 0 0 / 12%);
+        --gradient-hero:
+          radial-gradient(60% 55% at 18% 8%, oklch(0.45 0.19 292 / 0.55) 0%, transparent 60%),
+          radial-gradient(45% 45% at 88% 18%, oklch(0.7 0.19 190 / 0.28) 0%, transparent 65%),
+          radial-gradient(50% 50% at 70% 90%, oklch(0.85 0.22 128 / 0.18) 0%, transparent 60%);
+        --shadow-card: 0 30px 70px -40px oklch(0 0 0 / 0.9);
+        --display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+        --sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        --maxw: 1280px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        border-color: var(--border);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--display);
+        letter-spacing: -0.035em;
+        margin: 0;
+        line-height: 0.95;
+      }
+      p {
+        margin: 0;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--lime);
+        color: var(--primary-fg);
+      }
+
+      /* ---------- helpers ---------- */
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .narrow {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .muted {
+        color: var(--muted-fg);
+      }
+      .eyebrow {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--primary);
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--surface) 55%, transparent);
+        backdrop-filter: blur(12px);
+        border-radius: 999px;
+        padding: 7px 16px;
+        font-size: 0.75rem;
+        color: var(--muted-fg);
+      }
+      .mesh {
+        background-image: var(--gradient-hero);
+        background-size: 180% 180%;
+        animation: mesh-drift 22s ease-in-out infinite;
+      }
+      .glass {
+        background: color-mix(in oklab, var(--surface) 55%, transparent);
+        backdrop-filter: blur(18px) saturate(140%);
+        border: 1px solid oklch(1 0 0 / 0.1);
+        box-shadow: var(--shadow-card);
+      }
+      .glass-hover {
+        transition:
+          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.35s ease,
+          border-color 0.35s ease;
+      }
+      .glass-hover:hover {
+        transform: translateY(-6px);
+        border-color: color-mix(in oklab, var(--lime) 45%, transparent);
+        box-shadow:
+          var(--shadow-card),
+          0 0 0 1px color-mix(in oklab, var(--lime) 20%, transparent),
+          0 22px 60px -30px color-mix(in oklab, var(--lime) 55%, transparent);
+      }
+      .grad-text {
+        background: linear-gradient(
+          100deg,
+          oklch(0.99 0.01 285) 0%,
+          oklch(0.93 0.16 128) 55%,
+          oklch(0.85 0.1 190) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .float-slow {
+        animation: floaty 9s ease-in-out infinite;
+      }
+      .float-slower {
+        animation: floaty 13s ease-in-out infinite;
+      }
+      @keyframes mesh-drift {
+        0%,
+        100% {
+          background-position: 0% 0%, 100% 0%, 50% 100%;
+        }
+        50% {
+          background-position: 30% 25%, 70% 30%, 20% 70%;
+        }
+      }
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translateY(0) rotate(var(--tilt, 0deg));
+        }
+        50% {
+          transform: translateY(-16px) rotate(var(--tilt, 0deg));
+        }
+      }
+      @keyframes ping {
+        75%,
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(-25%);
+        }
+        50% {
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 16px 32px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: transform 0.3s ease, border-color 0.3s, color 0.3s;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: var(--primary-fg);
+        box-shadow: 0 24px 70px -24px var(--lime);
+      }
+      .btn-ghost {
+        border-color: var(--border);
+        background: color-mix(in oklab, var(--surface) 50%, transparent);
+        backdrop-filter: blur(12px);
+        color: var(--fg);
+      }
+      .btn-ghost:hover {
+        border-color: color-mix(in oklab, var(--lime) 50%, transparent);
+        color: var(--primary);
+      }
+      .icon {
+        width: 1em;
+        height: 1em;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex: none;
+      }
+
+      /* ---------- nav ---------- */
+      header.nav {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 50;
+        transition: backdrop-filter 0.3s;
+      }
+      header.nav.scrolled {
+        backdrop-filter: blur(20px);
+      }
+      .nav-inner {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 20px;
+        transition: background 0.3s, border-color 0.3s;
+        border-bottom: 1px solid transparent;
+      }
+      header.nav.scrolled .nav-inner {
+        border-bottom-color: var(--border);
+        background: color-mix(in oklab, var(--bg) 70%, transparent);
+      }
+      .wordmark {
+        font-family: var(--display);
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+      }
+      .wordmark span {
+        color: var(--primary);
+      }
+      .wordmark i {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--primary);
+        margin-left: 3px;
+        vertical-align: middle;
+      }
+      .nav-links {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .nav-links a {
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 0.875rem;
+        color: var(--muted-fg);
+        transition: background 0.2s, color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--fg);
+        background: color-mix(in oklab, var(--surface-2) 60%, transparent);
+      }
+      .nav-cta {
+        margin-left: 12px;
+        border-radius: 999px;
+        background: var(--primary);
+        color: var(--primary-fg) !important;
+        padding: 10px 20px !important;
+        font-weight: 600;
+        box-shadow: 0 10px 40px -12px var(--lime);
+      }
+      .burger {
+        margin-left: auto;
+        display: none;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+      .mobile-menu {
+        display: none;
+        margin: 0 16px 8px;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--bg) 95%, transparent);
+        backdrop-filter: blur(20px);
+        padding: 12px;
+      }
+      .mobile-menu a {
+        display: block;
+        border-radius: 16px;
+        padding: 12px 16px;
+        font-size: 0.875rem;
+        color: var(--muted-fg);
+      }
+      .mobile-menu a.cta {
+        margin-top: 8px;
+        background: var(--primary);
+        color: var(--primary-fg);
+        text-align: center;
+        font-weight: 600;
+      }
+      @media (max-width: 860px) {
+        .nav-links {
+          display: none;
+        }
+        .burger {
+          display: grid;
+        }
+        .mobile-menu.open {
+          display: block;
+        }
+      }
+
+      /* ---------- sections ---------- */
+      section {
+        padding: 96px 0;
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 150px 0 120px;
+      }
+      .hero-grid {
+        display: grid;
+        gap: 64px;
+        align-items: center;
+      }
+      @media (min-width: 1024px) {
+        .hero-grid {
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 40px;
+        }
+      }
+      .hero-lines {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: 0.28;
+        background-image:
+          linear-gradient(to right, oklch(1 0 0 / 0.07) 1px, transparent 1px),
+          linear-gradient(to bottom, oklch(1 0 0 / 0.07) 1px, transparent 1px);
+        background-size: 64px 64px;
+        -webkit-mask-image: radial-gradient(70% 60% at 50% 30%, black, transparent);
+        mask-image: radial-gradient(70% 60% at 50% 30%, black, transparent);
+        pointer-events: none;
+      }
+      h1.hero-title {
+        margin-top: 28px;
+        font-size: clamp(3rem, 8.2vw, 6.25rem);
+        line-height: 0.88;
+        letter-spacing: -0.045em;
+        font-weight: 800;
+      }
+      .hero p.lede {
+        margin-top: 32px;
+        max-width: 36rem;
+        font-size: clamp(1.05rem, 2vw, 1.25rem);
+        line-height: 1.6;
+        color: var(--muted-fg);
+      }
+      .hero-actions {
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .page-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 160px 0 72px;
+      }
+      .page-hero h1 {
+        margin-top: 24px;
+        font-size: clamp(2.5rem, 7vw, 4.75rem);
+        font-weight: 800;
+      }
+      .page-hero p {
+        margin: 28px auto 0;
+        max-width: 40rem;
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: var(--muted-fg);
+      }
+      h2.section-title {
+        font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+        font-weight: 800;
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+      .cols-3 {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+      .cols-4 {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .cols-5 {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      .card {
+        border-radius: 28px;
+        padding: 28px;
+        height: 100%;
+      }
+
+      /* trust strip */
+      .trust {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 48px 0;
+      }
+      .logos {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 24px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        opacity: 0.45;
+        filter: grayscale(1);
+        transition: opacity 0.3s;
+      }
+      .logo:hover {
+        opacity: 0.9;
+      }
+      .logo b {
+        font-family: var(--display);
+        font-size: 1rem;
+      }
+      .logo em {
+        width: 16px;
+        height: 16px;
+        border: 2px solid var(--fg);
+        display: block;
+      }
+
+      /* bento */
+      .bento {
+        margin-top: 56px;
+        display: grid;
+        gap: 20px;
+      }
+      @media (min-width: 1024px) {
+        .bento {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .sp3 {
+          grid-column: span 3;
+        }
+        .sp2 {
+          grid-column: span 2;
+        }
+        .sp1 {
+          grid-column: span 1;
+        }
+        .sp4 {
+          grid-column: span 4;
+        }
+      }
+      .bento .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+      }
+      .bento .glow {
+        position: absolute;
+        top: -96px;
+        right: -96px;
+        width: 224px;
+        height: 224px;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--lime) 8%, transparent);
+        filter: blur(60px);
+      }
+      .ibox {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: color-mix(in oklab, var(--lime) 12%, transparent);
+        color: var(--primary);
+        font-size: 20px;
+      }
+      .bento h3 {
+        position: relative;
+        margin-top: 20px;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+      .bento p {
+        position: relative;
+        margin-top: 8px;
+        max-width: 24rem;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--muted-fg);
+      }
+
+      .stat-num {
+        font-family: var(--display);
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 800;
+        color: var(--primary);
+        line-height: 1;
+      }
+
+      figure.quote {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        border-radius: 28px;
+        padding: 32px;
+        height: 100%;
+      }
+      figure.quote blockquote {
+        margin: 20px 0 0;
+        flex: 1;
+        font-size: 15px;
+        line-height: 1.7;
+        color: color-mix(in oklab, var(--fg) 90%, transparent);
+      }
+      figcaption {
+        margin-top: 28px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-top: 1px solid var(--border);
+        padding-top: 24px;
+      }
+      .avatar {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        flex: none;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--bg);
+      }
+
+      .cta-band {
+        position: relative;
+        overflow: hidden;
+        border-radius: 40px;
+        border: 1px solid var(--border);
+        padding: 80px 24px;
+        text-align: center;
+      }
+      .cta-band h2 {
+        margin: 0 auto;
+        max-width: 48rem;
+        font-size: clamp(2.25rem, 6vw, 4rem);
+        font-weight: 800;
+      }
+      .cta-band .blob {
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        bottom: -160px;
+        height: 256px;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--lime) 20%, transparent);
+        filter: blur(100px);
+      }
+
+      /* product alternating rows */
+      .prow {
+        display: grid;
+        gap: 40px;
+        align-items: center;
+        margin: 0 auto 128px;
+        max-width: 1120px;
+      }
+      @media (min-width: 1024px) {
+        .prow {
+          grid-template-columns: 1fr 1fr;
+        }
+        .prow.flip > *:first-child {
+          order: 2;
+        }
+      }
+      .prow h2 {
+        margin-top: 16px;
+        font-size: clamp(1.9rem, 4vw, 2.9rem);
+        line-height: 1.02;
+        font-weight: 800;
+      }
+      .bullets {
+        margin-top: 28px;
+        display: grid;
+        gap: 12px;
+      }
+      .bullets li {
+        display: flex;
+        gap: 12px;
+        font-size: 0.875rem;
+        color: var(--muted-fg);
+      }
+      .tick {
+        display: grid;
+        place-items: center;
+        width: 20px;
+        height: 20px;
+        flex: none;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--lime) 15%, transparent);
+        color: var(--primary);
+        font-size: 12px;
+      }
+
+      /* pricing */
+      .plan {
+        position: relative;
+        border-radius: 32px;
+        padding: 32px;
+        height: 100%;
+      }
+      .plan.featured {
+        border-color: color-mix(in oklab, var(--lime) 45%, transparent);
+        box-shadow: var(--shadow-card), 0 0 0 1px color-mix(in oklab, var(--lime) 25%, transparent);
+      }
+      .plan .badge {
+        position: absolute;
+        top: -12px;
+        left: 32px;
+        border-radius: 999px;
+        background: var(--primary);
+        color: var(--primary-fg);
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .price {
+        font-family: var(--display);
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      .plan-cta {
+        margin-top: 32px;
+        display: block;
+        border-radius: 18px;
+        padding: 14px 24px;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: transform 0.3s;
+      }
+      .plan-cta:hover {
+        transform: translateY(-2px);
+      }
+      .plan-cta.solid {
+        background: var(--primary);
+        color: var(--primary-fg);
+        box-shadow: 0 20px 50px -22px var(--lime);
+      }
+      .plan-cta.outline {
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--surface-2) 60%, transparent);
+      }
+
+      /* contact */
+      .contact-grid {
+        display: grid;
+        gap: 24px;
+      }
+      @media (min-width: 1024px) {
+        .contact-grid {
+          grid-template-columns: 1.1fr 0.9fr;
+        }
+      }
+      label.f {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.75rem;
+        color: var(--muted-fg);
+      }
+      .field {
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--bg) 50%, transparent);
+        padding: 12px 16px;
+        font-size: 0.875rem;
+        font-family: inherit;
+        color: var(--fg);
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .field::placeholder {
+        color: color-mix(in oklab, var(--muted-fg) 70%, transparent);
+      }
+      .field:focus {
+        border-color: color-mix(in oklab, var(--lime) 70%, transparent);
+        box-shadow: 0 0 0 3px color-mix(in oklab, var(--lime) 25%, transparent);
+      }
+      .cal {
+        margin-top: 20px;
+        border-radius: 18px;
+        background: color-mix(in oklab, var(--bg) 40%, transparent);
+        padding: 16px;
+      }
+      .cal-days,
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        text-align: center;
+      }
+      .cal-grid span {
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        font-size: 11px;
+        color: color-mix(in oklab, var(--muted-fg) 55%, transparent);
+      }
+      .cal-grid span.open {
+        background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+        color: var(--fg);
+      }
+      .cal-grid span.active {
+        background: var(--primary);
+        color: var(--primary-fg);
+        font-weight: 700;
+      }
+      .slots {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .slots span {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--muted-fg);
+      }
+      .slots span.sel {
+        border-color: color-mix(in oklab, var(--lime) 70%, transparent);
+        background: color-mix(in oklab, var(--lime) 15%, transparent);
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .map {
+        position: relative;
+        margin-top: 24px;
+        height: 176px;
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--bg) 50%, transparent);
+      }
+      .map .road-h {
+        position: absolute;
+        top: 42%;
+        left: 38%;
+        width: 55%;
+        height: 6px;
+        border-radius: 999px;
+        background: oklch(1 0 0 / 0.12);
+      }
+      .map .road-v {
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        width: 6px;
+        height: 45%;
+        border-radius: 999px;
+        background: oklch(1 0 0 / 0.12);
+      }
+      .map .pin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .map .pin b {
+        position: absolute;
+        inset: -20px;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--lime) 25%, transparent);
+        animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+      .map .pin i {
+        position: relative;
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 30px var(--lime);
+      }
+
+      /* footer */
+      footer.site {
+        border-top: 1px solid var(--border);
+        padding: 56px 0;
+      }
+      .foot-grid {
+        display: grid;
+        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+      .foot-grid h4 {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-family: var(--sans);
+        font-weight: 700;
+      }
+      .foot-grid ul {
+        margin-top: 16px;
+        display: grid;
+        gap: 12px;
+        font-size: 0.875rem;
+        color: var(--muted-fg);
+      }
+      .foot-grid a:hover {
+        color: var(--primary);
+      }
+      .socials {
+        margin-top: 24px;
+        display: flex;
+        gap: 8px;
+      }
+      .socials span {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        color: var(--muted-fg);
+        font-size: 16px;
+      }
+      .foot-bottom {
+        margin-top: 48px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+        padding-top: 24px;
+        font-size: 0.75rem;
+        color: var(--muted-fg);
+      }
+
+      /* ---------- mockups ---------- */
+      .mk {
+        border-radius: 24px;
+        padding: 18px;
+      }
+      .mk .dots {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .mk .dots i {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        display: block;
+      }
+      .bar {
+        border-radius: 999px;
+        background: oklch(1 0 0 / 0.25);
+        height: 6px;
+      }
+      .bar.dim {
+        background: oklch(1 0 0 / 0.12);
+      }
+      .kanban {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .kcol {
+        border-radius: 16px;
+        background: color-mix(in oklab, var(--bg) 40%, transparent);
+        padding: 10px;
+      }
+      .kcol .h {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 8px;
+        font-size: 10px;
+        color: var(--muted-fg);
+      }
+      .kcol .h i {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        display: block;
+      }
+      .ktask {
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--surface-2) 60%, transparent);
+        padding: 8px;
+        margin-bottom: 8px;
+      }
+      .tl-row {
+        position: relative;
+        height: 12px;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--bg) 50%, transparent);
+        margin-bottom: 10px;
+      }
+      .tl-row i {
+        position: absolute;
+        height: 12px;
+        border-radius: 999px;
+        display: block;
+      }
+      .chat-b {
+        border-radius: 16px;
+        padding: 10px;
+        max-width: 75%;
+        background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+        border-top-left-radius: 4px;
+        margin-bottom: 10px;
+      }
+      .chat-b.me {
+        margin-left: auto;
+        background: color-mix(in oklab, var(--lime) 90%, transparent);
+        border-top-left-radius: 16px;
+        border-top-right-radius: 4px;
+      }
+      .typing i {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--muted-fg);
+        display: inline-block;
+        animation: bounce 1s infinite;
+      }
+      .spark {
+        display: flex;
+        gap: 6px;
+        margin-top: 8px;
+        align-items: flex-end;
+        height: 12px;
+      }
+      .spark i {
+        flex: 1;
+        border-radius: 999px;
+        background: oklch(1 0 0 / 0.25);
+        display: block;
+      }
+      .hero-mock {
+        position: relative;
+        margin: 0 auto;
+        max-width: 34rem;
+        padding: 0 24px;
+        perspective: 1600px;
+      }
+      .hero-mock .aura {
+        position: absolute;
+        inset: -40px;
+        z-index: -1;
+        border-radius: 48px;
+        background: color-mix(in oklab, var(--lime) 10%, transparent);
+        filter: blur(60px);
+      }
+      .hero-stack {
+        position: relative;
+        transform: rotateX(14deg) rotateY(-14deg) rotateZ(3deg);
+        transform-style: preserve-3d;
+      }
+      .hero-stack .float-slow.main {
+        box-shadow: 0 60px 120px -50px black;
+      }
+      .m-chart {
+        position: absolute;
+        right: -16px;
+        bottom: -56px;
+        width: 200px;
+        --tilt: -4deg;
+      }
+      .m-task {
+        position: absolute;
+        top: -56px;
+        left: -24px;
+        width: 190px;
+        --tilt: 5deg;
+      }
+      .m-chat {
+        position: absolute;
+        right: -8px;
+        top: -80px;
+        width: 190px;
+        --tilt: 6deg;
+      }
+      @media (max-width: 640px) {
+        .m-chat {
+          display: none;
+        }
+        .m-task,
+        .m-chart {
+          width: 150px;
+        }
+        section {
+          padding: 64px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="#/" class="wordmark">Flow<span>stack</span><i></i></a>
+        <nav class="nav-links" id="navLinks"></nav>
+        <button class="burger" id="burger" aria-label="Toggle menu">☰</button>
+      </div>
+      <div class="mobile-menu" id="mobileMenu"></div>
+    </header>
+
+    <main id="app"></main>
+    <footer class="site" id="footer"></footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------------- tiny helpers ---------------- */
+        var esc = function (s) {
+          return String(s).replace(/[&<>"]/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+          });
+        };
+        var rev = function (html, delay) {
+          return (
+            '<div class="reveal" style="transition-delay:' + (delay || 0) + 'ms">' + html + "</div>"
+          );
+        };
+        var initials = function (n) {
+          return n
+            .split(" ")
+            .map(function (w) {
+              return w[0];
+            })
+            .join("");
+        };
+        var av = function (hue) {
+          return (
+            "background:radial-gradient(circle at 30% 30%, oklch(0.85 0.2 " +
+            hue +
+            "), oklch(0.35 0.12 " +
+            hue +
+            "))"
+          );
+        };
+
+        /* ---------------- inline icons ---------------- */
+        var I = {
+          arrow: '<svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+          play:
+            '<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z"/></svg>',
+          sparkles:
+            '<svg class="icon" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18 15l.9 2.3 2.1.7-2.1.7L18 21l-.9-2.3-2.1-.7 2.1-.7z"/></svg>',
+          check: '<svg class="icon" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>',
+          quote:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:24px;height:24px"><path d="M9 7H5a2 2 0 00-2 2v3a2 2 0 002 2h2v1a3 3 0 01-3 3"/><path d="M20 7h-4a2 2 0 00-2 2v3a2 2 0 002 2h2v1a3 3 0 01-3 3"/></svg>',
+          kanban:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M5 3v13M12 3v9M19 3v16"/></svg>',
+          calendar:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:20px;height:20px"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+          chat:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M21 12a8 8 0 01-8 8H4l2-3a8 8 0 1115-5z"/></svg>',
+          zap:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>',
+          plug:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 01-12 0zM12 17v5"/></svg>',
+          chart:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
+          mail:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+          phone:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M6 3h4l2 5-3 2a12 12 0 005 5l2-3 5 2v4a2 2 0 01-2 2A17 17 0 014 5a2 2 0 012-2z"/></svg>',
+          pin:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+          clock:
+            '<svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+          tw: '<svg class="icon" viewBox="0 0 24 24"><path d="M22 5.9a8 8 0 01-2.3.7A4 4 0 0021.4 4a8 8 0 01-2.5 1A4 4 0 0012 8.6 11.3 11.3 0 013.8 4.4a4 4 0 001.2 5.3A4 4 0 013 9.2a4 4 0 003.2 3.9 4 4 0 01-1.8.1 4 4 0 003.7 2.8A8 8 0 012 17.6 11.3 11.3 0 008.1 19c7.3 0 11.3-6 11.3-11.3v-.5A8 8 0 0022 5.9z"/></svg>',
+          li: '<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 014 0v4"/></svg>',
+          gh: '<svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.9a3.4 3.4 0 00-1-2.6c3-.3 6-1.5 6-6.6a5 5 0 00-1.4-3.6 4.7 4.7 0 00-.1-3.5s-1.1-.3-3.5 1.4a12 12 0 00-6 0C6.6 1 5.5 1.3 5.5 1.3a4.7 4.7 0 00-.1 3.5A5 5 0 004 8.4c0 5 3 6.3 6 6.6a3.4 3.4 0 00-1 2.6V21"/></svg>',
+          yt: '<svg class="icon" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></svg>',
+        };
+
+        /* ---------------- mockups ---------------- */
+        function bar(w, dim) {
+          return '<div class="bar' + (dim ? " dim" : "") + '" style="width:' + w + '%"></div>';
+        }
+        function kanban(cls) {
+          var cols = [
+            { t: "Backlog", tone: "oklch(1 0 0 / 0.4)", items: [70, 45] },
+            { t: "In progress", tone: "var(--lime)", items: [85, 60, 40] },
+            { t: "Shipped", tone: "oklch(0.85 0.1 220)", items: [55] },
+          ];
+          return (
+            '<div class="mk glass ' + (cls || "") + '">' +
+            '<div class="dots"><i style="background:oklch(0.6 0.22 25/.7)"></i><i style="background:oklch(0.85 0.15 85/.7)"></i><i style="background:color-mix(in oklab,var(--lime) 70%,transparent)"></i>' +
+            '<div class="bar" style="width:96px;margin-left:10px"></div></div>' +
+            '<div class="kanban">' +
+            cols
+              .map(function (c) {
+                return (
+                  '<div class="kcol"><div class="h"><i style="background:' + c.tone + '"></i>' +
+                  esc(c.t) +
+                  "</div>" +
+                  c.items
+                    .map(function (w) {
+                      return (
+                        '<div class="ktask">' + bar(w) + '<div style="height:6px"></div>' + bar(50, 1) + "</div>"
+                      );
+                    })
+                    .join("") +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div></div>"
+          );
+        }
+        function chart(cls) {
+          var bars = [40, 65, 30, 80, 55, 70, 45];
+          return (
+            '<div class="mk glass ' + (cls || "") + '">' +
+            '<div style="display:flex;align-items:center;justify-content:space-between">' +
+            '<div class="bar" style="width:64px"></div>' +
+            '<span style="border-radius:999px;background:color-mix(in oklab,var(--lime) 15%,transparent);color:var(--primary);padding:2px 8px;font-size:10px;font-weight:700">+38%</span></div>' +
+            '<svg viewBox="0 0 200 80" style="width:100%;margin-top:12px" role="presentation">' +
+            '<defs><linearGradient id="fsarea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--lime)" stop-opacity="0.45"/><stop offset="100%" stop-color="var(--lime)" stop-opacity="0"/></linearGradient></defs>' +
+            '<path d="M0 62 L28 54 L56 58 L84 38 L112 44 L140 24 L168 28 L200 8 L200 80 L0 80 Z" fill="url(#fsarea)"/>' +
+            '<path d="M0 62 L28 54 L56 58 L84 38 L112 44 L140 24 L168 28 L200 8" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linecap="round"/></svg>' +
+            '<div class="spark">' +
+            bars
+              .map(function (h) {
+                return '<i style="height:' + h / 6 + 'px"></i>';
+              })
+              .join("") +
+            "</div></div>"
+          );
+        }
+        function task(cls) {
+          var rows = [true, true, false];
+          return (
+            '<div class="mk glass ' + (cls || "") + '">' +
+            '<div style="display:flex;align-items:center;gap:8px">' +
+            '<span style="display:grid;place-items:center;width:28px;height:28px;border-radius:999px;background:var(--primary);color:var(--primary-fg);font-size:11px;font-weight:700">FS</span>' +
+            '<div style="flex:1">' + bar(60) + '<div style="height:6px"></div>' + bar(35, 1) + "</div></div>" +
+            '<div style="margin-top:12px;display:grid;gap:8px">' +
+            rows
+              .map(function (done, i) {
+                return (
+                  '<div style="display:flex;align-items:center;gap:8px">' +
+                  '<span style="width:14px;height:14px;border-radius:5px;border:1px solid ' +
+                  (done ? "var(--primary);background:var(--primary)" : "oklch(1 0 0 / .25)") +
+                  '"></span>' + bar(70 - i * 12, done) + "</div>"
+                );
+              })
+              .join("") +
+            "</div></div>"
+          );
+        }
+        function timeline(cls) {
+          var rows = [
+            { s: 0, w: 55, c: "color-mix(in oklab,var(--lime) 80%,transparent)" },
+            { s: 20, w: 45, c: "oklch(0.85 0.1 220 / .7)" },
+            { s: 38, w: 50, c: "oklch(0.7 0.16 290 / .7)" },
+            { s: 55, w: 40, c: "oklch(1 0 0 / .25)" },
+          ];
+          return (
+            '<div class="mk glass ' + (cls || "") + '">' +
+            '<div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:10px;color:var(--muted-fg)">' +
+            ["W1", "W2", "W3", "W4"]
+              .map(function (w) {
+                return "<span>" + w + "</span>";
+              })
+              .join("") +
+            "</div>" +
+            rows
+              .map(function (r) {
+                return (
+                  '<div class="tl-row"><i style="left:' + r.s + "%;width:" + r.w + "%;background:" + r.c + '"></i></div>'
+                );
+              })
+              .join("") +
+            "</div>"
+          );
+        }
+        function chat(cls) {
+          return (
+            '<div class="mk glass ' + (cls || "") + '">' +
+            '<div class="chat-b">' + bar(80) + '<div style="height:6px"></div>' + bar(50, 1) + "</div>" +
+            '<div class="chat-b me"><div class="bar" style="width:70%;background:oklch(0.18 0.07 285/.6)"></div><div style="height:6px"></div><div class="bar" style="width:40%;background:oklch(0.18 0.07 285/.35)"></div></div>' +
+            '<div class="typing" style="padding-left:4px"><i></i><i style="animation-delay:.12s"></i><i style="animation-delay:.24s"></i></div>' +
+            "</div>"
+          );
+        }
+        var MK = { kanban: kanban, chart: chart, task: task, timeline: timeline, chat: chat };
+
+        function heroMock() {
+          return (
+            '<div class="hero-mock"><div class="aura"></div><div class="hero-stack">' +
+            kanban("float-slow main") +
+            chart("float-slower m-chart") +
+            task("float-slow m-task") +
+            chat("float-slower m-chat") +
+            "</div></div>"
+          );
+        }
+
+        /* ---------------- shared sections ---------------- */
+        function ctaBand(headline, cta) {
+          return (
+            '<section><div class="wrap">' +
+            rev(
+              '<div class="cta-band mesh"><div class="blob"></div><div style="position:relative">' +
+                "<h2>" + esc(headline) + "</h2>" +
+                '<p class="muted" style="margin:24px auto 0;max-width:34rem">Start free. No credit card, no onboarding call, no 40-page setup guide.</p>' +
+                '<a class="btn btn-primary" style="margin-top:40px" href="#/contact">' + esc(cta) + I.arrow + "</a>" +
+                "</div></div>",
+            ) +
+            "</div></section>"
+          );
+        }
+
+        /* ---------------- pages ---------------- */
+        var pages = {};
+
+        pages["/"] = {
+          title: "Flowstack — Where your team's work finally clicks",
+          desc:
+            "Flowstack is project and team management for startups and small teams: boards, timelines, chat, automations and analytics in one fast workspace.",
+          render: function () {
+            var stats = [
+              { to: 10000, suffix: "+", label: "Teams running on Flowstack" },
+              { to: 2, suffix: "M+", label: "Tasks completed this year" },
+              { to: 99.9, dec: 1, suffix: "%", label: "Uptime over 24 months" },
+              { to: 41, suffix: "%", label: "Less time in status meetings" },
+            ];
+            var logos = ["Northbeam", "Vantiq", "Lumenly", "Pactstone", "Orbitgrid", "Kaseform"];
+            var shapes = ["999px", "4px", "6px", "50% 0 0 0", "0", "0 0 50% 0"];
+            var bento = [
+              { i: "kanban", t: "Task boards", d: "Drag-and-drop boards that update for everyone the instant something moves.", sp: "sp3", v: "kanban" },
+              { i: "calendar", t: "Timeline view", d: "Plan a whole quarter and let dependent dates shift themselves.", sp: "sp3", v: "timeline" },
+              { i: "chat", t: "Team chat", d: "Threads that live on the task, not in a channel that scrolls away.", sp: "sp2" },
+              { i: "zap", t: "Automations", d: "Rules that assign, notify and close things while you sleep.", sp: "sp1" },
+              { i: "plug", t: "Integrations", d: "60+ native connections plus a full REST API and webhooks.", sp: "sp2" },
+              { i: "chart", t: "Analytics", d: "Cycle time, throughput and forecasts built from work you already track.", sp: "sp4", v: "chart" },
+            ];
+            var quotes = [
+              { q: "We replaced three subscriptions in a week. The part that surprised me wasn't the features — it's that nobody on the team asked how to use it.", n: "Priya Raghavan", r: "Head of Product, Northbeam Studio", hue: 128 },
+              { q: "Our standups went from twenty-five minutes to seven. The timeline tells us what changed overnight, so we only talk about the things that need a decision.", n: "Marcus Feld", r: "Engineering Manager, Vantiq Labs", hue: 200 },
+              { q: "It feels expensive in the way good software does — fast, quiet, never in the way. That's rare in this category.", n: "Elena Duarte", r: "Co-founder, Lumenly", hue: 290 },
+            ];
+
+            return (
+              '<section class="hero mesh"><div class="hero-lines"></div><div class="wrap hero-grid"><div>' +
+              rev('<span class="pill">' + I.sparkles + "New: automations that plan your sprint for you</span>") +
+              rev('<h1 class="hero-title">Where your team\u2019s work<br><span class="grad-text">finally clicks.</span></h1>', 90) +
+              rev('<p class="lede">Flowstack brings boards, timelines, chat and automations into one fast workspace — so startups and small teams can stop managing tools and start shipping work.</p>', 180) +
+              rev('<div class="hero-actions"><a class="btn btn-primary" href="#/contact">Start Free Trial' + I.arrow + '</a><a class="btn btn-ghost" href="#/contact">' + I.play + "Book a Demo</a></div>", 260) +
+              rev('<p class="muted" style="margin-top:24px;font-size:0.75rem">Free 14-day trial · No credit card · Set up in under four minutes</p>', 340) +
+              "</div>" +
+              rev(heroMock(), 200) +
+              "</div></section>" +
+
+              '<section class="trust"><div class="wrap">' +
+              rev(
+                '<p class="muted" style="text-align:center;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase">Trusted by teams at</p><div class="logos">' +
+                  logos
+                    .map(function (n, i) {
+                      return '<div class="logo"><em style="border-radius:' + shapes[i] + '"></em><b>' + n + "</b></div>";
+                    })
+                    .join("") +
+                  "</div>",
+              ) +
+              "</div></section>" +
+
+              '<section><div class="wrap">' +
+              rev('<div style="max-width:40rem"><span class="eyebrow">Everything in one place</span><h2 class="section-title" style="margin-top:16px">Six tools\u2019 worth of work, one calm workspace</h2></div>') +
+              '<div class="bento">' +
+              bento
+                .map(function (b, i) {
+                  return (
+                    '<div class="reveal ' + b.sp + '" style="transition-delay:' + i * 80 + 'ms">' +
+                    '<div class="card glass glass-hover"><div class="glow"></div>' +
+                    '<span class="ibox">' + I[b.i] + "</span>" +
+                    "<h3>" + esc(b.t) + "</h3><p>" + esc(b.d) + "</p>" +
+                    (b.v ? '<div style="margin-top:24px">' + MK[b.v]() + "</div>" : "") +
+                    "</div></div>"
+                  );
+                })
+                .join("") +
+              "</div></div></section>" +
+
+              '<section style="padding-top:0"><div class="wrap grid cols-4">' +
+              stats
+                .map(function (s, i) {
+                  return (
+                    '<div class="reveal" style="transition-delay:' + i * 90 + 'ms">' +
+                    '<div class="card glass glass-hover" style="text-align:center">' +
+                    '<p class="stat-num" data-count="' + s.to + '" data-dec="' + (s.dec || 0) + '" data-suffix="' + s.suffix + '">0</p>' +
+                    '<p class="muted" style="margin-top:16px;font-size:0.875rem">' + esc(s.label) + "</p></div></div>"
+                  );
+                })
+                .join("") +
+              "</div></section>" +
+
+              '<section><div class="wrap">' +
+              rev('<h2 class="section-title" style="max-width:36rem">Teams stopped managing tools</h2>') +
+              '<div class="grid cols-3" style="margin-top:48px">' +
+              quotes
+                .map(function (q, i) {
+                  return (
+                    '<div class="reveal" style="transition-delay:' + i * 110 + 'ms">' +
+                    '<figure class="quote glass glass-hover"><span style="color:var(--primary)">' + I.quote + "</span>" +
+                    "<blockquote>\u201C" + esc(q.q) + "\u201D</blockquote>" +
+                    '<figcaption><span class="avatar" style="' + av(q.hue) + '">' + initials(q.n) + "</span>" +
+                    '<span><span style="display:block;font-size:0.875rem;font-weight:600">' + esc(q.n) + "</span>" +
+                    '<span class="muted" style="display:block;font-size:0.75rem">' + esc(q.r) + "</span></span></figcaption></figure></div>"
+                  );
+                })
+                .join("") +
+              "</div></div></section>" +
+
+              ctaBand("Ready to make the work click?", "Start Free Trial")
+            );
+          },
+        };
+
+        pages["/about"] = {
+          title: "About Flowstack — Built by a small team, for small teams",
+          desc:
+            "Flowstack started because running our own five-person team was harder than it should be. Meet the people and values behind the platform.",
+          render: function () {
+            var team = [
+              { n: "Maya Okonkwo", r: "Co-founder & CEO", hue: 128 },
+              { n: "Dev Raman", r: "Co-founder & CTO", hue: 200 },
+              { n: "Lina Karlsson", r: "Head of Design", hue: 290 },
+              { n: "Theo Marchetti", r: "Engineering Lead", hue: 60 },
+              { n: "Sana Iqbal", r: "Customer Success", hue: 330 },
+            ];
+            var facts = [
+              { k: "2021", v: "Founded in Lisbon after one too many status-update meetings." },
+              { k: "38", v: "People across nine countries, still fully remote." },
+              { k: "10k+", v: "Teams who replaced three tools with one." },
+            ];
+            var values = [
+              { t: "Clarity over clever", b: "If a feature needs a tutorial, it needs a redesign. Every screen should explain itself in one glance." },
+              { t: "Speed is a feature", b: "Nothing in Flowstack takes more than 100ms to respond. Waiting is friction, and friction kills momentum." },
+              { t: "Small teams first", b: "We build for the eight-person team shipping weekly, not the thousand-person org writing process docs." },
+            ];
+            return (
+              '<section class="page-hero mesh"><div class="wrap narrow">' +
+              rev('<span class="pill" style="letter-spacing:.16em;text-transform:uppercase">Our story</span>') +
+              rev('<h1>We built the tool we <span class="grad-text">kept wishing existed</span></h1>', 80) +
+              rev("<p>Flowstack started in 2021 because managing our own five-person studio was harder than it should have been. Six tools, four tabs, and a standup that existed only to figure out what everyone else was doing. So we built one place where the work — and the context around it — finally clicks.</p>", 160) +
+              "</div></section>" +
+
+              '<section><div class="wrap grid cols-3">' +
+              facts
+                .map(function (f, i) {
+                  return (
+                    '<div class="reveal" style="transition-delay:' + i * 90 + 'ms"><div class="card glass glass-hover">' +
+                    '<p class="stat-num" style="font-size:2.25rem">' + f.k + "</p>" +
+                    '<p class="muted" style="margin-top:12px;font-size:0.875rem;line-height:1.6">' + esc(f.v) + "</p></div></div>"
+                  );
+                })
+                .join("") +
+              "</div></section>" +
+
+              '<section style="padding-top:0"><div class="wrap">' +
+              rev('<h2 class="section-title" style="font-size:clamp(2rem,4.5vw,3rem)">The people behind it</h2><p class="muted" style="margin-top:12px;max-width:32rem">A deliberately small crew that uses Flowstack to build Flowstack.</p>') +
+              '<div class="grid cols-5" style="margin-top:40px">' +
+              team
+                .map(function (m, i) {
+                  return (
+                    '<div class="reveal" style="transition-delay:' + i * 70 + 'ms"><div class="card glass glass-hover" style="text-align:center;padding:20px">' +
+                    '<span class="avatar" style="margin:0 auto;width:64px;height:64px;font-size:1.05rem;' + av(m.hue) + '">' + initials(m.n) + "</span>" +
+                    '<p style="margin-top:16px;font-size:0.875rem;font-weight:600">' + esc(m.n) + "</p>" +
+                    '<p class="muted" style="margin-top:4px;font-size:0.75rem">' + esc(m.r) + "</p></div></div>"
+                  );
+                })
+                .join("") +
+              "</div></div></section>" +
+
+              '<section style="padding-top:0"><div class="wrap">' +
+              rev('<h2 class="section-title" style="font-size:clamp(2rem,4.5vw,3rem)">What we hold to</h2>') +
+              '<div class="grid cols-3" style="margin-top:40px">' +
+              values
+                .map(function (v, i) {
+                  return (
+                    '<div class="reveal" style="transition-delay:' + i * 90 + 'ms"><div class="card glass glass-hover">' +
+                    '<span style="font-family:var(--display);font-size:0.875rem;font-weight:700;color:var(--primary)">0' + (i + 1) + "</span>" +
+                    '<h3 style="margin-top:12px;font-size:1.25rem;font-weight:700">' + esc(v.t) + "</h3>" +
+                    '<p class="muted" style="margin-top:12px;font-size:0.875rem;line-height:1.6">' + esc(v.b) + "</p></div></div>"
+                  );
+                })
+                .join("") +
+              "</div></div></section>" +
+
+              ctaBand("Where your team's work finally clicks.", "Start Free Trial")
+            );
+          },
+        };
+
+        pages["/products"] = {
+          title: "Flowstack Product — Boards, timelines, chat and automations",
+          desc:
+            "Explore Flowstack in depth: task boards, timeline planning, threaded team chat, automations, integrations and analytics in one fast workspace.",
+          render: function () {
+            var sections = [
+              { e: "Task boards", t: "A board that keeps up with the room", b: "Drag, drop, and everyone sees it instantly. Columns adapt to how your team actually works instead of forcing a methodology on you.", li: ["Realtime multiplayer cursors", "Swimlanes by owner or sprint", "Bulk edit with keyboard only"], v: "kanban" },
+              { e: "Timeline", t: "See the whole quarter without a spreadsheet", b: "Every task rolls into a timeline automatically. Shift one date and dependent work moves with it, so plans stay honest.", li: ["Auto-rescheduling dependencies", "Capacity warnings per person", "Milestone snapshots you can share"], v: "timeline" },
+              { e: "Team chat", t: "Conversation attached to the work", b: "Threads live on the task, not in a channel that scrolls away. Decisions stay next to the thing they decided.", li: ["Threads pinned to tasks", "Decision log per project", "Mentions that create follow-ups"], v: "chat" },
+              { e: "Analytics", t: "Numbers your team will actually trust", b: "Throughput, cycle time and forecast built from the work you already track — no separate reporting ritual required.", li: ["Cycle-time breakdowns", "Forecast with confidence bands", "Shareable read-only dashboards"], v: "chart" },
+              { e: "Automations & integrations", t: "The boring parts, handled", b: "Rules move work forward while you sleep, and Flowstack plugs into the tools your team already lives in.", li: ["If-this-then-that rules, no code", "60+ native integrations", "Full REST API and webhooks"], v: "task" },
+            ];
+            return (
+              '<section class="page-hero mesh"><div class="wrap narrow">' +
+              rev('<span class="pill" style="letter-spacing:.16em;text-transform:uppercase">Product tour</span>') +
+              rev('<h1>One workspace, <span class="grad-text">six fewer tabs</span></h1>', 80) +
+              rev("<p>Everything a small team needs to plan, build and ship — designed to feel like one product rather than five bolted together.</p>", 150) +
+              "</div></section>" +
+              '<div class="wrap" style="padding-top:64px">' +
+              sections
+                .map(function (s, i) {
+                  return (
+                    '<div class="prow' + (i % 2 ? " flip" : "") + '">' +
+                    rev('<div style="position:relative"><div class="float-slow">' + MK[s.v]() + "</div></div>") +
+                    rev(
+                      '<div><span class="eyebrow">' + esc(s.e) + "</span><h2>" + esc(s.t) + "</h2>" +
+                        '<p class="muted" style="margin-top:20px;line-height:1.7">' + esc(s.b) + "</p>" +
+                        '<ul class="bullets">' +
+                        s.li
+                          .map(function (b) {
+                            return "<li><span class=\"tick\">" + I.check + "</span>" + esc(b) + "</li>";
+                          })
+                          .join("") +
+                        "</ul></div>",
+                      120,
+                    ) +
+                    "</div>"
+                  );
+                })
+                .join("") +
+              "</div>" +
+              ctaBand("Try every feature free for 14 days.", "Start Free Trial")
+            );
+          },
+        };
+
+        pages["/pricing"] = {
+          title: "Flowstack Pricing — Free for small teams, flat per seat",
+          desc: "Simple Flowstack pricing: free for up to five people, $12 per person for the full workspace, $24 for scale controls and reporting.",
+          render: function () {
+            var plans = [
+              { n: "Starter", p: "$0", per: "up to 5 people", b: "Everything you need to get the first project moving.", f: ["Unlimited tasks", "3 active projects", "Board & list views", "Community support"], hot: false },
+              { n: "Team", p: "$12", per: "per person / month", b: "The full workspace for teams shipping every week.", f: ["Unlimited projects", "Timeline & analytics", "Automations and rules", "60+ integrations", "Priority support"], hot: true },
+              { n: "Scale", p: "$24", per: "per person / month", b: "Controls and reporting for multi-team organisations.", f: ["SSO & SCIM", "Advanced permissions", "Audit log", "Custom dashboards", "Dedicated CSM"], hot: false },
+            ];
+            return (
+              '<section class="page-hero mesh"><div class="wrap narrow">' +
+              rev('<h1 style="margin-top:0">Pricing that stays <span class="grad-text">out of the way</span></h1>') +
+              rev("<p>Free for small teams, flat per seat after that. No usage meters, no surprise invoices.</p>", 90) +
+              "</div></section>" +
+              '<section style="padding-top:32px"><div class="wrap grid cols-3" style="align-items:start">' +
+              plans
+                .map(function (p, i) {
+                  return (
+                    '<div class="reveal" style="transition-delay:' + i * 100 + 'ms">' +
+                    '<div class="plan glass glass-hover' + (p.hot ? " featured" : "") + '">' +
+                    (p.hot ? '<span class="badge">Most popular</span>' : "") +
+                    '<h2 style="font-size:1.1rem;font-weight:700">' + p.n + "</h2>" +
+                    '<p class="muted" style="margin-top:8px;font-size:0.875rem">' + esc(p.b) + "</p>" +
+                    '<div style="margin-top:24px;display:flex;align-items:baseline;gap:8px"><span class="price">' + p.p + '</span><span class="muted" style="font-size:0.75rem">' + p.per + "</span></div>" +
+                    '<ul style="margin-top:28px;display:grid;gap:12px">' +
+                    p.f
+                      .map(function (f) {
+                        return '<li style="display:flex;gap:12px;font-size:0.875rem;color:var(--muted-fg)"><span class="tick">' + I.check + "</span>" + esc(f) + "</li>";
+                      })
+                      .join("") +
+                    "</ul>" +
+                    '<a class="plan-cta ' + (p.hot ? "solid" : "outline") + '" href="#/contact">Start free trial</a>' +
+                    "</div></div>"
+                  );
+                })
+                .join("") +
+              "</div></section>" +
+              ctaBand("Still deciding? Take it for a spin.", "Book a Demo")
+            );
+          },
+        };
+
+        pages["/contact"] = {
+          title: "Contact Flowstack — Talk to us or book a demo",
+          desc: "Get in touch with the Flowstack team or book a 30-minute demo. We reply within one business day.",
+          render: function () {
+            var days = ["M", "T", "W", "T", "F", "S", "S"];
+            var slots = ["09:30", "11:00", "13:30", "15:00"];
+            var cells = "";
+            for (var i = 0; i < 30; i++) {
+              var open = i > 8 && i % 7 !== 5 && i % 7 !== 6;
+              var active = i === 17;
+              cells += '<span class="' + (active ? "active" : open ? "open" : "") + '">' + (i + 1) + "</span>";
+            }
+            var contacts = [
+              [I.mail, "hello@flowstack.io"],
+              [I.phone, "+351 210 000 121"],
+              [I.pin, "Rua da Prata 82, Lisbon, Portugal"],
+              [I.clock, "Mon–Fri, 09:00–18:00 WET"],
+            ];
+            return (
+              '<section class="page-hero mesh"><div class="wrap narrow">' +
+              rev('<h1 style="margin-top:0">Let\u2019s get your team <span class="grad-text">clicking</span></h1>') +
+              rev("<p>Tell us about your team and we'll reply within one business day — usually much sooner.</p>", 90) +
+              "</div></section>" +
+
+              '<section style="padding-top:16px"><div class="wrap contact-grid">' +
+              rev(
+                '<form class="glass" style="border-radius:32px;padding:32px;height:100%" onsubmit="return false">' +
+                  '<h2 style="font-size:1.5rem;font-weight:700">Send a message</h2>' +
+                  '<div style="margin-top:28px;display:grid;gap:16px">' +
+                  '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">' +
+                  '<div><label class="f">Name</label><input class="field" placeholder="Jordan Ellis"></div>' +
+                  '<div><label class="f">Work email</label><input class="field" placeholder="jordan@company.com"></div></div>' +
+                  '<div><label class="f">Company</label><input class="field" placeholder="Northbeam Studio"></div>' +
+                  '<div><label class="f">Message</label><textarea class="field" rows="5" style="resize:none" placeholder="We\u2019re a team of 12 and currently juggling three tools…"></textarea></div>' +
+                  "</div>" +
+                  '<button class="btn btn-primary" style="margin-top:28px;width:100%;border-radius:18px;padding:16px">Send message</button>' +
+                  '<p class="muted" style="margin-top:12px;text-align:center;font-size:0.75rem">This is a concept site — the form is intentionally non-functional.</p>' +
+                  "</form>",
+              ) +
+              "<div>" +
+              rev(
+                '<div class="glass glass-hover" style="border-radius:32px;padding:28px">' +
+                  '<h3 style="font-size:1.1rem;font-weight:700">Book a demo</h3>' +
+                  '<p class="muted" style="margin-top:4px;font-size:0.875rem">30 minutes, no slide deck.</p>' +
+                  '<div class="cal"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:var(--display);font-size:0.875rem;font-weight:700">September 2026</span></div>' +
+                  '<div class="cal-days" style="margin-top:16px;font-size:10px;color:var(--muted-fg)">' +
+                  days
+                    .map(function (d) {
+                      return "<span>" + d + "</span>";
+                    })
+                    .join("") +
+                  '</div><div class="cal-grid" style="margin-top:8px">' + cells + "</div></div>" +
+                  '<div class="slots">' +
+                  slots
+                    .map(function (s, i) {
+                      return '<span class="' + (i === 1 ? "sel" : "") + '">' + s + "</span>";
+                    })
+                    .join("") +
+                  "</div></div>",
+                100,
+              ) +
+              rev(
+                '<div class="glass" style="border-radius:32px;padding:28px;margin-top:24px">' +
+                  '<div style="display:grid;gap:16px;font-size:0.875rem">' +
+                  contacts
+                    .map(function (c) {
+                      return (
+                        '<div style="display:flex;align-items:center;gap:12px"><span class="ibox" style="width:36px;height:36px;border-radius:12px;font-size:16px">' +
+                        c[0] + '</span><span class="muted">' + esc(c[1]) + "</span></div>"
+                      );
+                    })
+                    .join("") +
+                  "</div>" +
+                  '<div class="map"><div class="road-h"></div><div class="road-v"></div><div class="pin"><b></b><i></i></div></div>' +
+                  "</div>",
+                180,
+              ) +
+              "</div></div></section>"
+            );
+          },
+        };
+
+        /* ---------------- nav + footer ---------------- */
+        var LINKS = [
+          ["/products", "Product"],
+          ["/about", "About"],
+          ["/pricing", "Pricing"],
+          ["/contact", "Contact"],
+        ];
+
+        function buildNav() {
+          document.getElementById("navLinks").innerHTML =
+            LINKS.map(function (l) {
+              return '<a href="#' + l[0] + '" data-path="' + l[0] + '">' + l[1] + "</a>";
+            }).join("") + '<a class="nav-cta" href="#/contact">Get Started</a>';
+          document.getElementById("mobileMenu").innerHTML =
+            LINKS.map(function (l) {
+              return '<a href="#' + l[0] + '">' + l[1] + "</a>";
+            }).join("") + '<a class="cta" href="#/contact">Get Started</a>';
+        }
+
+        function buildFooter() {
+          var groups = [
+            { t: "Product", l: [["Overview", "/products"], ["Pricing", "/pricing"], ["Contact", "/contact"]] },
+            { t: "Company", l: [["About", "/about"], ["Careers", "/about"], ["Book a demo", "/contact"]] },
+          ];
+          document.getElementById("footer").innerHTML =
+            '<div class="wrap foot-grid">' +
+            '<div><a href="#/" class="wordmark">Flow<span>stack</span><i></i></a>' +
+            '<p class="muted" style="margin-top:16px;max-width:20rem;font-size:0.875rem">Project and team management for startups and small teams. Where your team\u2019s work finally clicks.</p>' +
+            '<div class="socials"><span>' + I.tw + "</span><span>" + I.li + "</span><span>" + I.gh + "</span><span>" + I.yt + "</span></div></div>" +
+            groups
+              .map(function (g) {
+                return (
+                  "<div><h4>" + g.t + "</h4><ul>" +
+                  g.l
+                    .map(function (l) {
+                      return '<li><a href="#' + l[1] + '">' + l[0] + "</a></li>";
+                    })
+                    .join("") +
+                  "</ul></div>"
+                );
+              })
+              .join("") +
+            "<div><h4>Legal</h4><ul><li>Privacy</li><li>Terms</li><li>Security</li></ul></div>" +
+            '</div><div class="wrap"><div class="foot-bottom"><span>© ' +
+            new Date().getFullYear() +
+            " Flowstack Labs. A fictional concept project.</span><span>Made for teams who\u2019d rather be shipping.</span></div></div>";
+        }
+
+        /* ---------------- effects ---------------- */
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+        );
+
+        function countUp(el) {
+          var to = parseFloat(el.dataset.count),
+            dec = parseInt(el.dataset.dec, 10) || 0,
+            suffix = el.dataset.suffix || "",
+            start = null,
+            dur = 1600;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            var val = to * eased;
+            el.textContent =
+              (val >= 1000 ? Math.round(val).toLocaleString() : val.toFixed(dec)) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+
+        var countIo = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                countUp(e.target);
+                countIo.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.4 },
+        );
+
+        function wireEffects() {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            io.observe(el);
+          });
+          document.querySelectorAll("[data-count]").forEach(function (el) {
+            countIo.observe(el);
+          });
+        }
+
+        /* ---------------- router ---------------- */
+        function currentPath() {
+          var h = location.hash.replace(/^#/, "");
+          if (!h || h === "/") return "/";
+          h = h.replace(/\/$/, "");
+          return pages[h] ? h : "404";
+        }
+
+        function setMeta(name, attr, content) {
+          var el = document.querySelector("meta[" + attr + '="' + name + '"]');
+          if (el) el.setAttribute("content", content);
+        }
+
+        function render() {
+          var path = currentPath();
+          var page = pages[path];
+          var app = document.getElementById("app");
+
+          if (!page) {
+            document.title = "Page not found — Flowstack";
+            app.innerHTML =
+              '<section class="page-hero mesh"><div class="wrap narrow"><h1 style="margin-top:0">404</h1>' +
+              '<p>That page doesn\u2019t exist. Let\u2019s get you back on track.</p>' +
+              '<a class="btn btn-primary" style="margin-top:32px" href="#/">Go home' + I.arrow + "</a></div></section>";
+          } else {
+            document.title = page.title;
+            setMeta("description", "name", page.desc);
+            setMeta("og:title", "property", page.title);
+            setMeta("og:description", "property", page.desc);
+            app.innerHTML = page.render();
+          }
+
+          document.querySelectorAll("#navLinks a[data-path]").forEach(function (a) {
+            a.classList.toggle("active", a.dataset.path === path);
+          });
+          document.getElementById("mobileMenu").classList.remove("open");
+          window.scrollTo({ top: 0, behavior: "auto" });
+          wireEffects();
+        }
+
+        /* ---------------- boot ---------------- */
+        buildNav();
+        buildFooter();
+        if (!location.hash) location.replace("#/");
+        render();
+        window.addEventListener("hashchange", render);
+
+        var nav = document.getElementById("nav");
+        var onScroll = function () {
+          nav.classList.toggle("scrolled", window.scrollY > 12);
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        document.getElementById("burger").addEventListener("click", function () {
+          document.getElementById("mobileMenu").classList.toggle("open");
+        });
+      })();
+    </script>
+  </body>
+</html>
