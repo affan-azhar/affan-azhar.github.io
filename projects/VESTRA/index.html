@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VESTRA — Considered Minimalist Fashion</title>
+<meta name="description" content="VESTRA is a minimalist fashion label of small-batch, considered garments made to last. Explore the Autumn Edit." />
+<meta property="og:title" content="VESTRA — Considered Minimalist Fashion" />
+<meta property="og:description" content="Small-batch, considered garments made to last. Explore the Autumn Edit." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111011;
+  --cream:#F4F1EA;
+  --cream-2:#EAE5DA;
+  --cream-3:#DED7C8;
+  --clay:#C4B7A2;
+  --stone:#9A968C;
+  --accent:#B91C1C;
+  --muted:rgba(17,16,17,.55);
+  --line:rgba(17,16,17,.14);
+  --serif:"Cormorant Garamond",Didot,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,Helvetica,Arial,sans-serif;
+  --pad:clamp(1.25rem,5vw,5.5rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;letter-spacing:-.01em}
+.caps{text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;font-weight:400}
+.muted{color:var(--muted)}
+.wrap{padding-inline:var(--pad)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* grain */
+.grain:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>")}
+
+/* nav */
+header{position:sticky;top:0;z-index:50;background:color-mix(in oklab,var(--cream) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:74px}
+.mark{font-family:var(--serif);font-size:1.4rem;letter-spacing:.44em;text-indent:.44em}
+.navlinks{display:flex;gap:2.6rem;align-items:center}
+.navlinks a{position:relative;padding-block:.4rem}
+.navlinks a:after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--accent);transition:width .5s cubic-bezier(.22,1,.36,1)}
+.navlinks a:hover:after,.navlinks a.active:after{width:100%}
+.navlinks a.active{color:var(--accent)}
+.cart{display:flex;align-items:center;gap:.5rem}
+.cart .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);display:inline-block}
+.burger{display:none;background:none;border:0;padding:.4rem;cursor:pointer}
+.burger span{display:block;width:22px;height:1px;background:var(--ink);margin:5px 0}
+@media(max-width:860px){
+  .burger{display:block}
+  .navlinks{position:absolute;top:74px;left:0;right:0;background:var(--cream);flex-direction:column;gap:1.6rem;padding:2.5rem var(--pad);border-bottom:1px solid var(--line);display:none}
+  .navlinks.open{display:flex}
+  .cart{display:none}
+}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:calc(100svh - 74px);align-items:center;gap:clamp(2rem,6vw,6rem);padding-block:clamp(3rem,8vw,6rem)}
+.hero h1{font-size:clamp(3.2rem,10.5vw,9rem);line-height:.88;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .sub{max-width:34ch;margin-top:2rem}
+.block{position:relative;overflow:hidden}
+.b-ink{background:var(--ink)}.b-clay{background:var(--clay)}.b-stone{background:var(--stone)}
+.b-cream{background:var(--cream-2)}.b-cream3{background:var(--cream-3)}.b-accent{background:var(--accent)}
+.herofig{aspect-ratio:3/4;background:var(--cream-3)}
+.herofig .bar{position:absolute;left:0;right:38%;bottom:0;top:34%;background:var(--ink)}
+.herofig .arc{position:absolute;right:8%;top:12%;width:38%;aspect-ratio:1;border-radius:50%;border:1px solid var(--accent)}
+.herofig .sq{position:absolute;right:14%;bottom:14%;width:22%;aspect-ratio:1;background:var(--accent)}
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:auto}}
+
+.btn{display:inline-flex;align-items:center;gap:.9rem;border:1px solid var(--ink);padding:.95rem 1.9rem;margin-top:2.6rem;transition:.45s cubic-bezier(.22,1,.36,1)}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--cream);gap:1.5rem}
+
+section{padding-block:clamp(4rem,10vw,9rem)}
+.statement{font-family:var(--serif);font-size:clamp(1.6rem,4.2vw,3.1rem);line-height:1.22;max-width:22ch}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:1.2rem;margin-bottom:clamp(2rem,5vw,4rem)}
+
+/* products */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.2rem,3vw,3rem)}
+.card{grid-column:span 3}
+.card .thumb{position:relative;overflow:hidden;aspect-ratio:3/4}
+.card .thumb .fill{position:absolute;inset:0;transition:transform 1.3s cubic-bezier(.22,1,.36,1)}
+.card:hover .thumb .fill{transform:scale(1.06)}
+.card .qv{position:absolute;inset:auto 0 0 0;padding:1rem;text-align:center;background:color-mix(in oklab,var(--cream) 92%,transparent);opacity:0;transform:translateY(100%);transition:.6s cubic-bezier(.22,1,.36,1)}
+.card:hover .qv{opacity:1;transform:none}
+.meta{display:flex;justify-content:space-between;gap:1rem;margin-top:1rem;font-size:.86rem}
+.meta .name{letter-spacing:.02em}
+.meta .price{color:var(--muted)}
+.card:hover .meta .name{color:var(--accent)}
+.asym .card:nth-child(1){grid-column:span 5}
+.asym .card:nth-child(2){grid-column:span 3;align-self:end}
+.asym .card:nth-child(3){grid-column:span 4}
+.asym .card:nth-child(4){grid-column:4/span 4;margin-top:-2rem}
+.shopgrid .card{grid-column:span 3}
+@media(max-width:1000px){.asym .card,.shopgrid .card{grid-column:span 6!important;margin-top:0!important}}
+@media(max-width:620px){.asym .card,.shopgrid .card{grid-column:span 12!important}}
+
+/* values */
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(2rem,5vw,5rem);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:clamp(3rem,6vw,5rem)}
+.values svg{stroke:var(--accent);fill:none;stroke-width:1}
+@media(max-width:800px){.values{grid-template-columns:1fr}}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:2rem;padding-bottom:1.4rem;border-bottom:1px solid var(--line);margin-bottom:clamp(2rem,5vw,4rem)}
+.filters button{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--muted);text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;transition:.3s}
+.filters button:hover{color:var(--ink)}
+.filters button.on{color:var(--accent)}
+
+/* about */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem)}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.prose p{max-width:56ch;margin:0 0 1.4rem}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,4vw,3.5rem)}
+.process .n{font-family:var(--serif);font-size:2rem;color:var(--accent);line-height:1}
+@media(max-width:900px){.process{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.process{grid-template-columns:1fr}}
+.quote{background:var(--ink);color:var(--cream);position:relative}
+.quote blockquote{font-family:var(--serif);font-size:clamp(1.8rem,5vw,4rem);line-height:1.15;margin:0;max-width:20ch;font-style:italic}
+.quote .who{margin-top:2.5rem;color:rgba(244,241,234,.6)}
+
+/* contact */
+form{display:grid;gap:1.8rem;max-width:34rem}
+label{display:block}
+input,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:.7rem 0;font:inherit;color:var(--ink);outline:none;transition:border-color .4s}
+input:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:7rem}
+.sent{color:var(--accent);font-size:.8rem;min-height:1rem}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:clamp(3rem,6vw,5rem)}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem}
+@media(max-width:800px){.fgrid{grid-template-columns:1fr}}
+.credit{margin-top:3.5rem;font-size:.7rem;opacity:.42}
+.credit a{border-bottom:1px solid currentColor}
+.credit a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav>
+    <a href="#/" class="mark">VESTRA</a>
+    <div class="navlinks caps" id="nav">
+      <a href="#/shop" data-r="/shop">Shop</a>
+      <a href="#/about" data-r="/about">About</a>
+      <a href="#/contact" data-r="/contact">Contact</a>
+    </div>
+    <div class="cart caps" aria-hidden="true">Bag <span class="dot"></span> 0</div>
+    <button class="burger" aria-label="Menu" id="burger"><span></span><span></span></button>
+  </nav>
+</header>
+
+<main id="app"></main>
+
+<footer class="wrap">
+  <div class="fgrid">
+    <div>
+      <div class="mark" style="font-size:1.15rem">VESTRA</div>
+      <p class="muted" style="max-width:30ch;margin-top:1.2rem">Small-batch garments, considered and made to last. Atelier no. 4, Lisbon.</p>
+    </div>
+    <div>
+      <div class="caps muted">Navigate</div>
+      <div style="margin-top:1rem;display:grid;gap:.5rem">
+        <a href="#/shop">Shop</a><a href="#/about">About</a><a href="#/contact">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="caps muted">Contact</div>
+      <div style="margin-top:1rem;display:grid;gap:.5rem">
+        <a href="mailto:studio@vestra.co">studio@vestra.co</a>
+        <span class="muted">+351 21 000 0000</span>
+      </div>
+    </div>
+  </div>
+  <div class="credit">Designed &amp; coded by <a href="https://www.linkedin.com/in/affan-azhar/" target="_blank" rel="noopener">Affan Azhar</a></div>
+</footer>
+
+<script>
+const products = [
+  {n:"Ardra Wool Coat", p:"€890", c:"b-ink"},
+  {n:"Sila Silk Shirt", p:"€320", c:"b-cream3"},
+  {n:"Noren Trouser", p:"€410", c:"b-clay"},
+  {n:"Vela Cashmere Knit", p:"€520", c:"b-stone"},
+  {n:"Halle Linen Dress", p:"€460", c:"b-cream"},
+  {n:"Orin Leather Belt", p:"€180", c:"b-ink"},
+  {n:"Mera Wide Trouser", p:"€395", c:"b-clay"},
+  {n:"Suede Ankle Boot", p:"€640", c:"b-stone"},
+  {n:"Fen Merino Scarf", p:"€150", c:"b-cream3"},
+  {n:"Atel Poplin Shirt", p:"€290", c:"b-cream"}
+];
+
+const fig = (cls, i) => `
+  <div class="thumb grain">
+    <div class="fill ${cls}"></div>
+    ${i % 3 === 0 ? '<div style="position:absolute;left:14%;top:18%;width:34%;aspect-ratio:1;border:1px solid rgba(185,28,28,.75);border-radius:50%"></div>' : ''}
+    ${i % 3 === 1 ? '<div style="position:absolute;right:0;bottom:0;width:46%;height:38%;background:#111011"></div>' : ''}
+    ${i % 3 === 2 ? '<div style="position:absolute;left:20%;right:20%;top:46%;height:1px;background:#B91C1C"></div>' : ''}
+    <div class="qv caps">Quick View</div>
+  </div>`;
+
+const card = (pr, i) => `<article class="card rv">${fig(pr.c,i)}<div class="meta"><span class="name">${pr.n}</span><span class="price">${pr.p}</span></div></article>`;
+
+const icon = d => `<svg width="26" height="26" viewBox="0 0 24 24">${d}</svg>`;
+
+const views = {
+"/": `
+<section class="wrap hero">
+  <div class="rv">
+    <div class="caps muted">Autumn / Winter 26</div>
+    <h1>THE<br>AUTUMN<br><em>EDIT</em></h1>
+    <p class="sub muted">Twelve pieces. One palette. Cut in Portuguese wool and washed silk, released in a single small batch.</p>
+    <a class="btn caps" href="#/shop">Explore the Collection <span>&rarr;</span></a>
+  </div>
+  <div class="rv herofig block grain">
+    <div class="bar"></div><div class="arc"></div><div class="sq"></div>
+  </div>
+</section>
+<hr class="rule">
+<section class="wrap">
+  <p class="statement rv">We design slowly, so that nothing needs replacing.</p>
+</section>
+<section class="wrap" style="padding-top:0">
+  <div class="sechead rv"><h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem)">Featured Pieces</h2><a class="caps muted" href="#/shop">All Garments</a></div>
+  <div class="grid asym">${products.slice(0,4).map(card).join("")}</div>
+</section>
+<section class="wrap" style="padding-top:0">
+  <div class="values">
+    <div class="rv">${icon('<circle cx="12" cy="12" r="8"/><path d="M12 4v16"/>')}<h3 style="font-size:1.5rem;margin-top:1.2rem">Considered Design</h3><p class="muted">Each garment begins as a single question: is it necessary?</p></div>
+    <div class="rv">${icon('<rect x="4" y="4" width="16" height="16"/><path d="M4 14h16"/>')}<h3 style="font-size:1.5rem;margin-top:1.2rem">Made to Last</h3><p class="muted">Reinforced seams, natural fibres, and a lifetime repair service.</p></div>
+    <div class="rv">${icon('<path d="M4 18L12 5l8 13"/>')}<h3 style="font-size:1.5rem;margin-top:1.2rem">Quiet Luxury</h3><p class="muted">No logos. No seasons of noise. Only the cut speaks.</p></div>
+  </div>
+</section>`,
+
+"/shop": `
+<section class="wrap">
+  <div class="rv" style="margin-bottom:clamp(2rem,5vw,4rem)">
+    <div class="caps muted">Collection</div>
+    <h1 style="font-size:clamp(2.6rem,7vw,5.5rem);line-height:1;margin-top:.6rem">All Garments</h1>
+  </div>
+  <div class="filters rv" id="filters">
+    ${["All","Outerwear","Knitwear","Tailoring","Accessories"].map((f,i)=>`<button class="${i===0?'on':''}">${f}</button>`).join("")}
+  </div>
+  <div class="grid shopgrid">${products.map(card).join("")}</div>
+</section>`,
+
+"/about": `
+<section class="wrap">
+  <div class="rv"><div class="caps muted">About</div>
+  <h1 style="font-size:clamp(2.6rem,7vw,5.5rem);line-height:1;margin-top:.6rem">A quieter<br>way to dress.</h1></div>
+</section>
+<section class="wrap two" style="padding-top:0">
+  <div class="prose rv muted">
+    <p>VESTRA was founded in 2018 in a former tile workshop in Lisbon, with a single intention: to make fewer garments, better. We release two small batches a year, and we keep every pattern we have ever cut.</p>
+    <p>Our design language is deliberately narrow — ink, cream, clay, and stone. Silhouettes are drawn to sit quietly on the body, with weight and drape doing the work that decoration usually does.</p>
+    <p>Nothing is produced speculatively. A batch is closed when it is sold, and reopened only when the mill can supply the same yarn.</p>
+  </div>
+  <div class="rv block grain" style="aspect-ratio:4/5;background:var(--cream-3)">
+    <div style="position:absolute;inset:12% 12% 40% 12%;background:var(--ink)"></div>
+    <div style="position:absolute;left:12%;right:12%;bottom:22%;height:1px;background:var(--accent)"></div>
+    <div style="position:absolute;left:12%;bottom:10%;width:16%;aspect-ratio:1;border:1px solid var(--ink);border-radius:50%"></div>
+  </div>
+</section>
+<section class="wrap" style="padding-top:0">
+  <div class="sechead rv"><h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem)">Process &amp; Materials</h2><span class="caps muted">04 Notes</span></div>
+  <div class="process">
+    <div class="rv"><div class="n">01</div><h3 style="font-size:1.35rem;margin-top:.8rem">Wool, Guimarães</h3><p class="muted">A 19.5-micron merino woven at a family mill in northern Portugal, milled twice for density.</p></div>
+    <div class="rv"><div class="n">02</div><h3 style="font-size:1.35rem;margin-top:.8rem">Undyed Where Possible</h3><p class="muted">Cream and stone tones come from the fleece itself; only ink and clay are dyed, in low-water baths.</p></div>
+    <div class="rv"><div class="n">03</div><h3 style="font-size:1.35rem;margin-top:.8rem">Batches of 60</h3><p class="muted">Every style is cut in runs of sixty by four machinists, each garment signed on the inner facing.</p></div>
+    <div class="rv"><div class="n">04</div><h3 style="font-size:1.35rem;margin-top:.8rem">Repaired, Not Replaced</h3><p class="muted">Free darning and reseaming for the life of the piece, returned within three weeks.</p></div>
+  </div>
+</section>
+<section class="quote wrap grain">
+  <blockquote class="rv">Restraint is not the absence of ideas. It is the last one standing.</blockquote>
+  <div class="who caps rv">Inês Varela — Founder &amp; Creative Director</div>
+</section>`,
+
+"/contact": `
+<section class="wrap two">
+  <div class="rv">
+    <div class="caps muted">Contact</div>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.05;margin-top:.6rem">Write to<br>the studio.</h1>
+    <form id="cform" style="margin-top:3rem">
+      <label><span class="caps muted">Name</span><input required name="name" autocomplete="name"></label>
+      <label><span class="caps muted">Email</span><input required type="email" name="email" autocomplete="email"></label>
+      <label><span class="caps muted">Message</span><textarea required name="message"></textarea></label>
+      <button class="btn caps" style="margin-top:.6rem;cursor:pointer;background:none;font:inherit;letter-spacing:.22em;text-transform:uppercase;font-size:.66rem">Send Enquiry <span>&rarr;</span></button>
+      <div class="sent caps" id="sent"></div>
+    </form>
+  </div>
+  <div class="rv" style="padding-top:clamp(0rem,6vw,7rem)">
+    <div class="caps muted">Atelier</div>
+    <p style="margin-top:.8rem">Rua da Boavista 4<br>1200-066 Lisboa<br>Portugal</p>
+    <div class="caps muted" style="margin-top:2.5rem">Hours</div>
+    <p style="margin-top:.8rem">Tuesday — Saturday<br>11.00 — 18.00, by appointment</p>
+    <div class="caps muted" style="margin-top:2.5rem">Direct</div>
+    <p style="margin-top:.8rem"><a href="mailto:studio@vestra.co">studio@vestra.co</a><br>+351 21 000 0000</p>
+    <div class="block grain" style="aspect-ratio:16/10;background:var(--cream-3);margin-top:2.5rem">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.7%,rgba(17,16,17,.25) 49.7%,rgba(17,16,17,.25) 50%,transparent 50%)"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,transparent 61.7%,rgba(17,16,17,.25) 61.7%,rgba(17,16,17,.25) 62%,transparent 62%)"></div>
+      <div style="position:absolute;left:49%;top:60%;width:10px;height:10px;background:var(--accent);border-radius:50%;transform:translate(-50%,-50%)"></div>
+    </div>
+  </div>
+</section>`
+};
+
+function reveal(){
+  const io = new IntersectionObserver((es)=>es.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  }),{threshold:.12});
+  document.querySelectorAll(".rv").forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*70)+"ms";io.observe(el);});
+}
+
+function render(){
+  const route = (location.hash.replace(/^#/,"") || "/").split("?")[0];
+  const view = views[route] || views["/"];
+  const app = document.getElementById("app");
+  app.style.opacity = 0;
+  setTimeout(()=>{
+    app.innerHTML = view;
+    app.style.transition = "opacity .7s cubic-bezier(.22,1,.36,1)";
+    app.style.opacity = 1;
+    window.scrollTo({top:0});
+    document.querySelectorAll("#nav a").forEach(a=>a.classList.toggle("active", a.dataset.r === route));
+    document.getElementById("nav").classList.remove("open");
+    const f = document.getElementById("filters");
+    if(f) f.addEventListener("click", e=>{
+      if(e.target.tagName!=="BUTTON") return;
+      f.querySelectorAll("button").forEach(b=>b.classList.remove("on"));
+      e.target.classList.add("on");
+    });
+    const form = document.getElementById("cform");
+    if(form) form.addEventListener("submit", e=>{
+      e.preventDefault(); form.reset();
+      document.getElementById("sent").textContent = "Thank you — we reply within two working days.";
+    });
+    reveal();
+  }, 180);
+}
+document.getElementById("burger").addEventListener("click",()=>document.getElementById("nav").classList.toggle("open"));
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
