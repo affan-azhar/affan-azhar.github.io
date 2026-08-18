@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EMBER — Small-batch craft coffee roastery &amp; cafe</title>
+<meta name="description" content="EMBER is a small-batch craft coffee roastery and neighbourhood cafe. Direct-trade beans, slow roasts, warm rooms." />
+<meta property="og:title" content="EMBER — Small-batch craft coffee roastery &amp; cafe" />
+<meta property="og:description" content="Direct-trade beans, slow roasts, warm rooms. Visit our roastery cafe." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf4ea;
+    --cream-2:#f3e9da;
+    --ink:#2a201a;
+    --ink-soft:#5c4b40;
+    --rust:#bf5b34;
+    --rust-deep:#98431f;
+    --forest:#274436;
+    --forest-soft:#3a5f4c;
+    --sand:#e2cdb2;
+    --clay:#d99a6c;
+    --radius:22px;
+    --radius-lg:34px;
+    --shadow:0 18px 40px -24px rgba(63,38,22,.55);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:Karla,ui-sans-serif,system-ui,sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.35;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.5'/></svg>");
+    mix-blend-mode:multiply;
+  }
+  h1,h2,h3,h4,.wordmark{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:-.01em;margin:0}
+  h1{font-size:clamp(2.5rem,6vw,4.4rem)}
+  h2{font-size:clamp(1.9rem,3.6vw,2.9rem)}
+  h3{font-size:1.25rem}
+  p{margin:0}
+  a{color:inherit}
+  img{max-width:100%}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .section{padding:clamp(56px,8vw,110px) 0}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);font-weight:600}
+  .lede{color:var(--ink-soft);font-size:1.08rem;max-width:56ch}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:.5rem;border:0;cursor:pointer;
+    font-family:Karla;font-weight:600;font-size:.95rem;padding:.85rem 1.5rem;border-radius:999px;
+    background:var(--rust);color:var(--cream);text-decoration:none;
+    transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s,background .35s;
+    box-shadow:0 0 0 rgba(191,91,52,0);}
+  .btn:hover{background:var(--rust-deep);transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(191,91,52,.65)}
+  .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(42,32,26,.25)}
+  .btn.ghost:hover{background:rgba(191,91,52,.09);box-shadow:inset 0 0 0 1.5px var(--rust)}
+  .btn.small{padding:.55rem 1.05rem;font-size:.85rem}
+  .btn.cream{background:var(--cream);color:var(--forest)}
+  .btn.cream:hover{background:#fff;box-shadow:0 12px 30px -10px rgba(0,0,0,.4)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:color-mix(in oklab,var(--cream) 88%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid rgba(42,32,26,.08)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:var(--maxw);margin:0 auto}
+  .wordmark{font-size:1.5rem;letter-spacing:.16em;text-decoration:none;display:flex;align-items:center;gap:.55rem}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{text-decoration:none;font-size:.95rem;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .3s}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--rust);border-radius:2px;transition:width .35s ease}
+  .nav-links a:hover,.nav-links a.active{color:var(--ink)}
+  .nav-links a.active::after,.nav-links a:hover::after{width:100%}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0;border-radius:2px}
+  @media(max-width:760px){
+    .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:14px;
+      background:var(--cream);padding:18px 24px 26px;border-bottom:1px solid rgba(42,32,26,.1);display:none}
+    .nav-links.open{display:flex}
+    .nav-toggle{display:block}
+  }
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:
+      radial-gradient(120% 90% at 15% 0%,#f7e6d2 0%,transparent 60%),
+      linear-gradient(160deg,var(--cream-2),var(--cream));
+    border-bottom:1px solid rgba(42,32,26,.07)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;
+    padding:clamp(56px,9vw,120px) 0}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+  .hero h1 em{font-style:normal;color:var(--rust);position:relative}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .hero-art{position:relative;aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;
+    background:linear-gradient(150deg,var(--forest),var(--forest-soft));box-shadow:var(--shadow)}
+  .hero-art .cupline{position:absolute;inset:0;display:grid;place-items:center}
+  .hero-art svg{width:52%;opacity:.9}
+  /* steam */
+  .steam{position:absolute;left:50%;top:14%;transform:translateX(-50%);width:120px;height:160px;pointer-events:none}
+  .steam i{position:absolute;bottom:0;width:16px;height:16px;border-radius:50%;
+    background:rgba(250,244,234,.5);filter:blur(6px);animation:drift 7s ease-in-out infinite}
+  .steam i:nth-child(1){left:14%;animation-delay:0s}
+  .steam i:nth-child(2){left:44%;width:22px;height:22px;animation-delay:1.6s}
+  .steam i:nth-child(3){left:72%;animation-delay:3.1s}
+  .steam i:nth-child(4){left:30%;width:12px;height:12px;animation-delay:4.4s}
+  @keyframes drift{
+    0%{opacity:0;transform:translateY(0) scale(.7)}
+    18%{opacity:.75}
+    100%{opacity:0;transform:translateY(-150px) translateX(18px) scale(1.7)}
+  }
+  @media(prefers-reduced-motion:reduce){.steam i{animation:none;opacity:.25}}
+
+  /* color-block "photo" placeholders */
+  .plate{position:relative;height:100%;border-radius:var(--radius);overflow:hidden;isolation:isolate}
+  .plate::after{content:"";position:absolute;inset:0;opacity:.5;mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23g)'/></svg>")}
+  .plate.rust{background:linear-gradient(155deg,#c96b40,#a04a25)}
+  .plate.forest{background:linear-gradient(155deg,#31543f,#20382c)}
+  .plate.sand{background:linear-gradient(155deg,#e6d0b3,#cdae87)}
+  .plate.clay{background:linear-gradient(155deg,#e0a375,#c67d4d)}
+  .plate .ic{position:absolute;inset:0;display:grid;place-items:center;opacity:.85}
+  .plate .ic svg{width:38%;max-width:88px}
+
+  /* cards */
+  .grid{display:grid;gap:26px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:980px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.g4,.g3,.g2{grid-template-columns:1fr}}
+  .card{background:#fffaf2;border:1px solid rgba(42,32,26,.09);border-radius:var(--radius);
+    padding:16px;transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s,border-color .4s}
+  .card:hover{transform:translateY(-5px);box-shadow:0 22px 44px -26px rgba(152,67,31,.75);border-color:rgba(191,91,52,.4)}
+  .card .thumb{aspect-ratio:4/3;margin-bottom:14px}
+  .card h3{margin-bottom:6px}
+  .card p{color:var(--ink-soft);font-size:.95rem}
+  .price{display:inline-block;margin-top:12px;font-family:Fraunces;font-weight:600;color:var(--rust)}
+
+  /* bands */
+  .band-forest{background:var(--forest);color:var(--cream)}
+  .band-forest .lede,.band-forest p{color:rgba(250,244,234,.78)}
+  .band-forest .eyebrow{color:var(--clay)}
+  .band-cream2{background:var(--cream-2)}
+  .stats{display:flex;flex-wrap:wrap;gap:40px;margin-top:36px}
+  .stat b{display:block;font-family:Fraunces;font-size:2.4rem;color:var(--clay);line-height:1}
+  .stat span{font-size:.9rem;letter-spacing:.05em}
+
+  /* menu list */
+  .menu-cat{margin-bottom:56px}
+  .cat-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .cat-head svg{width:34px;height:34px;color:var(--rust)}
+  .divider{height:1px;background:linear-gradient(90deg,rgba(191,91,52,.55),rgba(42,32,26,.08));margin:18px 0 26px;border-radius:2px}
+  .row{display:flex;justify-content:space-between;gap:24px;padding:16px 18px;border-radius:16px;transition:background .3s}
+  .row:hover{background:rgba(226,205,178,.4)}
+  .row .name{font-family:Fraunces;font-weight:600;font-size:1.08rem}
+  .row .desc{color:var(--ink-soft);font-size:.93rem;max-width:52ch}
+  .row .p{font-family:Fraunces;font-weight:600;color:var(--rust);white-space:nowrap}
+
+  /* team */
+  .avatar{width:96px;height:96px;border-radius:50% 46% 52% 48%;margin-bottom:16px}
+  /* form */
+  form label{display:block;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  form input,form textarea,form select{width:100%;padding:.85rem 1rem;border-radius:14px;border:1.5px solid rgba(42,32,26,.16);
+    background:#fffaf2;font-family:Karla;font-size:1rem;color:var(--ink);transition:border-color .3s,box-shadow .3s}
+  form input:focus,form textarea:focus,form select:focus{outline:0;border-color:var(--rust);box-shadow:0 0 0 4px rgba(191,91,52,.14)}
+  .field{margin-bottom:18px}
+  .note{font-size:.85rem;color:var(--ink-soft)}
+
+  /* map */
+  .map{position:relative;aspect-ratio:16/10;border-radius:var(--radius-lg);overflow:hidden;background:#e9dcc6;box-shadow:var(--shadow)}
+  .map svg{position:absolute;inset:0;width:100%;height:100%}
+
+  /* footer */
+  footer{background:var(--forest);color:rgba(250,244,234,.85);padding:64px 0 28px;margin-top:0}
+  footer a{color:rgba(250,244,234,.85);text-decoration:none}
+  footer a:hover{color:#fff}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+  .foot-col h4{font-size:1rem;margin-bottom:12px;color:var(--cream)}
+  .foot-col ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.94rem}
+  .foot-bottom{margin-top:44px;padding-top:18px;border-top:1px solid rgba(250,244,234,.16);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem;color:rgba(250,244,234,.55)}
+  .credit{font-size:.78rem;opacity:.55}
+  .credit a{text-decoration:underline;text-underline-offset:3px}
+
+  /* page transition */
+  .page{animation:fade .5s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="wordmark" href="#/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#bf5b34" stroke-width="1.6" stroke-linecap="round"><path d="M12 3c2 3-1 4 0 6 1.2 2.4 4 2.6 4 6a4.2 4.2 0 0 1-8 0c0-2 1-3 1-3s-2 .6-2 3a5 5 0 0 0 10 0c0-5-5-6-5-12Z"/></svg>
+      EMBER
+    </a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#/menu" data-nav="/menu">Menu</a>
+      <a href="#/about" data-nav="/about">About</a>
+      <a href="#/visit" data-nav="/visit">Visit Us</a>
+      <a class="btn small" href="#/menu" style="color:var(--cream)">Order Online</a>
+    </nav>
+    <button class="nav-toggle" id="navtoggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="wordmark" style="color:var(--cream);margin-bottom:10px">EMBER</div>
+        <p style="max-width:34ch;color:rgba(250,244,234,.75)">Small-batch coffee roasted on Beckett Lane since 2016. Come sit a while — the second cup is always slower.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Visit</h4>
+        <ul>
+          <li>114 Beckett Lane</li>
+          <li>Harlow Ward, Portland</li>
+          <li>Mon–Fri 7–5 · Sat–Sun 8–4</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Say hello</h4>
+        <ul>
+          <li><a href="mailto:hello@emberroast.co">hello@emberroast.co</a></li>
+          <li><a href="tel:+15035550142">(503) 555-0142</a></li>
+          <li><a href="#/visit">Wholesale &amp; events</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> EMBER Coffee Roasters. All rights reserved.</span>
+      <span class="credit">Designed &amp; coded by <a href="https://www.linkedin.com/in/affan-azhar/" target="_blank" rel="noopener">Affan Azhar</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- tiny icon set ---------- */
+const ICON = {
+  cup:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h24v11a10 10 0 0 1-10 10h-4A10 10 0 0 1 9 29V18Z"/><path d="M33 21h4a5 5 0 0 1 0 10h-4"/><path d="M17 12c1.5-2-1-3 0-5M24 12c1.5-2-1-3 0-5M31 12c1.5-2-1-3 0-5"/></svg>`,
+  bean:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><ellipse cx="24" cy="24" rx="12" ry="17" transform="rotate(35 24 24)"/><path d="M16 32c6-4 4-12 12-16"/></svg>`,
+  leaf:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M38 10C22 10 12 18 12 30a8 8 0 0 0 8 8c12 0 18-12 18-28Z"/><path d="M14 36 34 16"/></svg>`,
+  croissant:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M8 30c4-12 14-18 24-18 6 0 8 4 8 8 0 10-8 18-20 18-6 0-12-2-12-8Z"/><path d="M18 14c0 8 4 16 12 20M26 12c-2 8 0 14 8 18"/></svg>`,
+  steam:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M24 40c3-6-3-8 0-14s-2-8 0-12"/><path d="M14 38c2-5-2-7 0-11M34 38c2-5-2-7 0-11"/></svg>`,
+  flame:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M24 6c4 6-2 8 0 12 2.4 4.8 8 5.2 8 12a8 8 0 0 1-16 0c0-4 2-6 2-6s-4 1.2-4 6a10 10 0 0 0 20 0c0-10-10-12-10-24Z"/></svg>`
+};
+const plate = (tone, icon, extra='') =>
+  `<div class="plate ${tone} ${extra}"><div class="ic" style="color:rgba(250,244,234,.85)">${ICON[icon]}</div></div>`;
+
+/* ---------- data ---------- */
+const featured = [
+  {n:"Ember House Latte", d:"Our Beckett blend pulled slow, with steamed whole milk and a whisper of raw cane.", p:"$4.75", t:"rust", i:"cup"},
+  {n:"Cardamom Bun", d:"Baked each morning by Sena, laminated for two days, still warm at 8am.", p:"$4.25", t:"clay", i:"croissant"},
+  {n:"Cold Brew, 18hr", d:"Steeped overnight in copper vats. Chocolatey, low acid, quietly strong.", p:"$5.00", t:"forest", i:"bean"},
+  {n:"Honey Cortado", d:"Two ounces of espresso, wildflower honey, milk poured thin.", p:"$4.50", t:"sand", i:"steam"}
+];
+const menu = [
+  {cat:"Coffee", icon:"cup", items:[
+    ["Espresso","Beckett Lane blend. Cocoa, plum, brown sugar.","$3.25"],
+    ["Cortado","Equal parts espresso and steamed milk.","$4.25"],
+    ["Ember House Latte","Raw cane sugar, whole or oat milk.","$4.75"],
+    ["Pour Over (single origin)","Rotating lot, brewed to order. Ask what's on.","$5.50"],
+    ["Cold Brew, 18hr","Copper-vat steeped, served over one big cube.","$5.00"],
+    ["Cinnamon Mocha","Dark chocolate, toasted cinnamon, no syrup.","$5.75"]
+  ]},
+  {cat:"Tea", icon:"leaf", items:[
+    ["Roasted Hojicha","Low caffeine, nutty, comforting.","$4.00"],
+    ["Masala Chai","Cooked on the stove each morning with fresh ginger.","$4.75"],
+    ["Mint &amp; Nettle","Grown by Harlow Ward Community Garden.","$3.75"],
+    ["Assam Breakfast","Malty and strong. Takes milk well.","$3.75"]
+  ]},
+  {cat:"Pastries", icon:"croissant", items:[
+    ["Cardamom Bun","Two-day laminated dough, pearl sugar.","$4.25"],
+    ["Olive Oil Loaf Slice","Rosemary and lemon zest, lightly salted.","$3.75"],
+    ["Buckwheat Chocolate Cookie","Chewy centre, flaky salt on top.","$3.25"],
+    ["Ham &amp; Gruyère Croissant","Made Thursday through Sunday only.","$6.00"]
+  ]},
+  {cat:"Seasonal", icon:"flame", items:[
+    ["Smoked Maple Latte","Maple reduced over the roaster's exhaust. Autumn only.","$5.50"],
+    ["Quince Soda","House quince syrup, sparkling water, thyme.","$4.50"],
+    ["Barrel-Rested Ethiopia","Rested 30 days in oak. Ninety cups a month.","$6.50"]
+  ]}
+];
+const team = [
+  {n:"Mara Ellison", r:"Founder & Head Roaster", t:"rust"},
+  {n:"Sena Oyelaran", r:"Head Baker", t:"clay"},
+  {n:"Ivo Bratić", r:"Green Buyer", t:"forest"},
+  {n:"June Halstead", r:"Cafe Lead", t:"sand"}
+];
+const sourcing = [
+  {n:"Kochere, Ethiopia", d:"Washed heirloom lots from the Debela family co-op. Jasmine and apricot.", t:"clay"},
+  {n:"Huila, Colombia", d:"Six years with Finca La Cumbre. We pay 62% over the C-market floor.", t:"rust"},
+  {n:"Nyeri, Kenya", d:"Small SL-28 parcels, bought whole so nothing gets blended away.", t:"forest"}
+];
+
+/* ---------- shared blocks ---------- */
+const mapBlock = `
+<div class="map">
+  <svg viewBox="0 0 400 250" preserveAspectRatio="none" aria-label="Stylised map of Beckett Lane">
+    <rect width="400" height="250" fill="#e9dcc6"/>
+    <g stroke="#d6c2a3" stroke-width="10" fill="none">
+      <path d="M-10 70 H410"/><path d="M-10 175 H410"/><path d="M90 -10 V260"/><path d="M280 -10 V260"/>
+    </g>
+    <g stroke="#cbb492" stroke-width="4" fill="none">
+      <path d="M-10 120 H410"/><path d="M185 -10 V260"/><path d="M340 -10 V260"/>
+    </g>
+    <rect x="100" y="80" width="70" height="30" rx="6" fill="#dccbaf"/>
+    <rect x="200" y="130" width="60" height="34" rx="6" fill="#dccbaf"/>
+    <rect x="300" y="30" width="50" height="30" rx="6" fill="#dccbaf"/>
+    <path d="M0 200 C120 230 260 190 400 215 L400 250 L0 250 Z" fill="#cfdcc6"/>
+    <circle cx="185" cy="120" r="26" fill="rgba(191,91,52,.18)"/>
+    <circle cx="185" cy="120" r="10" fill="#bf5b34"/>
+    <text x="185" y="152" text-anchor="middle" font-family="Karla,sans-serif" font-size="11" fill="#5c4b40">114 Beckett Lane</text>
+  </svg>
+</div>`;
+
+/* ---------- pages ---------- */
+const Home = () => `
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Roastery &amp; cafe · Harlow Ward</span>
+      <h1 style="margin:18px 0 20px">Small-batch coffee,<br>roasted with <em>intention</em>.</h1>
+      <p class="lede">We roast four days a week in a converted print shop on Beckett Lane — twelve kilos at a time, tasted every morning, sold before it's a fortnight old.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#/menu">View Menu</a>
+        <a class="btn ghost" href="#/visit">Find the cafe</a>
+      </div>
+    </div>
+    <div class="hero-art plate forest">
+      <div class="steam"><i></i><i></i><i></i><i></i></div>
+      <div class="cupline" style="color:rgba(250,244,234,.9)">${ICON.cup}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:34px">
+      <span class="eyebrow">On the counter</span>
+      <h2 style="margin-top:10px">What people come back for</h2>
+    </div>
+    <div class="grid g4">
+      ${featured.map(f=>`
+        <article class="card reveal">
+          <div class="thumb">${plate(f.t,f.i)}</div>
+          <h3>${f.n}</h3>
+          <p>${f.d}</p>
+          <span class="price">${f.p}</span>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="section band-forest">
+  <div class="wrap grid g2" style="align-items:center;gap:56px">
+    <div class="reveal">
+      <span class="eyebrow">Our roast</span>
+      <h2 style="margin:12px 0 18px">We'd rather know the farm than the forecast.</h2>
+      <p class="lede">Every green coffee in our hopper comes from a relationship we can name — six farms, most of them for four harvests or longer. We roast light enough to keep the fruit and long enough to keep the sweetness, then we let it rest five days before it ever hits a cup.</p>
+      <div class="stats">
+        <div class="stat"><b>6</b><span>direct-trade farms</span></div>
+        <div class="stat"><b>12kg</b><span>per batch, no more</span></div>
+        <div class="stat"><b>2016</b><span>roasting on Beckett Lane</span></div>
+      </div>
+      <div style="margin-top:32px"><a class="btn cream" href="#/about">Read our story</a></div>
+    </div>
+    <div class="reveal" style="aspect-ratio:4/5">${plate('clay','bean')}</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap grid g2" style="gap:52px;align-items:center">
+    <div class="reveal">
+      <span class="eyebrow">Come see us</span>
+      <h2 style="margin:12px 0 18px">114 Beckett Lane, Harlow Ward</h2>
+      <p class="lede">Corner shop with the green door. Bike rack out front, four tables inside, one long bench for people who came to work and stayed to talk.</p>
+      <ul style="list-style:none;padding:0;margin:26px 0 0;display:grid;gap:10px;color:var(--ink-soft)">
+        <li><strong style="color:var(--ink)">Mon – Fri</strong> · 7:00am – 5:00pm</li>
+        <li><strong style="color:var(--ink)">Sat – Sun</strong> · 8:00am – 4:00pm</li>
+        <li><strong style="color:var(--ink)">Roastery tours</strong> · Saturdays, 9:30am</li>
+      </ul>
+      <div style="margin-top:30px"><a class="btn" href="#/visit">Plan your visit</a></div>
+    </div>
+    <div class="reveal">${mapBlock}</div>
+  </div>
+</section>`;
+
+const Menu = () => `
+<section class="section band-cream2">
+  <div class="wrap">
+    <span class="eyebrow">The list</span>
+    <h1 style="margin:14px 0 16px;font-size:clamp(2.2rem,5vw,3.4rem)">Menu</h1>
+    <p class="lede">Prices include a compostable cup. Bring your own and we'll knock fifty cents off, every time.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    ${menu.map(c=>`
+      <div class="menu-cat reveal">
+        <div class="cat-head">${ICON[c.icon]}<h2>${c.cat}</h2></div>
+        <div class="divider"></div>
+        <div>
+          ${c.items.map(([n,d,p])=>`
+            <div class="row">
+              <div><div class="name">${n}</div><div class="desc">${d}</div></div>
+              <div class="p">${p}</div>
+            </div>`).join("")}
+        </div>
+      </div>`).join("")}
+    <div class="card reveal" style="padding:32px;text-align:center">
+      <h3 style="margin-bottom:8px">Beans to take home</h3>
+      <p style="max-width:52ch;margin:0 auto">Whole bag, 340g, roasted the day it ships. Subscriptions pause whenever life does.</p>
+      <div style="margin-top:20px"><a class="btn" href="#/visit">Ask us in store</a></div>
+    </div>
+  </div>
+</section>`;
+
+const About = () => `
+<section class="section band-cream2">
+  <div class="wrap">
+    <span class="eyebrow">Since 2016</span>
+    <h1 style="margin:14px 0 16px;font-size:clamp(2.2rem,5vw,3.4rem)">A print shop, a stubborn roaster, and a lot of patience.</h1>
+    <p class="lede">EMBER started when Mara Ellison bought a secondhand 12-kilo drum roaster she could not fit through her front door. The old Beckett Lane print shop had a loading bay, cheap rent, and a landlord who liked coffee. Ten years later the ink stains are still in the floorboards.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap grid g2" style="gap:52px;align-items:center">
+    <div class="reveal">
+      <span class="eyebrow">Philosophy</span>
+      <h2 style="margin:12px 0 18px">Roast to the coffee, not to the clock.</h2>
+      <p class="lede">We cup every batch the morning after it comes off the drum, and we throw away the ones that miss. That's expensive and we do it anyway. A roast profile here isn't a recipe we repeat — it's a conversation we have with each lot until it tastes like itself.</p>
+      <p class="lede" style="margin-top:16px">The cafe exists to close the loop. If we're going to ask farms for their best work, we should be able to hand it to someone across a counter and watch their face.</p>
+    </div>
+    <div class="reveal" style="aspect-ratio:4/5">${plate('rust','flame')}</div>
+  </div>
+</section>
+
+<section class="section band-forest">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:34px">
+      <span class="eyebrow">The people</span>
+      <h2 style="margin-top:10px">Meet the team</h2>
+    </div>
+    <div class="grid g4">
+      ${team.map(t=>`
+        <article class="card reveal" style="background:rgba(250,244,234,.06);border-color:rgba(250,244,234,.16)">
+          <div class="avatar plate ${t.t}"></div>
+          <h3 style="color:var(--cream)">${t.n}</h3>
+          <p style="color:rgba(250,244,234,.72)">${t.r}</p>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:34px">
+      <span class="eyebrow">Sourcing</span>
+      <h2 style="margin-top:10px">Where the beans come from</h2>
+      <p class="lede" style="margin-top:12px">Six farms, three continents, one rule: we buy the whole lot or we don't buy it.</p>
+    </div>
+    <div class="grid g3">
+      ${sourcing.map(s=>`
+        <article class="card reveal">
+          <div class="thumb">${plate(s.t,'bean')}</div>
+          <h3>${s.n}</h3>
+          <p>${s.d}</p>
+        </article>`).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="section band-cream2">
+  <div class="wrap" style="text-align:center">
+    <div class="reveal">
+      <span class="eyebrow">Community</span>
+      <h2 style="margin:12px auto 16px;max-width:20ch">Free coffee for anyone working the Ward's Tuesday food run.</h2>
+      <p class="lede" style="margin:0 auto">We also host the Harlow Ward repair café on the last Sunday of every month, and the back room is free for any neighbourhood group that asks.</p>
+      <div style="margin-top:28px"><a class="btn" href="#/visit">Get in touch</a></div>
+    </div>
+  </div>
+</section>`;
+
+const Visit = () => `
+<section class="section band-cream2">
+  <div class="wrap">
+    <span class="eyebrow">Visit us</span>
+    <h1 style="margin:14px 0 16px;font-size:clamp(2.2rem,5vw,3.4rem)">The green door on the corner.</h1>
+    <p class="lede">Street parking after 9am, bike rack out front, and the back bench is yours as long as your cup isn't empty.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap grid g2" style="gap:48px">
+    <div class="reveal">
+      <div class="card" style="padding:28px;margin-bottom:24px">
+        <h3 style="margin-bottom:10px">Address</h3>
+        <p>114 Beckett Lane<br>Harlow Ward, Portland, OR 97214</p>
+      </div>
+      <div class="card" style="padding:28px;margin-bottom:24px">
+        <h3 style="margin-bottom:10px">Hours</h3>
+        <p>Monday – Friday · 7:00am – 5:00pm<br>Saturday – Sunday · 8:00am – 4:00pm<br>Roastery tours · Saturdays 9:30am</p>
+      </div>
+      <div class="card" style="padding:28px">
+        <h3 style="margin-bottom:10px">Contact</h3>
+        <p><a href="mailto:hello@emberroast.co" style="color:var(--rust)">hello@emberroast.co</a><br><a href="tel:+15035550142" style="color:var(--rust)">(503) 555-0142</a><br>Wholesale: wholesale@emberroast.co</p>
+      </div>
+    </div>
+    <div class="reveal">${mapBlock}
+      <p class="note" style="margin-top:14px">Two blocks from the Harlow Ward streetcar stop; the 14 bus drops at the corner of Beckett and Mill.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section band-forest">
+  <div class="wrap" style="max-width:760px">
+    <div class="reveal" style="margin-bottom:28px">
+      <span class="eyebrow">Say hello</span>
+      <h2 style="margin-top:10px">Events, wholesale, or just a question</h2>
+      <p class="lede" style="margin-top:10px">We read everything and usually reply within two working days.</p>
+    </div>
+    <form class="reveal" id="inquiry" style="background:rgba(250,244,234,.06);padding:28px;border-radius:var(--radius);border:1px solid rgba(250,244,234,.16)">
+      <div class="grid g2" style="gap:18px">
+        <div class="field"><label for="nm" style="color:rgba(250,244,234,.7)">Name</label><input id="nm" name="name" placeholder="Your name" required></div>
+        <div class="field"><label for="em" style="color:rgba(250,244,234,.7)">Email</label><input id="em" type="email" name="email" placeholder="you@example.com" required></div>
+      </div>
+      <div class="field"><label for="tp" style="color:rgba(250,244,234,.7)">Topic</label>
+        <select id="tp"><option>General question</option><option>Wholesale &amp; cafes</option><option>Private event</option><option>Roastery tour</option></select></div>
+      <div class="field"><label for="ms" style="color:rgba(250,244,234,.7)">Message</label><textarea id="ms" rows="5" placeholder="Tell us a little…" required></textarea></div>
+      <button class="btn cream" type="submit">Send message</button>
+      <p class="note" id="formnote" style="margin-top:14px;color:rgba(250,244,234,.7);display:none">Thanks — this is a demo form, so nothing was actually sent. Email us at hello@emberroast.co and we'll answer for real.</p>
+    </form>
+  </div>
+</section>`;
+
+/* ---------- router ---------- */
+const routes = {"/":Home,"/menu":Menu,"/about":About,"/visit":Visit};
+const titles = {
+  "/":"EMBER — Small-batch craft coffee roastery & cafe",
+  "/menu":"Menu — EMBER Coffee Roasters",
+  "/about":"Our story — EMBER Coffee Roasters",
+  "/visit":"Visit us — EMBER Coffee Roasters"
+};
+function render(){
+  const path = (location.hash.replace(/^#/,"") || "/").split("?")[0];
+  const view = routes[path] || routes["/"];
+  const app = document.getElementById("app");
+  app.innerHTML = `<div class="page">${view()}</div>`;
+  document.title = titles[path] || titles["/"];
+  document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("active", a.dataset.nav===path));
+  document.getElementById("navlinks").classList.remove("open");
+  window.scrollTo({top:0,behavior:"instant"});
+  observeReveals();
+  const form = document.getElementById("inquiry");
+  if(form) form.addEventListener("submit", e=>{e.preventDefault();document.getElementById("formnote").style.display="block";form.reset();});
+}
+let io;
+function observeReveals(){
+  if(io) io.disconnect();
+  io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target);} });
+  },{rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+"ms";io.observe(el);});
+}
+document.getElementById("navtoggle").addEventListener("click",()=>document.getElementById("navlinks").classList.toggle("open"));
+document.getElementById("yr").textContent = new Date().getFullYear();
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
