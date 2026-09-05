@@ -3,28 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- SEO -->
   <title>Affan Azhar — Web Designer & AI-Enhanced Digital Interfaces</title>
   <meta name="description" content="Affan Azhar is a freelance Web Designer from Pakistan specialising in AI-Enhanced Content and Responsive Digital Interfaces — crafting purposeful, high-impact digital experiences." />
   <meta name="author" content="Affan Azhar" />
   <meta name="keywords" content="web designer, AI web design, responsive design, UI UX, Figma, WordPress, Webflow, Pakistan freelancer, Affan Azhar" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://affan-azhar.github.io/" />
   <meta property="og:title" content="Affan Azhar — Web Designer & AI-Enhanced Digital Interfaces" />
   <meta property="og:description" content="Freelance Web Designer from Pakistan. AI-Enhanced Content & Responsive Digital Interfaces." />
   <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="google5a549f97c9d6a345" />
+
   <!-- Favicon (SVG inline) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'><rect width='32' height='32' rx='6' fill='%230D0D0D'/><text x='4' y='24' font-family='sans-serif' font-weight='900' font-size='22' fill='%23C6F135'>A</text></svg>" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
+
   <!-- GSAP + ScrollTrigger CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
     tailwind.config = {
       darkMode: ['class', '[data-theme="dark"]'],
@@ -44,6 +54,7 @@
       }
     }
   </script>
+
   <!-- Embedded Global CSS Design System -->
   <style>
     :root {
@@ -53,16 +64,19 @@
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
       --fs-display: clamp(4.2rem, 13vw, 12rem);
       --fs-hero-sub: clamp(2.6rem, 7vw, 6.5rem);
       --fs-h2: clamp(2.2rem, 5vw, 4.5rem);
       --fs-h3: clamp(1.3rem, 2.5vw, 2rem);
       --lh-display: 0.88;
       --ls-display: -0.02em;
+
       --section-gap: clamp(4.5rem, 8vw, 8.5rem);
       --container-pad: clamp(1.5rem, 5vw, 4rem);
       --max-w: 1380px;
     }
+
     [data-theme="light"] {
       --bg: #F5F2EB;
       --fg: #0D0D0D;
@@ -75,6 +89,7 @@
       --card-bg: #EDEAD9;
       --card-border: rgba(13, 13, 13, 0.12);
     }
+
     [data-theme="dark"] {
       --bg: #0D0D0D;
       --fg: #F5F2EB;
@@ -87,17 +102,20 @@
       --card-bg: #141414;
       --card-border: rgba(245, 242, 235, 0.10);
     }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     html {
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background-color: var(--bg);
@@ -106,32 +124,39 @@
       overflow-x: hidden;
       cursor: none;
     }
+
     @media (pointer: coarse) {
       body { cursor: auto; }
     }
+
     ::selection {
       background: var(--accent);
       color: #0D0D0D;
     }
+
     .font-display { font-family: 'Bebas Neue', sans-serif; }
+
     .display-xl {
       font-family: 'Bebas Neue', sans-serif;
       font-size: var(--fs-display);
       line-height: var(--lh-display);
       letter-spacing: var(--ls-display);
     }
+
     .display-lg {
       font-family: 'Bebas Neue', sans-serif;
       font-size: var(--fs-hero-sub);
       line-height: 0.92;
       letter-spacing: -0.01em;
     }
+
     .display-md {
       font-family: 'Bebas Neue', sans-serif;
       font-size: var(--fs-h2);
       line-height: 1.0;
       letter-spacing: -0.01em;
     }
+
     .micro-label {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.68rem;
@@ -140,26 +165,31 @@
       text-transform: uppercase;
       color: var(--fg-muted);
     }
+
     .text-outline {
       -webkit-text-stroke: 2px var(--fg);
       color: transparent;
     }
+
     .container-custom {
       width: 100%;
       max-width: var(--max-w);
       margin-inline: auto;
       padding-inline: var(--container-pad);
     }
+
     .section-custom {
       padding-top: var(--section-gap);
       padding-bottom: var(--section-gap);
       position: relative;
     }
+
     .hairline {
       width: 100%;
       height: 1px;
       background: var(--border-color);
     }
+
     .nav-link-custom {
       position: relative;
       font-size: 0.8rem;
@@ -169,6 +199,7 @@
       color: var(--fg);
       transition: color 0.25s;
     }
+
     .nav-link-custom::after {
       content: '';
       position: absolute;
@@ -179,7 +210,9 @@
       background: var(--accent);
       transition: width 0.25s var(--ease-out);
     }
+
     .nav-link-custom:hover::after { width: 100%; }
+
     .btn-custom {
       display: inline-flex;
       align-items: center;
@@ -193,50 +226,61 @@
       cursor: none;
       will-change: transform;
     }
+
     @media (pointer: coarse) {
       .btn-custom { cursor: pointer; }
     }
+
     .btn-primary-custom {
       background: var(--accent);
       color: #0D0D0D;
       border: 1.5px solid var(--accent);
     }
+
     .btn-primary-custom:hover {
       transform: translateY(-2px) scale(1.02);
       background: #D4FF3D;
       box-shadow: 0 10px 24px rgba(198, 241, 53, 0.3);
     }
+
     .btn-primary-custom:active {
       transform: translateY(0) scale(0.98);
     }
+
     .btn-outline-custom {
       background: transparent;
       color: var(--fg);
       border: 1.5px solid var(--border-color);
     }
+
     .btn-outline-custom:hover {
       transform: translateY(-2px) scale(1.02);
       border-color: var(--accent);
       color: var(--accent);
       box-shadow: 0 6px 20px rgba(198, 241, 53, 0.12);
     }
+
     .btn-outline-custom:active {
       transform: translateY(0) scale(0.98);
     }
+
     .project-card-custom {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       transition: transform 0.25s var(--ease-spring), box-shadow 0.25s var(--ease-smooth), border-color 0.25s;
       will-change: transform;
     }
+
     .project-card-custom:hover {
       transform: translateY(-5px) rotate(0.3deg);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px var(--accent);
       border-color: var(--accent);
     }
+
     [data-theme="light"] .project-card-custom:hover {
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--accent);
     }
+
     .skill-pill-custom {
       display: inline-block;
       font-size: 0.72rem;
@@ -250,6 +294,7 @@
       overflow: hidden;
       transition: color 0.2s, border-color 0.2s;
     }
+
     .skill-pill-custom::before {
       content: '';
       position: absolute;
@@ -259,15 +304,19 @@
       transition: transform 0.25s var(--ease-out);
       z-index: 0;
     }
+
     .skill-pill-custom:hover::before { transform: translateX(0); }
+
     .skill-pill-custom:hover {
       color: #0D0D0D;
       border-color: var(--accent);
     }
+
     .skill-pill-custom span {
       position: relative;
       z-index: 1;
     }
+
     .cert-badge-custom {
       flex-shrink: 0;
       padding: 1.25rem 1.4rem;
@@ -278,10 +327,12 @@
       transition: border-color 0.25s, transform 0.25s var(--ease-spring);
       will-change: transform;
     }
+
     .cert-badge-custom:hover {
       border-color: var(--accent);
       transform: translateY(-4px);
     }
+
     .stat-number-custom {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(3rem, 6.5vw, 5rem);
@@ -289,6 +340,7 @@
       color: var(--accent);
       letter-spacing: -0.02em;
     }
+
     .stat-label-custom {
       font-size: 0.75rem;
       font-weight: 600;
@@ -297,6 +349,7 @@
       color: var(--fg-muted);
       margin-top: 0.35rem;
     }
+
     .theme-toggle-custom {
       width: 2.5rem;
       height: 2.5rem;
@@ -309,14 +362,17 @@
       cursor: none;
       transition: border-color 0.2s, color 0.2s, transform 0.2s var(--ease-spring);
     }
+
     @media (pointer: coarse) {
       .theme-toggle-custom { cursor: pointer; }
     }
+
     .theme-toggle-custom:hover {
       border-color: var(--accent);
       color: var(--accent);
       transform: rotate(15deg) scale(1.08);
     }
+
     .contact-btn-custom {
       display: inline-flex;
       align-items: center;
@@ -335,9 +391,11 @@
       overflow: hidden;
       will-change: transform;
     }
+
     @media (pointer: coarse) {
       .contact-btn-custom { cursor: pointer; }
     }
+
     .contact-btn-custom::before {
       content: '';
       position: absolute;
@@ -348,17 +406,21 @@
       transition: transform 0.25s var(--ease-out);
       z-index: 0;
     }
+
     .contact-btn-custom:hover::before { transform: scaleX(1); }
+
     .contact-btn-custom:hover {
       color: #0D0D0D;
       border-color: var(--accent);
       transform: translateY(-3px);
       box-shadow: 0 10px 24px rgba(198, 241, 53, 0.2);
     }
+
     .contact-btn-custom > * {
       position: relative;
       z-index: 1;
     }
+
     .scroll-indicator-custom {
       display: flex;
       flex-direction: column;
@@ -370,19 +432,23 @@
       color: var(--fg-muted);
       animation: scrollBounce 2s ease-in-out infinite;
     }
+
     @keyframes scrollBounce {
       0%, 100% { transform: translateY(0); opacity: 0.6; }
       50% { transform: translateY(5px); opacity: 1; }
     }
+
     .split-word {
       display: inline-block;
       overflow: hidden;
       vertical-align: bottom;
     }
+
     .split-inner {
       display: inline-block;
       will-change: transform, opacity;
     }
+
     /* -------------------------------------------------------------
        OPTIMIZED HIGH-PERFORMANCE CURSOR STYLES
        SVG Goo Filter constrained strictly to 120x120px bounding box
@@ -402,6 +468,7 @@
       will-change: transform;
       transform: translate3d(-200px, -200px, 0);
     }
+
     .goo-dot {
       position: absolute;
       top: 60px;
@@ -413,6 +480,7 @@
       will-change: transform, width, height;
       transition: width 0.2s var(--ease-spring), height 0.2s var(--ease-spring);
     }
+
     #c-aim {
       position: fixed;
       top: 0;
@@ -430,6 +498,7 @@
       transform: translate3d(-200px, -200px, 0);
       transition: transform 0.15s var(--ease-spring);
     }
+
     .cursor-splash-custom {
       position: fixed;
       top: 0;
@@ -442,14 +511,17 @@
       transform: translate3d(-50%, -50%, 0);
       will-change: transform, opacity, width, height;
     }
+
     .cursor-splash-custom.splash-active {
       animation: splashBurst 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
     @keyframes splashBurst {
       0% { width: 0px; height: 0px; opacity: 0.8; }
       60% { width: 70px; height: 70px; opacity: 0.35; }
       100% { width: 95px; height: 95px; opacity: 0; }
     }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -459,6 +531,7 @@
       }
       .scroll-indicator-custom { animation: none; }
     }
+
     /* Accessibility screen reader skip link */
     .skip-link {
       position: fixed;
@@ -474,14 +547,17 @@
       transition: top 0.2s;
     }
     .skip-link:focus { top: 1rem; }
+
     /* Hide scrollbars but keep functionality */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="overflow-x-hidden">
+
   <!-- Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- Custom Gooey Cursor Elements (Tight 120x120px Local Bounding Box) -->
   <div id="custom-cursor-container">
     <svg style="position: fixed; top: 0; left: 0; width: 0; height: 0; pointer-events: none; z-index: 9999;" aria-hidden="true">
@@ -503,17 +579,20 @@
     <div id="c-aim"></div>
     <div id="c-splash" class="cursor-splash-custom"></div>
   </div>
+
   <!-- FIXED NAVBAR -->
   <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent py-5 px-[var(--container-pad)] flex items-center justify-between" id="navbar">
     <a href="#" class="font-display text-2xl tracking-wider text-[var(--fg)] flex items-center gap-1 cursor-none" id="nav-logo">
       <span>AFFAN</span><span class="text-accent">.</span>
     </a>
+
     <ul class="hidden sm:flex items-center gap-8 list-none m-0 p-0">
       <li><button onclick="scrollToSection('about')" class="nav-link-custom cursor-none">About</button></li>
       <li><button onclick="scrollToSection('skills')" class="nav-link-custom cursor-none">Skills</button></li>
       <li><button onclick="scrollToSection('projects')" class="nav-link-custom cursor-none">Projects</button></li>
       <li><button onclick="scrollToSection('contact')" class="nav-link-custom cursor-none">Contact</button></li>
     </ul>
+
     <div class="flex items-center gap-5">
       <button onclick="scrollToSection('contact')" class="btn-custom btn-primary-custom hidden md:inline-flex rounded-none cursor-none py-2 px-5 text-xs">Hire Me</button>
       <button onclick="toggleTheme()" class="theme-toggle-custom rounded-none cursor-none" aria-label="Toggle theme">
@@ -522,6 +601,7 @@
       </button>
     </div>
   </nav>
+
   <!-- HOME VIEW CONTAINER -->
   <div id="home-view">
     <main id="main-content">
@@ -531,6 +611,7 @@
         <div class="absolute inset-0 z-0 pointer-events-none">
           <canvas id="particle-canvas" class="w-full h-full block"></canvas>
         </div>
+
         <div class="container-custom relative z-10 w-full flex-1 flex flex-col justify-between">
           
           <!-- Top Meta Row with Clear Padding & Breathing Room -->
@@ -544,6 +625,7 @@
               <span class="text-accent text-xs">●</span>
             </div>
           </div>
+
           <!-- Middle / Lower: Headline Stack -->
           <div class="my-auto py-6">
             <h1 class="sr-only">Affan Azhar</h1>
@@ -554,6 +636,7 @@
               AZHAR
             </div>
           </div>
+
           <!-- Bottom description + buttons -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end w-full pt-4">
             <div>
@@ -562,6 +645,7 @@
                 Specialising in AI-Enhanced Content and Responsive Digital Interfaces. Crafting digital experiences that work as hard as they look — for clients worldwide.
               </p>
             </div>
+
             <div class="flex flex-col items-start md:items-end gap-6">
               <div class="flex gap-3 flex-wrap">
                 <button onclick="scrollToSection('projects')" class="btn-custom btn-primary-custom flex items-center gap-2 cursor-none">
@@ -570,6 +654,7 @@
                 </button>
                 <button onclick="scrollToSection('contact')" class="btn-custom btn-outline-custom cursor-none">Get in Touch</button>
               </div>
+
               <!-- Scroll chevron indicator -->
               <div class="scroll-indicator-custom hidden md:flex items-center gap-1.5" aria-hidden="true">
                 <span>Scroll</span>
@@ -583,6 +668,7 @@
         </div>
         <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-[var(--border-color)] z-10"></div>
       </section>
+
       <!-- ABOUT -->
       <section id="about" class="section-custom">
         <div class="container-custom">
@@ -591,6 +677,7 @@
             <span class="micro-label">About</span>
             <div class="hairline flex-1"></div>
           </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
             <!-- Left Column -->
             <div>
@@ -598,6 +685,7 @@
                 Designing the digital frontier, one pixel at a time.
               </h2>
               <div class="w-[60px] h-[2px] bg-accent my-8"></div>
+
               <!-- Stats counters -->
               <div class="flex gap-10 md:gap-14 flex-wrap">
                 <div class="stat-container" data-target="3">
@@ -614,6 +702,7 @@
                 </div>
               </div>
             </div>
+
             <!-- Right Column -->
             <div class="space-y-6">
               <div class="border-l-2 border-accent pl-6 mb-8">
@@ -635,6 +724,7 @@
           </div>
         </div>
       </section>
+
       <!-- SKILLS -->
       <section id="skills" class="section-custom border-t border-[var(--border-color)]">
         <div class="container-custom">
@@ -642,7 +732,9 @@
             <span class="micro-label">What I Do</span>
             <div class="hairline flex-1"></div>
           </div>
+
           <h2 class="display-md text-[var(--fg)] mb-14" id="skills-headline">Skills & Tools</h2>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             <!-- Category 1 -->
             <div>
@@ -658,6 +750,7 @@
                 <li><div class="skill-pill-custom cursor-none"><span>Landing Pages</span></div></li>
               </ul>
             </div>
+
             <!-- Category 2 -->
             <div>
               <div class="mb-5 pb-3 border-b border-accent flex items-center gap-2">
@@ -672,6 +765,7 @@
                 <li><div class="skill-pill-custom cursor-none"><span>Prototyping</span></div></li>
               </ul>
             </div>
+
             <!-- Category 3 -->
             <div>
               <div class="mb-5 pb-3 border-b border-accent flex items-center gap-2">
@@ -686,6 +780,7 @@
                 <li><div class="skill-pill-custom cursor-none"><span>Prompt Engineering</span></div></li>
               </ul>
             </div>
+
             <!-- Category 4 -->
             <div>
               <div class="mb-5 pb-3 border-b border-accent flex items-center gap-2">
@@ -703,6 +798,7 @@
           </div>
         </div>
       </section>
+
       <!-- CERTIFICATIONS -->
       <section id="certifications" class="section-custom border-t border-[var(--border-color)]">
         <div class="container-custom">
@@ -710,7 +806,9 @@
             <span class="micro-label">Recognition</span>
             <div class="hairline flex-1"></div>
           </div>
+
           <h2 class="display-md text-[var(--fg)] mb-12">Certifications</h2>
+
           <!-- Horizontal track -->
           <div class="overflow-x-auto overflow-y-hidden snap-x snap-mandatory no-scrollbar pb-4" role="list">
             <div class="flex gap-px w-max bg-[var(--border-color)] border border-[var(--border-color)]">
@@ -771,6 +869,7 @@
               </div>
             </div>
           </div>
+
           <!-- Hint -->
           <div class="flex items-center gap-2 mt-6 opacity-50" aria-hidden="true">
             <span class="micro-label">Scroll horizontally for more</span>
@@ -778,6 +877,7 @@
           </div>
         </div>
       </section>
+
       <!-- PROJECTS -->
       <section id="projects" class="section-custom border-t border-[var(--border-color)]">
         <div class="container-custom">
@@ -785,134 +885,115 @@
             <span class="micro-label">Selected Work</span>
             <div class="hairline flex-1"></div>
           </div>
+
           <div class="flex justify-between items-end mb-12 gap-8 flex-wrap">
             <h2 class="display-md text-[var(--fg)]" id="projects-headline">Recent Projects</h2>
             <p class="text-xs text-[var(--fg-muted)] max-w-[280px] leading-relaxed">
               A selection of work that keeps me up at night — in the best way.
             </p>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-0.5 bg-[var(--border-color)] border border-[var(--border-color)]" id="projects-grid-container">
-            <!-- Project Card 1 -->
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-[var(--border-color)] border border-[var(--border-color)]" id="projects-grid-container">
+            <!-- Card 1 — AGIATI -->
             <article class="project-card-custom p-6 md:p-10 cursor-none flex flex-col justify-between">
               <div>
-                <!-- CSS/SVG geometric thumbnail -->
-                <div class="aspect-[16/10] overflow-hidden mb-6 bg-neutral-900 flex items-center justify-center border border-[var(--border-color)]">
-                  <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                    <rect width="480" height="300" fill="#0D0D0D"/>
-                    <circle cx="240" cy="150" r="110" fill="none" stroke="#C6F135" stroke-width="1" opacity="0.5"/>
-                    <circle cx="240" cy="150" r="75" fill="none" stroke="#C6F135" stroke-width="0.5" opacity="0.3"/>
-                    <circle cx="240" cy="150" r="28" fill="#C6F135" opacity="0.9"/>
-                    <circle cx="350" cy="80" r="14" fill="#C6F135" opacity="0.6"/>
-                    <circle cx="130" cy="220" r="10" fill="#C6F135" opacity="0.4"/>
-                    <text x="240" y="280" text-anchor="middle" fill="#C6F135" font-family="monospace" font-size="9" opacity="0.4" letter-spacing="3">01 / LUMINARY OS</text>
-                  </svg>
+                <div class="aspect-[16/10] overflow-hidden mb-6 border border-[var(--border-color)]">
+                  <img src="assets/projects/agiati.jpg" alt="AGIATI — AI-generated fashion product imagery" class="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Figma</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Webflow</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Client Work</span>
                   <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">AI Content</span>
                 </div>
-                <p class="micro-label mb-2">SaaS Web Design</p>
-                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Luminary OS</h3>
-                <p class="text-xs md:text-sm text-[var(--fg-muted)] leading-relaxed mb-6">
-                  A full product website for an AI-native operating system concept. Featuring motion-driven product demos, micro-animation interactions, and a conversion-focused pricing layout.
+                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">AGIATI</h3>
+                <p class="text-xs md:text-sm text-[var(--fg-muted)] leading-relaxed">
+                  AI-generated product imagery for a fashion brand — full creative pipeline from prompt to final delivery.
                 </p>
               </div>
-              <button onclick="navigateToProject('project-one')" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 self-start cursor-none">
-                View Case Study
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
             </article>
-            <!-- Project Card 2 -->
+
+            <!-- Card 2 — GENTS.nl -->
             <article class="project-card-custom p-6 md:p-10 cursor-none flex flex-col justify-between">
               <div>
-                <div class="aspect-[16/10] overflow-hidden mb-6 bg-neutral-900 flex items-center justify-center border border-[var(--border-color)]">
-                  <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                    <rect width="480" height="300" fill="#111111"/>
-                    <polygon points="0,0 260,0 480,300 220,300" fill="rgba(198,241,53,0.06)"/>
-                    <polygon points="180,40 320,40 250,160" fill="none" stroke="#C6F135" stroke-width="1.2" opacity="0.7"/>
-                    <rect x="60" y="200" width="30" height="30" fill="none" stroke="#C6F135" stroke-width="1" opacity="0.5"/>
-                    <rect x="380" y="60" width="20" height="20" fill="#C6F135" opacity="0.4"/>
-                    <text x="240" y="285" text-anchor="middle" fill="#C6F135" font-family="monospace" font-size="9" opacity="0.4" letter-spacing="3">02 / MERIDIAN STUDIO</text>
-                  </svg>
+                <div class="aspect-[16/10] overflow-hidden mb-6 border border-[var(--border-color)]">
+                  <img src="assets/projects/gentsnl.jpg" alt="GENTS.nl — AI-generated menswear product photography" class="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">WordPress</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">UI/UX</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Responsive</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Client Work</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">AI Content</span>
                 </div>
-                <p class="micro-label mb-2">Brand + Web Identity</p>
-                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Meridian Studio</h3>
-                <p class="text-xs md:text-sm text-[var(--fg-muted)] leading-relaxed mb-6">
-                  Complete brand identity and responsive website for a boutique architecture firm. Asymmetric editorial grid, typographic hierarchy, and zero-compromise mobile experience.
+                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">GENTS.nl</h3>
+                <p class="text-xs md:text-sm text-[var(--fg-muted)] leading-relaxed">
+                  Branded product photography for a menswear label, generated and refined with AI tools.
                 </p>
               </div>
-              <button onclick="navigateToProject('project-two')" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 self-start cursor-none">
-                View Case Study
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
             </article>
-            <!-- Project Card 3 -->
+
+            <!-- Card 3 — Flowstack -->
             <article class="project-card-custom p-6 md:p-10 cursor-none flex flex-col justify-between">
               <div>
-                <div class="aspect-[16/10] overflow-hidden mb-6 bg-neutral-900 flex items-center justify-center border border-[var(--border-color)]">
-                  <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                    <rect width="480" height="300" fill="#0A0A0A"/>
-                    <path d="M 0 180 Q 80 100 160 150 Q 240 200 320 130 Q 400 60 480 110" fill="none" stroke="#C6F135" stroke-width="2" opacity="0.6"/>
-                    <path d="M 0 200 Q 80 130 160 170 Q 240 215 320 150 Q 400 85 480 130" fill="none" stroke="#C6F135" stroke-width="1" opacity="0.3"/>
-                    <circle cx="160" cy="150" r="7" fill="#C6F135" opacity="0.9"/>
-                    <circle cx="320" cy="130" r="7" fill="#C6F135" opacity="0.9"/>
-                    <text x="240" y="280" text-anchor="middle" fill="#C6F135" font-family="monospace" font-size="9" opacity="0.4" letter-spacing="3">03 / CHROMA FLOW</text>
-                  </svg>
+                <div class="aspect-[16/10] overflow-hidden mb-6 border border-[var(--border-color)]">
+                  <img src="assets/projects/flowstack.jpg" alt="Flowstack — SaaS project management platform" class="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Prompt Eng.</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Dashboard</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Leonardo AI</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Concept</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">SaaS</span>
                 </div>
-                <p class="micro-label mb-2">AI-Enhanced Content</p>
-                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Chroma Flow</h3>
+                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Flowstack</h3>
                 <p class="text-xs md:text-sm text-[var(--fg-muted)] leading-relaxed mb-6">
-                  Data-visualization dashboard with AI-generated content modules and real-time chart animations. Built with a design-first approach — every data point has a story.
+                  Project management platform for startups and small teams.
                 </p>
               </div>
-              <button onclick="navigateToProject('project-three')" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 self-start cursor-none">
-                View Case Study
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
+              <a href="https://affan-azhar.github.io/projects/FlowStack/" target="_blank" rel="noopener noreferrer" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 self-start cursor-none">
+                Visit live site
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
             </article>
-            <!-- Project Card 4 -->
+
+            <!-- Card 4 — VESTRA -->
             <article class="project-card-custom p-6 md:p-10 cursor-none flex flex-col justify-between">
               <div>
-                <div class="aspect-[16/10] overflow-hidden mb-6 bg-neutral-900 flex items-center justify-center border border-[var(--border-color)]">
-                  <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                    <rect width="480" height="300" fill="#0F0F0F"/>
-                    <rect x="100" y="60" width="280" height="165" fill="none" stroke="#C6F135" stroke-width="1" opacity="0.35"/>
-                    <line x1="240" y1="60" x2="240" y2="225" stroke="#C6F135" stroke-width="0.8" opacity="0.25"/>
-                    <circle cx="240" cy="142" r="18" fill="none" stroke="#C6F135" stroke-width="1.5" opacity="0.5"/>
-                    <circle cx="240" cy="142" r="4" fill="#C6F135" opacity="0.8"/>
-                    <text x="240" y="280" text-anchor="middle" fill="#C6F135" font-family="monospace" font-size="9" opacity="0.4" letter-spacing="3">04 / VOID INTERFACE</text>
-                  </svg>
+                <div class="aspect-[16/10] overflow-hidden mb-6 border border-[var(--border-color)]">
+                  <img src="assets/projects/vestra.jpg" alt="VESTRA — editorial fashion e-commerce concept" class="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div class="flex gap-2 flex-wrap mb-4">
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Figma</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Design System</span>
-                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">UI Kit</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Concept</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Fashion</span>
                 </div>
-                <p class="micro-label mb-2">UI Kit + Design System</p>
-                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">Void Interface</h3>
+                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">VESTRA</h3>
                 <p class="text-xs md:text-sm text-[var(--fg-muted)] leading-relaxed mb-6">
-                  A minimal, architectural design system for dark-native interfaces. 200+ components, systematic spacing, and documentation that other designers actually want to read.
+                  Minimalist fashion label — editorial e-commerce concept.
                 </p>
               </div>
-              <button onclick="navigateToProject('project-four')" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 self-start cursor-none">
-                View Case Study
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </button>
+              <a href="https://affan-azhar.github.io/projects/VESTRA/" target="_blank" rel="noopener noreferrer" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 self-start cursor-none">
+                Visit live site
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
+            </article>
+
+            <!-- Card 5 — EMBER -->
+            <article class="project-card-custom p-6 md:p-10 cursor-none flex flex-col justify-between">
+              <div>
+                <div class="aspect-[16/10] overflow-hidden mb-6 border border-[var(--border-color)]">
+                  <img src="assets/projects/ember.jpg" alt="EMBER — craft coffee roastery and cafe brand site" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="flex gap-2 flex-wrap mb-4">
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Concept</span>
+                  <span class="text-[0.6rem] font-semibold tracking-wider uppercase text-accent border border-accent px-2 py-0.5 opacity-85">Hospitality</span>
+                </div>
+                <h3 class="font-display text-3xl md:text-4xl text-[var(--fg)] leading-none mb-3">EMBER</h3>
+                <p class="text-xs md:text-sm text-[var(--fg-muted)] leading-relaxed mb-6">
+                  Craft coffee roastery and cafe brand site.
+                </p>
+              </div>
+              <a href="https://affan-azhar.github.io/projects/EMBER/" target="_blank" rel="noopener noreferrer" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 self-start cursor-none">
+                Visit live site
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </a>
             </article>
           </div>
         </div>
       </section>
+
       <!-- CONTACT -->
       <section id="contact" class="section-custom">
         <div class="w-full bg-[var(--surface)] border-t border-b border-[var(--border-color)]">
@@ -924,6 +1005,7 @@
             <p class="text-sm md:text-base text-[var(--fg-muted)] leading-relaxed max-w-[480px] mx-auto mb-12">
               Available for freelance projects, brand collaborations, and long-term partnerships. Reach out on any of these channels — response within 24 hours.
             </p>
+
             <div class="flex flex-wrap gap-4 justify-center">
               <!-- WhatsApp -->
               <a href="https://wa.me/923109823669" target="_blank" rel="noopener noreferrer" class="contact-btn-custom cursor-none w-full sm:w-auto">
@@ -934,6 +1016,7 @@
                 </div>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-auto"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
               </a>
+
               <!-- Email -->
               <a href="mailto:contact.affan2010@gmail.com" class="contact-btn-custom cursor-none w-full sm:w-auto">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -943,6 +1026,7 @@
                 </div>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-auto"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
+
               <!-- LinkedIn -->
               <a href="https://www.linkedin.com/in/affan-azhar/" target="_blank" rel="noopener noreferrer" class="contact-btn-custom cursor-none w-full sm:w-auto">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -956,6 +1040,7 @@
           </div>
         </div>
       </section>
+
       <!-- FOOTER -->
       <footer class="border-t border-[var(--border-color)] py-8" aria-label="Site footer">
         <div class="container-custom flex justify-between items-center flex-wrap gap-4">
@@ -967,154 +1052,22 @@
       </footer>
     </main>
   </div>
-  <!-- PROJECT VIEW CONTAINER (HIDDEN BY DEFAULT) -->
-  <div id="project-view" class="hidden min-h-screen pt-28 md:pt-36 pb-16">
-    <div class="container-custom">
-      <!-- Back button -->
-      <button onclick="navigateHome()" class="btn-custom btn-outline-custom text-xs py-2.5 px-5 mb-8 md:mb-14 cursor-none">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        All Projects
-      </button>
-      <!-- Header -->
-      <div class="border-b border-[var(--border-color)] pb-8 mb-12">
-        <p class="micro-label text-accent mb-4" id="project-category">Category</p>
-        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl leading-none text-[var(--fg)] tracking-tight mb-4" id="project-title">
-          Project Title
-        </h1>
-        <p class="micro-label" id="project-year">2026</p>
-      </div>
-      <!-- Content Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-16">
-        <div>
-          <p class="micro-label mb-3">Project Description</p>
-          <p class="text-base sm:text-lg font-light leading-relaxed text-[var(--fg)]" id="project-desc">
-            Description body
-          </p>
-        </div>
-        <div class="space-y-8">
-          <div>
-            <p class="micro-label mb-2">My Role</p>
-            <p class="text-sm font-semibold text-[var(--fg)]" id="project-role">Role details</p>
-          </div>
-          <div>
-            <p class="micro-label mb-3">Tools Used</p>
-            <div class="flex flex-wrap gap-2" id="project-tools">
-              <!-- Inline tag labels populated by JS -->
-            </div>
-          </div>
-          <div>
-            <p class="micro-label mb-3">Outcome</p>
-            <p class="text-sm leading-relaxed text-[var(--fg-muted)] border-l-2 border-accent pl-4" id="project-outcome">
-              Outcome stats
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- Action -->
-      <div class="text-center border-t border-[var(--border-color)] pt-12">
-        <p class="text-sm text-[var(--fg-muted)] mb-6">Interested in working together?</p>
-        <a href="https://wa.me/923109823669" target="_blank" rel="noopener noreferrer" class="btn-custom btn-primary-custom cursor-none">
-          Start a Conversation
-        </a>
-      </div>
-      <!-- Simple Page Footer -->
-      <div class="mt-16 pt-8 border-t border-[var(--border-color)] text-center">
-        <p class="text-xs text-[var(--fg-muted)]">
-          Designed and coded by <strong class="text-[var(--fg)]">Affan Azhar</strong>
-        </p>
-      </div>
-    </div>
-  </div>
+
   <!-- INTERACTIVE LOGIC (HIGH PERFORMANCE VANILLA JS) -->
   <script>
     // -------------------------------------------------------------
-    // DATA STORE FOR PROJECT ROUTES
+    // NAVIGATION HELPERS
     // -------------------------------------------------------------
-    const projectData = {
-      'project-one': {
-        title: 'Luminary OS',
-        category: 'SaaS Web Design',
-        year: '2024',
-        description: 'A full product website for an AI-native operating system concept. Featuring motion-driven product demos, micro-animation interactions, and a conversion-focused pricing layout built to convert enterprise clients.',
-        role: 'Lead Designer & Developer',
-        tools: ['Figma', 'Webflow', 'Google AI Studio', 'Prompt Engineering'],
-        outcome: 'Delivered a complete 8-page product site with documented design system. Client reported 40% increase in demo booking rate post-launch.'
-      },
-      'project-two': {
-        title: 'Meridian Studio',
-        category: 'Brand + Web Identity',
-        year: '2024',
-        description: 'Complete brand identity and responsive website for a boutique architecture firm based in London. Asymmetric editorial grid, typographic hierarchy, and zero-compromise mobile experience.',
-        role: 'UI/UX Designer & WordPress Developer',
-        tools: ['Figma', 'WordPress', 'CSS3', 'Responsive Design'],
-        outcome: 'Launched to immediate critical praise from the client\'s network. Featured on two design inspiration aggregators within 2 weeks.'
-      },
-      'project-three': {
-        title: 'Chroma Flow',
-        category: 'AI-Enhanced Content',
-        year: '2023',
-        description: 'Data-visualization dashboard with AI-generated content modules and real-time chart animations. Built with a design-first approach — every data point has a story.',
-        role: 'Product Designer',
-        tools: ['Figma', 'Leonardo AI', 'ImagineArt', 'JavaScript'],
-        outcome: 'Prototype used to secure a $200K seed round for the client startup. Design praised as "best-in-class" by the investor deck reviewer.'
-      },
-      'project-four': {
-        title: 'Void Interface',
-        category: 'UI Kit + Design System',
-        year: '2023',
-        description: 'A minimal, architectural design system for dark-native interfaces. 200+ components, systematic spacing, and documentation that other designers actually want to read.',
-        role: 'Design Systems Architect',
-        tools: ['Figma', 'UI/UX Design', 'Design Systems'],
-        outcome: 'Used by 3 separate client projects. Reduced design-to-development handoff time by approximately 60% per project.'
-      }
-    };
-    // -------------------------------------------------------------
-    // ROUTING / VIEW MANAGER
-    // -------------------------------------------------------------
-    function handleRoute() {
-      const hash = window.location.hash.replace('#/', '');
-      const homeView = document.getElementById('home-view');
-      const projectView = document.getElementById('project-view');
-      if (hash && projectData[hash]) {
-        const project = projectData[hash];
-        document.getElementById('project-title').innerText = project.title;
-        document.getElementById('project-category').innerText = project.category;
-        document.getElementById('project-year').innerText = project.year;
-        document.getElementById('project-desc').innerText = project.description;
-        document.getElementById('project-role').innerText = project.role;
-        document.getElementById('project-outcome').innerText = project.outcome;
-        const toolsContainer = document.getElementById('project-tools');
-        toolsContainer.innerHTML = '';
-        project.tools.forEach(tool => {
-          const badge = document.createElement('span');
-          badge.className = 'text-[0.7rem] font-semibold tracking-wider uppercase px-3 py-1 border border-[var(--border-color)] text-[var(--fg-muted)]';
-          badge.innerText = tool;
-          toolsContainer.appendChild(badge);
-        });
-        homeView.classList.add('hidden');
-        projectView.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      } else {
-        homeView.classList.remove('hidden');
-        projectView.classList.add('hidden');
-      }
-    }
-    window.addEventListener('hashchange', handleRoute);
-    window.addEventListener('load', handleRoute);
-    function navigateToProject(slug) {
-      window.location.hash = `/${slug}`;
-    }
-    function navigateHome() {
-      window.location.hash = '';
-    }
     document.getElementById('footer-year').innerText = `© ${new Date().getFullYear()}`;
+
     function scrollToSection(id) {
-      navigateHome();
+      window.location.hash = '';
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 50);
     }
+
     // -------------------------------------------------------------
     // THEME CONTROLLER
     // -------------------------------------------------------------
@@ -1126,6 +1079,7 @@
       localStorage.setItem('affan-theme', newTheme);
       updateThemeIcons(newTheme);
     }
+
     function updateThemeIcons(theme) {
       const sunIcon = document.getElementById('theme-icon-sun');
       const moonIcon = document.getElementById('theme-icon-moon');
@@ -1137,20 +1091,24 @@
         moonIcon.classList.add('hidden');
       }
     }
+
     const savedTheme = localStorage.getItem('affan-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcons(savedTheme);
+
     // -------------------------------------------------------------
     // ACCESSIBILITY / PERFORMANCE DETECTOR
     // -------------------------------------------------------------
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
     // Elevate Navbar Background on Scroll
     let lastScrollY = 0;
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
       if (Math.abs(currentScrollY - lastScrollY) < 5) return;
       lastScrollY = currentScrollY;
+
       const nav = document.getElementById('navbar');
       if (currentScrollY > 30) {
         nav.style.background = 'var(--bg)';
@@ -1166,6 +1124,7 @@
         nav.style.backdropFilter = 'none';
       }
     }, { passive: true });
+
     // -------------------------------------------------------------
     // HIGH-PERFORMANCE ZERO-LAG CURSOR (WITH FAST LERP GOO TRAIL)
     // -------------------------------------------------------------
@@ -1180,18 +1139,22 @@
         document.getElementById('c-dot-1'),
         document.getElementById('c-dot-2')
       ];
+
       const mouse = { x: -200, y: -200 };
       const dots = [
         { x: -200, y: -200, baseSize: 24, size: 24 },
         { x: -200, y: -200, baseSize: 18, size: 18 },
         { x: -200, y: -200, baseSize: 14, size: 14 }
       ];
+
       // Instant mouse tracking without state overhead
       window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
+        // Direct zero-lag aim dot update via transform3d
         aim.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       }, { passive: true });
+
       // Click splash burst
       window.addEventListener('click', (e) => {
         splash.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
@@ -1199,6 +1162,7 @@
         void splash.offsetWidth;
         splash.classList.add('splash-active');
       });
+
       // Hover element detection for reactive cursor expansion
       document.addEventListener('mouseover', (e) => {
         if (e.target.closest('a, button, [data-cursor="hover"], label, input, .project-card-custom')) {
@@ -1209,6 +1173,7 @@
           dotEls[1].style.height = '24px';
         }
       });
+
       document.addEventListener('mouseout', (e) => {
         if (e.target.closest('a, button, [data-cursor="hover"], label, input, .project-card-custom')) {
           if (!e.relatedTarget || !e.relatedTarget.closest('a, button, [data-cursor="hover"], label, input, .project-card-custom')) {
@@ -1220,25 +1185,32 @@
           }
         }
       });
-      // Fast, snappy lerp factors
+
+      // Fast, snappy lerp factors (0.55 = fast response, 0.38 = secondary, 0.24 = trailing goo)
       const lerpFactors = [0.55, 0.38, 0.24];
       function updateCursor() {
         dots.forEach((dot, i) => {
           dot.x += (mouse.x - dot.x) * lerpFactors[i];
           dot.y += (mouse.y - dot.y) * lerpFactors[i];
         });
+
+        // Translate the local 120x120px filtered container based on lead dot
         const leadX = dots[0].x;
         const leadY = dots[0].y;
         gooWrapper.style.transform = `translate3d(${leadX}px, ${leadY}px, 0)`;
+
+        // Offset inner dots relative to center of the 120x120 container (center is at (0,0) offset)
         dotEls.forEach((el, i) => {
           const offsetX = dots[i].x - leadX;
           const offsetY = dots[i].y - leadY;
           el.style.transform = `translate3d(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px), 0)`;
         });
+
         requestAnimationFrame(updateCursor);
       }
       requestAnimationFrame(updateCursor);
     }
+
     // -------------------------------------------------------------
     // OPTIMIZED CANVAS PARTICLE FIELD (PAUSES WHEN OFFSCREEN)
     // -------------------------------------------------------------
@@ -1247,18 +1219,21 @@
       if (canvas) canvas.style.display = 'none';
     } else {
       const ctx = canvas.getContext('2d');
+      // Reduced node count: 32 for desktop, 14 for mobile for 60fps lightweight execution
       const NODE_COUNT = isTouchDevice ? 14 : 32;
       const CONNECT_DIST = 105;
       const REPEL_RADIUS = 130;
       const REPEL_STRENGTH = 0.45;
       const DRIFT_SPEED = 0.15;
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
       let width = 0, height = 0;
       let nodes = [];
       let canvasMouse = { x: -1000, y: -1000 };
       let animId = null;
       let isHeroVisible = true;
       let isTabActive = true;
+
       function resize() {
         if (!canvas.parentElement) return;
         width = canvas.parentElement.offsetWidth;
@@ -1267,6 +1242,7 @@
         canvas.height = height * DPR;
         ctx.scale(DPR, DPR);
       }
+
       function initNodes() {
         nodes = [];
         for (let i = 0; i < NODE_COUNT; i++) {
@@ -1279,6 +1255,7 @@
           });
         }
       }
+
       function getColors() {
         const theme = document.documentElement.getAttribute('data-theme') || 'dark';
         if (theme === 'light') {
@@ -1293,20 +1270,26 @@
           };
         }
       }
+
       function tick() {
         if (!isHeroVisible || !isTabActive) {
           animId = null;
           return;
         }
         ctx.clearRect(0, 0, width, height);
+
         const colors = getColors();
+
         nodes.forEach(node => {
           node.x += node.vx;
           node.y += node.vy;
+
           if (node.x < 0 || node.x > width) node.vx *= -1;
           if (node.y < 0 || node.y > height) node.vy *= -1;
+
           node.x = Math.max(0, Math.min(width, node.x));
           node.y = Math.max(0, Math.min(height, node.y));
+
           const dx = node.x - canvasMouse.x;
           const dy = node.y - canvasMouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -1315,11 +1298,13 @@
             node.x += (dx / dist) * force * REPEL_STRENGTH * 3.5;
             node.y += (dy / dist) * force * REPEL_STRENGTH * 3.5;
           }
+
           ctx.beginPath();
           ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
           ctx.fillStyle = colors.particle;
           ctx.fill();
         });
+
         for (let i = 0; i < nodes.length; i++) {
           for (let j = i + 1; j < nodes.length; j++) {
             const a = nodes[i];
@@ -1338,24 +1323,30 @@
             }
           }
         }
+
         animId = requestAnimationFrame(tick);
       }
+
       function startAnimation() {
         if (!animId && isHeroVisible && isTabActive) {
           animId = requestAnimationFrame(tick);
         }
       }
+
       window.addEventListener('mousemove', (e) => {
         if (!isHeroVisible) return;
         const rect = canvas.getBoundingClientRect();
         canvasMouse.x = e.clientX - rect.left;
         canvasMouse.y = e.clientY - rect.top;
       }, { passive: true });
+
       const ro = new ResizeObserver(() => {
         resize();
         initNodes();
       });
       ro.observe(canvas.parentElement || document.body);
+
+      // IntersectionObserver pauses canvas animation when Hero is scrolled out of viewport
       const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           isHeroVisible = entry.isIntersecting;
@@ -1364,24 +1355,31 @@
           }
         });
       }, { threshold: 0.05 });
+
       const heroSection = document.getElementById('home');
       if (heroSection) heroObserver.observe(heroSection);
+
       document.addEventListener('visibilitychange', () => {
         isTabActive = !document.hidden;
         if (isTabActive) {
           startAnimation();
         }
       });
+
       resize();
       initNodes();
       startAnimation();
     }
+
     // -------------------------------------------------------------
     // GSAP SCROLL-DRIVEN ANIMATIONS
     // -------------------------------------------------------------
     document.addEventListener('DOMContentLoaded', () => {
       if (prefersReducedMotion) return;
+
       gsap.registerPlugin(ScrollTrigger);
+
+      // Split text utility logic for character entry
       function splitChars(elementId) {
         const el = document.getElementById(elementId);
         if (!el) return [];
@@ -1389,9 +1387,12 @@
         el.innerHTML = text.split('').map(char => `<span class="hero-char inline-block" style="will-change: transform, opacity;">${char}</span>`).join('');
         return el.querySelectorAll('.hero-char');
       }
+
       const chars1 = splitChars('hero-line-1');
       const chars2 = splitChars('hero-line-2');
+
       const heroTl = gsap.timeline({ delay: 0.15 });
+
       heroTl.from('.micro-label', { y: 12, opacity: 0, duration: 0.45, stagger: 0.08, ease: 'power2.out' })
             .from([...chars1, ...chars2], {
               y: 70,
@@ -1408,6 +1409,8 @@
               stagger: 0.08,
               ease: 'power2.out'
             }, '-=0.35');
+
+      // Scroll reveal split text for headings
       const revealElements = ['about-headline', 'skills-headline', 'projects-headline', 'contact-headline'];
       revealElements.forEach(id => {
         const el = document.getElementById(id);
@@ -1416,8 +1419,10 @@
         el.innerHTML = text.split(' ').map(word => 
           `<span class="split-word"><span class="split-inner">${word}</span></span>`
         ).join('&nbsp;');
+
         const inners = el.querySelectorAll('.split-inner');
         gsap.set(inners, { y: '100%', opacity: 0 });
+
         gsap.to(inners, {
           y: '0%',
           opacity: 1,
@@ -1431,11 +1436,14 @@
           }
         });
       });
+
+      // Stats countUp triggers
       const statsElements = document.querySelectorAll('.stat-container');
       statsElements.forEach(container => {
         const target = parseInt(container.getAttribute('data-target'), 10);
         const counterEl = container.querySelector('.stat-count');
         if (!counterEl) return;
+
         const proxy = { val: 0 };
         gsap.to(proxy, {
           val: target,
@@ -1451,6 +1459,8 @@
           }
         });
       });
+
+      // Cards staggered entry
       gsap.from('.project-card-custom', {
         y: 45,
         opacity: 0,
